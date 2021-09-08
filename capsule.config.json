@@ -1,0 +1,25 @@
+{
+  "attr-no-duplication": true,
+  "head-valid-content-model": true,
+  "html-valid-content-model": true,
+  "valid-path-format": [{
+    "attr": "href",
+    "formats": [
+      {
+        "pattern": "\\${(\\s+)?Gears\\.unsubscribe\\(\\)(\\s+)?}",
+        "name": "MessageGears unsubscribe"
+      },
+      "absolute"
+    ]
+  }, {
+    "tag": "img",
+    "attr": "src",
+    "formats": [
+      "absolute"
+    ]
+  }],
+  "inline-script-disabled": true,
+  "spec-char-escape": true,
+  "src-not-empty": true,
+  "tag-pair": true
+}
