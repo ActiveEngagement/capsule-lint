@@ -25,4 +25,15 @@ export default [{
             changes: { from, to, insert: '' }
         });
     }
-}]
+},{
+    name: 'Remove Tag',
+    apply(view, from, to) {
+        const cursor = view.state.tree.cursor(from);
+
+        cursor.moveTo(cursor.to);
+        
+        view.dispatch({
+            changes: { from: cursor.from , to: cursor.to, insert: '' }
+        });
+    }
+},]
