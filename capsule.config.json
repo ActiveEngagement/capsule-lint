@@ -2,6 +2,9 @@
   "attr-no-duplication": true,
   "head-valid-content-model": true,
   "html-valid-content-model": true,
+  "spec-char-escape": true,
+  "src-not-empty": true,
+  "tag-pair": true,
   "valid-path-format": [{
     "attr": "href",
     "formats": [
@@ -17,8 +20,5 @@
     "formats": [
       "absolute"
     ]
-  }],
-  "spec-char-escape": true,
-  "src-not-empty": true,
-  "tag-pair": true
+  }]
 }
