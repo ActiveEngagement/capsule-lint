@@ -5,11 +5,11 @@
   "valid-path-format": [{
     "attr": "href",
     "formats": [
+      "absolute",
       {
         "pattern": "\\${(\\s+)?Gears\\.unsubscribe\\(\\)(\\s+)?}",
         "name": "MessageGears unsubscribe"
-      },
-      "absolute"
+      }
     ]
   }, {
     "tag": "img",
@@ -18,7 +18,6 @@
       "absolute"
     ]
   }],
-  "inline-script-disabled": true,
   "spec-char-escape": true,
   "src-not-empty": true,
   "tag-pair": true

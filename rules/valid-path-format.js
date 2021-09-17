@@ -65,7 +65,7 @@ function test(patterns, event, attr) {
 
 module.exports = {
     id: 'valid-path-format',
-    description: 'The href attribute must be a valid format.',
+    description: 'Paths must be a valid format.',
     init(parser, reporter, options) {
         options = Array.isArray(options) ? options : [];
 
