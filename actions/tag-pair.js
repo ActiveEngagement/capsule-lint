@@ -7,7 +7,7 @@ class Element {
     }
 
     is(tagName) {
-        return this.tagName === tagName;
+        return this.tagName.toLowerCase() === tagName.toLowerCase();
     }
 }
 
@@ -33,7 +33,7 @@ function changes(view, from, to) {
         leave(type, from, to) {
             if(type.name === 'CloseTag') {
                 for(pos = stack.length - 1; pos >= 0; pos--) {
-                    if(stack[pos].is(tagName(view, from, to))) {
+                    if(!stack[pos].closed && stack[pos].is(tagName(view, from, to))) {
                         stack[pos].closed = true;
 
                         break;
@@ -55,19 +55,27 @@ function changes(view, from, to) {
 module.exports = [{
     name: 'Close Only First Tag',
     apply(view, from, to) {
+        let data;
 
+        // The purpose of this loop is if the from/to doen't catch the error,
+        // then we should traverse backwards until we find a charge, or reach
+        // the beginning of the document.
+        do {      
+            data = changes(view, from, to);
+
+            from -= 10;
+        }
+        while(from && !data.length);
+            
         view.dispatch({
-            changes: changes(view, from, to).slice(0, 1)
+            changes: data.slice(0, 1)
         });
     }
 }, {
     name: 'Close All Tags',
-    validate(view, from, to) {
-        return changes(view, from, to).length > 0;
-    },
     apply(view, from, to) {
         view.dispatch({
-            changes: changes(view, from, to)
+            changes: changes(view)
         });
     }
 }]

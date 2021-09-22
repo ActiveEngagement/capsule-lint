@@ -9,6 +9,7 @@ const htmlValidChildren = require('./html-valid-children');
 const imgSrcRequired = require('./img-src-required');
 const invalidTagChar = require('./invalid-attribute-char');
 const validPathFormat = require('./valid-path-format');
+const nestedParagraphs = require('./nested-paragraphs');
 
 module.exports = {
     'body-no-duplicates': bodyNoDuplicates,
@@ -21,5 +22,6 @@ module.exports = {
     'html-valid-children': htmlValidChildren,
     'img-src-required': imgSrcRequired,
     'invalid-attribute-char': invalidTagChar,
+    'nested-paragraphs': nestedParagraphs,
     'valid-path-format': validPathFormat,
 };
