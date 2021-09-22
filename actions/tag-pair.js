@@ -55,7 +55,7 @@ function changes(view, from, to) {
 module.exports = [{
     name: 'Close Only First Tag',
     apply(view, from, to) {
-        let data;
+        let data = [];
 
         // The purpose of this loop is if the from/to doen't catch the error,
         // then we should traverse backwards until we find a charge, or reach
@@ -65,7 +65,7 @@ module.exports = [{
 
             from -= 10;
         }
-        while(from && !data.length);
+        while(from >= 0 && !data.length);
             
         view.dispatch({
             changes: data.slice(0, 1)

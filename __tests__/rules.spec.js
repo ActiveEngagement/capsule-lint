@@ -83,6 +83,12 @@ describe('Rule: "invalid-attribute-char"', () => {
     });
 });
 
+describe('Rule: "nested-paragraphs"', () => {
+    it('Throws errors when there are nested paragraphs tags.', () => {
+        rule('nested-paragraphs')
+    });
+});
+
 describe('Rule: "valid-path-format"', () => {
     it('Throws errors for relative paths.', () => {
         rule('valid-path-format')
