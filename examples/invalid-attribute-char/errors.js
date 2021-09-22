@@ -1,15 +1,15 @@
 module.exports = [
     {
         type: 'error',
-        message: 'The [ <id ] attribute contains an invalid character [ < ]',
-        raw: ' <id="test"',
+        message: '[ < ] character cannot be used for attribute names.',
+        raw: '<',
         evidence: '<a <id="test">test</a>',
         line: 1,
-        col: 3,
+        col: 4,
         rule: {
-        id: 'invalid-attribute-char',
-        description: 'Invalid attribute character.',
-        link: 'https://thecapsule.email/docs/codes/invalid-attribute-char'
+            id: 'invalid-attribute-char',
+            description: 'Attribute must contain valid characters.',
+            link: 'https://thecapsule.email/docs/codes/invalid-attribute-char'
         }
     }
 ]
