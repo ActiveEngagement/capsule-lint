@@ -1,4 +1,4 @@
-export default [{
+module.exports = [{
     name: 'Fix Error',
     apply(view, from, to) {
         const map = {

@@ -1,4 +1,4 @@
-export default [{
+module.exports = [{
     name: 'Fix Path',
     apply(view, from, to) {
         const matches = view.state.doc.slice(from, to).toString().match(/(=(?:\s+)?['"])(.+)?['"]/);

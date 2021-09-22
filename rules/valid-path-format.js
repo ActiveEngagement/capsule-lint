@@ -30,7 +30,7 @@ class MatchError extends Error {
     constructor(pattern, event, attr) {
         super();
 
-        this.message = `The value of the href attribute [ ${attr.value} ] must follow the ${pattern.name} format.`;        
+        this.message = `The [ ${attr.name} ] attribute "${attr.value}" must follow the ${pattern.name} format.`;        
         this.name = pattern.name;
         this.line = event.line;
         this.col = event.col + event.tagName.length + 1 + attr.index;
@@ -41,7 +41,7 @@ class ReporterError extends Error {
     
     constructor(event, errors, attr) {
         super(errors.length === 1 ? errors[0].message : (
-            `The value of the href attribute [ ${attr.value} ] must one of the following formats: ${errors.map(event => `"${event.name}"`).join(', ')}.`
+            `The [ ${attr.name} ] attribute "${attr.value}" must one of the following formats: ${errors.map(event => `"${event.name}"`).join(', ')}.`
         ));
 
         this.line = event.line;
@@ -77,7 +77,11 @@ module.exports = {
         
                 const patterns = config.formats.map(pattern => new Pattern(pattern));
         
-                if(!config.tag || config.tag === event.tagName) {
+                if(config.tag && !Array.isArray(config.tag)) {
+                    config.tag = [config.tag];
+                }
+
+                if(!config.tag || config.tag.indexOf(event.tagName) > -1) {
                     event.attrs.forEach(attr => {
                         if(!config.attr || config.attr === attr.name) {
                             try {

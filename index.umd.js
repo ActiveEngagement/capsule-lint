@@ -6,7 +6,7 @@
 
   var defaultConfig = {
   	"attr-no-duplication": true,
-  	"head-valid-content-model": true,
+  	"head-valid-children": true,
   	"html-valid-content-model": true,
   	"valid-path-format": [
   	{
@@ -1602,7 +1602,7 @@
   }(core));
 
   var headValidContentModel = {
-      id: 'head-valid-content-model',
+      id: 'head-valid-children',
       description: 'The head tag must only contain valid elements.',
       init(parser, reporter, options) {
           const tags = Array.isArray(options) ? options : [
@@ -1983,7 +1983,7 @@
   };
 
   const rules = {
-      'head-valid-content-model': headValidContentModel,
+      'head-valid-children': headValidContentModel,
       'html-valid-content-model': htmlValidContentModel,
       'valid-path-format': validPathFormat,
   };

@@ -7,6 +7,9 @@
     "prod": "rollup --config rollup.config.js",
     "test": "jest"
   },
+  "bin": {
+    "capsule-lint": "./bin/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ActiveEngagement/capsule-lint.git"
@@ -38,6 +41,8 @@
     }
   },
   "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.2.0",
     "htmlhint": "^0.15.1"
   }
 }

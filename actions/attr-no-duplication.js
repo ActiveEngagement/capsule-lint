@@ -1,4 +1,4 @@
-export default [{
+module.exports = [{
     name: 'Remove Attribute',
     apply(view, from, to) {
         view.dispatch({

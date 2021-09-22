@@ -1,4 +1,4 @@
-export default [{
+module.exports = [{
     name: 'Remove Img',
     apply(view, from, to) {
         const cursor = view.state.tree.cursor(from);

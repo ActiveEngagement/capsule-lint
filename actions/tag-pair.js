@@ -52,8 +52,8 @@ function changes(view, from, to) {
         }));
 }
 
-export default [{
-    name: 'Close First Tag',
+module.exports = [{
+    name: 'Close Only First Tag',
     apply(view, from, to) {
 
         view.dispatch({
