@@ -7,8 +7,8 @@ const htmlNoDuplicates = require('./html-no-duplicates');
 const htmlRootNode = require('./html-root-node');
 const htmlValidChildren = require('./html-valid-children');
 const imgSrcRequired = require('./img-src-required');
+const invalidTagChar = require('./invalid-attribute-char');
 const validPathFormat = require('./valid-path-format');
-const invalidAttributeChar = require('./invalid-attribute-char');
 
 module.exports = {
     'body-no-duplicates': bodyNoDuplicates,
@@ -20,6 +20,6 @@ module.exports = {
     'html-root-node': htmlRootNode,
     'html-valid-children': htmlValidChildren,
     'img-src-required': imgSrcRequired,
-    'invalid-attribute-char': invalidAttributeChar,
+    'invalid-attribute-char': invalidTagChar,
     'valid-path-format': validPathFormat,
 };
