@@ -52,8 +52,13 @@ function changes(view, from, to) {
         }));
 }
 
+function validate(view, { message }) {
+    return message.indexOf('Tag must be paired, no start tag') === -1;
+}
+
 module.exports = [{
     name: 'Close Only First Tag',
+    validate,
     apply(view, from, to) {
         let data = [];
 
@@ -73,6 +78,7 @@ module.exports = [{
     }
 }, {
     name: 'Close All Tags',
+    validate,
     apply(view, from, to) {
         view.dispatch({
             changes: changes(view)
