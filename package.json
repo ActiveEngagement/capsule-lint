@@ -4,8 +4,18 @@
   "description": "The official Capsule linting package.",
   "main": "index.js",
   "scripts": {
+    "build": "npm run prod",
     "prod": "rollup --config rollup.config.js",
-    "test": "jest"
+    "test": "jest",
+    "commit": "git add -A && git commit -m 'Pre-release commit';",
+    "release-prerelease": "npm run build && npm run commit && npm version prerelease --preid beta; npm run release;",
+    "release-patch": "npm run build && npm run commit && npm version patch; npm run release;",
+    "release-patch-beta": "npm run build && npm run commit && npm version prepatch --preid beta; npm run release;",
+    "release-minor": "npm run build && npm run commit && npm version minor; npm run release;",
+    "release-minor-beta": "npm run build && npm run commit && npm version preminor --preid beta; npm run release;",
+    "release-major": "npm run build && npm run commit && npm version major; npm run release;",
+    "release-major-beta": "npm run build && npm run commit && npm version premajor --preid beta; npm run release;",
+    "release": "npm run commit; npm publish; git push --follow-tags;"
   },
   "bin": {
     "capsule-lint": "./bin/cli.js"
