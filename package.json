@@ -1,6 +1,6 @@
 {
   "name": "capsule-lint",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The official Capsule linting package.",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "release": "npm run commit; npm publish; git push --follow-tags;"
   },
   "bin": {
-    "capsule-lint": "./bin/cli.js"
+    "capsule-lint": "bin/cli.js"
   },
   "repository": {
     "type": "git",
