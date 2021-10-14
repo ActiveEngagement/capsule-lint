@@ -2,7 +2,8 @@
   "name": "capsule-lint",
   "version": "0.2.1-beta.0",
   "description": "The official Capsule linting package.",
-  "main": "index.js",
+  "main": "index.umd.js",
+  "module": "index.js",
   "scripts": {
     "build": "npm run prod",
     "prod": "rollup --config rollup.config.js",
