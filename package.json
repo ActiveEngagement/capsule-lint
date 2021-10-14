@@ -1,6 +1,6 @@
 {
   "name": "capsule-lint",
-  "version": "0.2.1-beta.0",
+  "version": "0.2.1",
   "description": "The official Capsule linting package.",
   "main": "index.umd.js",
   "module": "index.js",
