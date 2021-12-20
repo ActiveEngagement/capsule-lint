@@ -1636,7 +1636,7 @@
 	    }
 	}];
 
-	var invalidAttributeChar$2 = [{
+	var invalidAttributeChar$3 = [{
 	    name: 'Fix Error',
 	    apply(view, from, to) {
 	        view.dispatch({
@@ -1806,7 +1806,7 @@
 	},];
 
 	const attrNoDuplicate = attrNoDuplication;
-	const invalidAttributeChar$1 = invalidAttributeChar$2;
+	const invalidAttributeChar$2 = invalidAttributeChar$3;
 	const specCharEscape = specCharEscape$1;
 	const srcNotEmpty = srcNotEmpty$1;
 	const tagPair = tagPair$1;
@@ -1814,7 +1814,7 @@
 
 	var actions$1 = {
 	    'attr-no-duplication': attrNoDuplicate,
-	    'invalid-attribute-char': invalidAttributeChar$1,
+	    'invalid-attribute-char': invalidAttributeChar$2,
 	    'spec-char-escape': specCharEscape,
 	    'src-not-empty': srcNotEmpty,
 	    'tag-pair': tagPair,
@@ -2222,7 +2222,7 @@
 	    }
 	};
 
-	var invalidAttributeChar = {
+	var invalidAttributeChar$1 = {
 	    id: 'invalid-attribute-char',
 	    description: 'Attribute must contain valid characters.',
 	    init(parser, reporter, chars) {
@@ -2234,8 +2234,8 @@
 	                
 	                let pos = 0;
 
-	                const matches = name.match(/[^a-zA-Z_-\s="']/g);
-	    
+	                const matches = name.match(/[^a-zA-Z:\-1-9]/g);
+	                    
 	                if(matches) {
 	                    while(matches.length) {
 	                        const slice = name.slice(pos),
@@ -2433,7 +2433,7 @@
 	const htmlRootNode = htmlRootNode$1;
 	const htmlValidChildren = htmlValidChildren$1;
 	const imgSrcRequired = imgSrcRequired$1;
-	const invalidTagChar = invalidAttributeChar;
+	const invalidAttributeChar = invalidAttributeChar$1;
 	const validPathFormat = validPathFormat$1;
 	const nestedParagraphs = nestedParagraphs$1;
 
@@ -2447,7 +2447,7 @@
 	    'html-root-node': htmlRootNode,
 	    'html-valid-children': htmlValidChildren,
 	    'img-src-required': imgSrcRequired,
-	    'invalid-attribute-char': invalidTagChar,
+	    'invalid-attribute-char': invalidAttributeChar,
 	    'nested-paragraphs': nestedParagraphs,
 	    'valid-path-format': validPathFormat,
 	};
