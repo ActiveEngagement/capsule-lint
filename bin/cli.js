@@ -5,7 +5,7 @@ const path = require('path');
 const chalk = require('chalk');
 const { version } = require('../package.json');
 const { Command } = require('commander');
-const { verify } = require('..');
+const { verify } = require('../index.js');
 
 const program = new Command();
 

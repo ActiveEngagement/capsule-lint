@@ -10,8 +10,8 @@ module.exports = {
                 
                 let pos = 0;
 
-                const matches = name.match(/[^a-zA-Z_-\s="']/g);
-    
+                const matches = name.match(/[^a-zA-Z:\-1-9]/g);
+                    
                 if(matches) {
                     while(matches.length) {
                         const slice = name.slice(pos),
