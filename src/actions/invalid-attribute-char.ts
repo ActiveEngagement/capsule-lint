@@ -1,10 +1,8 @@
-const rules = require('../capsule.config.json');
-
-module.exports = [{
+export default [{
     name: 'Fix Error',
     apply(view, from, to) {
         view.dispatch({
             changes: { from, to, insert: '' }
         });
     }
-}]
+}];

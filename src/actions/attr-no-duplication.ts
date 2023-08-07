@@ -1,6 +1,8 @@
-module.exports = [{
+import { EditorView } from '@codemirror/view';
+
+export default [{
     name: 'Remove Attribute',
-    apply(view, from, to) {
+    apply(view: EditorView, from, to) {
         view.dispatch({
             changes: { from, to, insert: '' }
         });
@@ -23,4 +25,4 @@ module.exports = [{
         view.dispatch(tr);
         view.focus();
     }
-}]
+}];

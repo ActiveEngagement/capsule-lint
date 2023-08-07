@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
     name: 'Fix Error',
     apply(view, from, to) {
         const map = {
@@ -17,4 +17,4 @@ module.exports = [{
             changes: { from: from + index, to: from + index + 1, insert: map[char] }
         });
     }
-}]
+}];

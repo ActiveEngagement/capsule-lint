@@ -1,4 +1,9 @@
 class Element {
+    public from: number;
+    public to: number;
+    public tagName: string;
+    public closed: boolean;
+
     constructor(view, from, to) {
         this.from = from;
         this.to = to;
@@ -17,8 +22,10 @@ function tagName(view, from, to) {
         .match(/^<\/?(?:\s+)?(\w+)/)[1];
 }
 
-function changes(view, from, to) {
-    let lastElement, pos, stack = [];
+function changes(view, from?:number, to?:number) {
+    let lastElement, pos;
+
+    const stack = [];
 
     view.state.tree.iterate({
         from, to,
@@ -56,7 +63,7 @@ function validate(view, { message }) {
     return message.indexOf('Tag must be paired, no start tag') === -1;
 }
 
-module.exports = [{
+export default [{
     name: 'Close Only First Tag',
     validate,
     apply(view, from, to) {
@@ -84,4 +91,4 @@ module.exports = [{
             changes: changes(view)
         });
     }
-}]
+}];

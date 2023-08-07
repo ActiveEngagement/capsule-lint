@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
     name: 'Remove Img',
     apply(view, from, to) {
         const cursor = view.state.tree.cursor(from);
@@ -7,4 +7,4 @@ module.exports = [{
             changes: { from: cursor.from , to: cursor.to, insert: '' }
         });
     }
-}]
+}];

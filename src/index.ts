@@ -1,13 +1,13 @@
-const defaultConfig = require('./capsule.config.json');
-const { HTMLHint } = require('htmlhint');
-const actions = require('./actions');
-const rules = require('./rules');
+import { HTMLHint } from 'htmlhint';
+import defaultConfig from '../capsule.config.json' assert { type: 'json' };
+import actions from './actions';
+import rules from './rules';
 
 Object.keys(rules).forEach((key) => {
     HTMLHint.addRule(rules[key]);
 });
 
-function verify(html, config) {
+export function verify(html, config) {
     return HTMLHint.verify(html, config || defaultConfig).map(error => {
         error.rule.link = error.rule.link.replace(
             'https://github.com/thedaviddias/HTMLHint/wiki/',
@@ -18,15 +18,8 @@ function verify(html, config) {
     });
 }
 
-function lint(html, config) {
+export function lint(html, config) {
     return verify(html, config || defaultConfig).map(error => {
-        error.rule.actions = actions[error.rule.id] || [];
-
-        return error;
+        return { ...error, actions: actions[error.rule.id] || [] };
     });
 }
-
-module.exports = {
-    lint,
-    verify
-};
