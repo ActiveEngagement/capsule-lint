@@ -1,189 +1,279 @@
-var Le = Object.defineProperty;
-var Oe = (s, r, n) => r in s ? Le(s, r, { enumerable: !0, configurable: !0, writable: !0, value: n }) : s[r] = n;
-var v = (s, r, n) => (Oe(s, typeof r != "symbol" ? r + "" : r, n), n);
-var be = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, z = {}, H = {};
-Object.defineProperty(H, "__esModule", { value: !0 });
-var Ne = function() {
-  function s() {
+var Te = Object.defineProperty;
+var $e = (i, r, t) => r in i ? Te(i, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : i[r] = t;
+var p = (i, r, t) => ($e(i, typeof r != "symbol" ? r + "" : r, t), t);
+var j = {}, M = {};
+Object.defineProperty(M, "__esModule", { value: !0 });
+class Oe {
+  constructor() {
     this._listeners = {}, this._mapCdataTags = this.makeMap("script,style"), this._arrBlocks = [], this.lastEvent = null;
   }
-  return s.prototype.makeMap = function(r) {
-    for (var n = {}, e = r.split(","), t = 0; t < e.length; t++)
-      n[e[t]] = !0;
-    return n;
-  }, s.prototype.parse = function(r) {
-    var n = this, e = this._mapCdataTags, t = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g, a = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g, l = /\r?\n/g, i, o, u = 0, d, f, c = null, p, m = [], g = 0, h, b = 0, _ = 1, O = this._arrBlocks;
+  makeMap(r) {
+    const t = {}, a = r.split(",");
+    for (let e = 0; e < a.length; e++)
+      t[a[e]] = !0;
+    return t;
+  }
+  parse(r) {
+    const t = this._mapCdataTags, a = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g, e = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g, n = /\r?\n/g;
+    let s, l, o = 0, d, c, u = null, h, f = [], w = 0, m, _ = 0, b = 1;
+    const A = this._arrBlocks;
     this.fire("start", {
       pos: 0,
       line: 1,
       col: 1
     });
-    for (var T = function() {
-      var x = f.find(function(j) {
-        return j.name === "type";
-      }) || {
+    const $ = () => {
+      const L = c.find((g) => g.name === "type") || {
         value: ""
       };
-      return e[d] && x.value.indexOf("text/ng-template") === -1;
-    }, w = function(x, j, P, L) {
-      var R = P - b + 1;
-      for (L === void 0 && (L = {}), L.raw = j, L.pos = P, L.line = _, L.col = R, O.push(L), n.fire(x, L); l.exec(j); )
-        _++, b = P + l.lastIndex;
-    }; i = t.exec(r); ) {
-      if (o = i.index, o > u && (h = r.substring(u, o), c ? m.push(h) : w("text", h, u)), u = t.lastIndex, (d = i[1]) && (c && d === c && (h = m.join(""), w("cdata", h, g, {
-        tagName: c,
-        attrs: p
-      }), c = null, p = void 0, m = []), !c)) {
-        w("tagend", i[0], o, {
+      return t[d] && L.value.indexOf("text/ng-template") === -1;
+    }, y = (L, g, O, T) => {
+      const C = O - _ + 1;
+      for (T === void 0 && (T = {}), T.raw = g, T.pos = O, T.line = b, T.col = C, A.push(T), this.fire(L, T); n.exec(g); )
+        b++, _ = O + n.lastIndex;
+    };
+    for (; s = a.exec(r); ) {
+      if (l = s.index, l > o && (m = r.substring(o, l), u ? f.push(m) : y("text", m, o)), o = a.lastIndex, (d = s[1]) && (u && d === u && (m = f.join(""), y("cdata", m, w, {
+        tagName: u,
+        attrs: h
+      }), u = null, h = void 0, f = []), !u)) {
+        y("tagend", s[0], l, {
           tagName: d
         });
         continue;
       }
-      if (c)
-        m.push(i[0]);
-      else if (d = i[4]) {
-        f = [];
-        for (var A = i[5], y = void 0, C = 0; y = a.exec(A); ) {
-          var k = y[1], $ = y[2] ? y[2] : y[4] ? y[4] : "", q = y[3] ? y[3] : y[5] ? y[5] : y[6] ? y[6] : "";
-          f.push({
-            name: k,
-            value: q,
-            quote: $,
-            index: y.index,
-            raw: y[0]
-          }), C += y[0].length;
+      if (u)
+        f.push(s[0]);
+      else if (d = s[4]) {
+        c = [];
+        const L = s[5];
+        let g, O = 0;
+        for (; g = e.exec(L); ) {
+          const T = g[1], C = g[2] ? g[2] : g[4] ? g[4] : "", v = g[3] ? g[3] : g[5] ? g[5] : g[6] ? g[6] : "";
+          c.push({
+            name: T,
+            value: v,
+            quote: C,
+            index: g.index,
+            raw: g[0]
+          }), O += g[0].length;
         }
-        C === A.length ? (w("tagstart", i[0], o, {
+        O === L.length ? (y("tagstart", s[0], l, {
           tagName: d,
-          attrs: f,
-          close: i[6]
-        }), T() && (c = d, p = f.concat(), m = [], g = u)) : w("text", i[0], o);
+          attrs: c,
+          close: s[6]
+        }), $() && (u = d, h = c.concat(), f = [], w = o)) : y("text", s[0], l);
       } else
-        (i[2] || i[3]) && w("comment", i[0], o, {
-          content: i[2] || i[3],
-          long: !!i[2]
+        (s[2] || s[3]) && y("comment", s[0], l, {
+          content: s[2] || s[3],
+          long: !!s[2]
         });
     }
-    r.length > u && (h = r.substring(u, r.length), w("text", h, u)), this.fire("end", {
-      pos: u,
-      line: _,
-      col: r.length - b + 1
+    r.length > o && (m = r.substring(o, r.length), y("text", m, o)), this.fire("end", {
+      pos: o,
+      line: b,
+      col: r.length - _ + 1
     });
-  }, s.prototype.addListener = function(r, n) {
-    for (var e = this._listeners, t = r.split(/[,\s]/), a, l = 0, i = t.length; l < i; l++)
-      a = t[l], e[a] === void 0 && (e[a] = []), e[a].push(n);
-  }, s.prototype.fire = function(r, n) {
-    n === void 0 && (n = {}), n.type = r;
-    var e = [], t = this._listeners[r], a = this._listeners.all;
-    t !== void 0 && (e = e.concat(t)), a !== void 0 && (e = e.concat(a));
-    var l = this.lastEvent;
-    l !== null && (delete l.lastEvent, n.lastEvent = l), this.lastEvent = n;
-    for (var i = 0, o = e.length; i < o; i++)
-      e[i].call(this, n);
-  }, s.prototype.removeListener = function(r, n) {
-    var e = this._listeners[r];
-    if (e !== void 0) {
-      for (var t = 0, a = e.length; t < a; t++)
-        if (e[t] === n) {
-          e.splice(t, 1);
+  }
+  addListener(r, t) {
+    const a = this._listeners, e = r.split(/[,\s]/);
+    let n;
+    for (let s = 0, l = e.length; s < l; s++)
+      n = e[s], a[n] === void 0 && (a[n] = []), a[n].push(t);
+  }
+  fire(r, t) {
+    t === void 0 && (t = {}), t.type = r;
+    let a = [];
+    const e = this._listeners[r], n = this._listeners.all;
+    e !== void 0 && (a = a.concat(e)), n !== void 0 && (a = a.concat(n));
+    const s = this.lastEvent;
+    s !== null && (delete s.lastEvent, t.lastEvent = s), this.lastEvent = t;
+    for (let l = 0, o = a.length; l < o; l++)
+      a[l].call(this, t);
+  }
+  removeListener(r, t) {
+    const a = this._listeners[r];
+    if (a !== void 0) {
+      for (let e = 0, n = a.length; e < n; e++)
+        if (a[e] === t) {
+          a.splice(e, 1);
           break;
         }
     }
-  }, s.prototype.fixPos = function(r, n) {
-    var e = r.raw.substr(0, n), t = e.split(/\r?\n/), a = t.length - 1, l = r.line, i;
-    return a > 0 ? (l += a, i = t[a].length + 1) : i = r.col + n, {
-      line: l,
-      col: i
-    };
-  }, s.prototype.getMapAttrs = function(r) {
-    for (var n = {}, e, t = 0, a = r.length; t < a; t++)
-      e = r[t], n[e.name] = e.value;
-    return n;
-  }, s;
-}();
-H.default = Ne;
-var D = {};
-Object.defineProperty(D, "__esModule", { value: !0 });
-var Te = function() {
-  function s(r, n) {
-    this.html = r, this.lines = r.split(/\r?\n/);
-    var e = /\r?\n/.exec(r);
-    this.brLen = e !== null ? e[0].length : 0, this.ruleset = n, this.messages = [];
   }
-  return s.prototype.info = function(r, n, e, t, a) {
-    this.report("info", r, n, e, t, a);
-  }, s.prototype.warn = function(r, n, e, t, a) {
-    this.report("warning", r, n, e, t, a);
-  }, s.prototype.error = function(r, n, e, t, a) {
-    this.report("error", r, n, e, t, a);
-  }, s.prototype.report = function(r, n, e, t, a, l) {
-    for (var i = this.lines, o = this.brLen, u = "", d = 0, f = e - 1, c = i.length; f < c && (u = i[f], d = u.length, t > d && e < c); f++)
-      e++, t -= d, t !== 1 && (t -= o);
+  fixPos(r, t) {
+    const e = r.raw.substr(0, t).split(/\r?\n/), n = e.length - 1;
+    let s = r.line, l;
+    return n > 0 ? (s += n, l = e[n].length + 1) : l = r.col + t, {
+      line: s,
+      col: l
+    };
+  }
+  getMapAttrs(r) {
+    const t = {};
+    let a;
+    for (let e = 0, n = r.length; e < n; e++)
+      a = r[e], t[a.name] = a.value;
+    return t;
+  }
+}
+M.default = Oe;
+var E = {};
+Object.defineProperty(E, "__esModule", { value: !0 });
+class Ne {
+  constructor(r, t) {
+    this.html = r, this.lines = r.split(/\r?\n/);
+    const a = /\r?\n/.exec(r);
+    this.brLen = a !== null ? a[0].length : 0, this.ruleset = t, this.messages = [];
+  }
+  info(r, t, a, e, n) {
+    this.report("info", r, t, a, e, n);
+  }
+  warn(r, t, a, e, n) {
+    this.report("warning", r, t, a, e, n);
+  }
+  error(r, t, a, e, n) {
+    this.report("error", r, t, a, e, n);
+  }
+  report(r, t, a, e, n, s) {
+    const l = this.lines, o = this.brLen;
+    let d = "", c = 0;
+    for (let u = a - 1, h = l.length; u < h && (d = l[u], c = d.length, e > c && a < h); u++)
+      a++, e -= c, e !== 1 && (e -= o);
     this.messages.push({
       type: r,
-      message: n,
-      raw: l,
-      evidence: u,
-      line: e,
-      col: t,
+      message: t,
+      raw: s,
+      evidence: d,
+      line: a,
+      col: e,
       rule: {
-        id: a.id,
-        description: a.description,
-        link: "https://github.com/thedaviddias/HTMLHint/wiki/" + a.id
+        id: n.id,
+        description: n.description,
+        link: `https://htmlhint.com/docs/user-guide/rules/${n.id}`
       }
     });
-  }, s;
-}();
-D.default = Te;
-var _e = {}, S = {};
-Object.defineProperty(S, "__esModule", { value: !0 });
-S.default = {
+  }
+}
+E.default = Ne;
+var ge = {}, x = {};
+Object.defineProperty(x, "__esModule", { value: !0 });
+x.default = {
   id: "alt-require",
   description: "The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      var t = e.tagName.toLowerCase(), a = s.getMapAttrs(e.attrs), l = e.col + t.length + 1, i;
-      t === "img" && !("alt" in a) ? r.warn("An alt attribute must be present on <img> elements.", e.line, l, n, e.raw) : (t === "area" && "href" in a || t === "input" && a.type === "image") && (!("alt" in a) || a.alt === "") && (i = t === "area" ? "area[href]" : "input[type=image]", r.warn("The alt attribute of " + i + " must have a value.", e.line, l, n, e.raw));
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.tagName.toLowerCase(), e = i.getMapAttrs(t.attrs), n = t.col + a.length + 1;
+      let s;
+      a === "img" && !("alt" in e) ? r.warn("An alt attribute must be present on <img> elements.", t.line, n, this, t.raw) : (a === "area" && "href" in e || a === "input" && e.type === "image") && (!("alt" in e) || e.alt === "") && (s = a === "area" ? "area[href]" : "input[type=image]", r.warn(`The alt attribute of ${s} must have a value.`, t.line, n, this, t.raw));
     });
   }
 };
-var Z = {};
-Object.defineProperty(Z, "__esModule", { value: !0 });
-function Ae(s, r) {
+var k = {};
+Object.defineProperty(k, "__esModule", { value: !0 });
+const Ae = [
+  "allowReorder",
+  "attributeName",
+  "attributeType",
+  "autoReverse",
+  "baseFrequency",
+  "baseProfile",
+  "calcMode",
+  "clipPath",
+  "clipPathUnits",
+  "contentScriptType",
+  "contentStyleType",
+  "diffuseConstant",
+  "edgeMode",
+  "externalResourcesRequired",
+  "filterRes",
+  "filterUnits",
+  "glyphRef",
+  "gradientTransform",
+  "gradientUnits",
+  "kernelMatrix",
+  "kernelUnitLength",
+  "keyPoints",
+  "keySplines",
+  "keyTimes",
+  "lengthAdjust",
+  "limitingConeAngle",
+  "markerHeight",
+  "markerUnits",
+  "markerWidth",
+  "maskContentUnits",
+  "maskUnits",
+  "numOctaves",
+  "onBlur",
+  "onChange",
+  "onClick",
+  "onFocus",
+  "onKeyUp",
+  "onLoad",
+  "pathLength",
+  "patternContentUnits",
+  "patternTransform",
+  "patternUnits",
+  "pointsAtX",
+  "pointsAtY",
+  "pointsAtZ",
+  "preserveAlpha",
+  "preserveAspectRatio",
+  "primitiveUnits",
+  "refX",
+  "refY",
+  "repeatCount",
+  "repeatDur",
+  "requiredExtensions",
+  "requiredFeatures",
+  "specularConstant",
+  "specularExponent",
+  "spreadMethod",
+  "startOffset",
+  "stdDeviation",
+  "stitchTiles",
+  "surfaceScale",
+  "systemLanguage",
+  "tableValues",
+  "targetX",
+  "targetY",
+  "textLength",
+  "viewBox",
+  "viewTarget",
+  "xChannelSelector",
+  "yChannelSelector",
+  "zoomAndPan"
+];
+function Ce(i, r) {
   if (r instanceof RegExp)
-    return r.test(s) ? { match: s, pattern: r } : !1;
-  var n = r[0], e = r[r.length - 1], t = r[r.length - 2], a = n === "/" && (e === "/" || t === "/" && e === "i"), l = a && e === "i";
-  if (a) {
-    var i = l ? new RegExp(r.slice(1, -2), "i").test(s) : new RegExp(r.slice(1, -1)).test(s);
-    return i;
-  }
-  return s === r;
+    return r.test(i) ? { match: i, pattern: r } : !1;
+  const t = r[0], a = r[r.length - 1], e = r[r.length - 2], n = t === "/" && (a === "/" || e === "/" && a === "i"), s = n && a === "i";
+  return n ? s ? new RegExp(r.slice(1, -2), "i").test(i) : new RegExp(r.slice(1, -1)).test(i) : i === r;
 }
-Z.default = {
+k.default = {
   id: "attr-lowercase",
   description: "All attribute names must be in lowercase.",
-  init: function(s, r, n) {
-    var e = this, t = Array.isArray(n) ? n : [];
-    s.addListener("tagstart", function(a) {
-      for (var l = a.attrs, i, o = a.col + a.tagName.length + 1, u = function(c, p) {
-        i = l[c];
-        var m = i.name;
-        !t.find(function(g) {
-          return Ae(m, g);
-        }) && m !== m.toLowerCase() && r.error("The attribute name of [ " + m + " ] must be in lowercase.", a.line, o + i.index, e, i.raw);
-      }, d = 0, f = l.length; d < f; d++)
-        u(d);
+  init(i, r, t) {
+    const a = (Array.isArray(t) ? t : []).concat(Ae);
+    i.addListener("tagstart", (e) => {
+      const n = e.attrs;
+      let s;
+      const l = e.col + e.tagName.length + 1;
+      for (let o = 0, d = n.length; o < d; o++) {
+        s = n[o];
+        const c = s.name;
+        !a.find((u) => Ce(c, u)) && c !== c.toLowerCase() && r.error(`The attribute name of [ ${c} ] must be in lowercase.`, e.line, l + s.index, this, s.raw);
+      }
     });
   }
 };
-var F = {};
-Object.defineProperty(F, "__esModule", { value: !0 });
-F.default = {
+var q = {};
+Object.defineProperty(q, "__esModule", { value: !0 });
+q.default = {
   id: "attr-sorted",
   description: "Attribute tags must be in proper order.",
-  init: function(s, r) {
-    for (var n = this, e = {}, t = [
+  init(i, r) {
+    const t = {}, a = [
       "class",
       "id",
       "name",
@@ -195,194 +285,213 @@ F.default = {
       "title",
       "alt",
       "role"
-    ], a = 0; a < t.length; a++)
-      e[t[a]] = a;
-    s.addListener("tagstart", function(l) {
-      for (var i = l.attrs, o = [], u = 0; u < i.length; u++)
-        o.push(i[u].name);
-      var d = JSON.stringify(o);
-      o.sort(function(f, c) {
-        return e[f] == null && e[c] == null ? 0 : e[f] == null ? 1 : e[c] == null ? -1 : e[f] - e[c] || f.localeCompare(c);
-      }), d !== JSON.stringify(o) && r.error("Inaccurate order " + d + " should be in hierarchy " + JSON.stringify(o) + " ", l.line, l.col, n, l.raw);
+    ];
+    for (let e = 0; e < a.length; e++)
+      t[a[e]] = e;
+    i.addListener("tagstart", (e) => {
+      const n = e.attrs, s = [];
+      for (let o = 0; o < n.length; o++)
+        s.push(n[o].name);
+      const l = JSON.stringify(s);
+      s.sort((o, d) => t[o] == null && t[d] == null ? 0 : t[o] == null ? 1 : t[d] == null ? -1 : t[o] - t[d] || o.localeCompare(d)), l !== JSON.stringify(s) && r.error(`Inaccurate order ${l} should be in hierarchy ${JSON.stringify(s)} `, e.line, e.col, this, e.raw);
+    });
+  }
+};
+var R = {};
+Object.defineProperty(R, "__esModule", { value: !0 });
+R.default = {
+  id: "attr-no-duplication",
+  description: "Elements cannot have duplicate attributes.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e, n;
+      const s = t.col + t.tagName.length + 1, l = {};
+      for (let o = 0, d = a.length; o < d; o++)
+        e = a[o], n = e.name, l[n] === !0 && r.error(`Duplicate of attribute name [ ${e.name} ] was found.`, t.line, s + e.index, this, e.raw), l[n] = !0;
+    });
+  }
+};
+var S = {};
+Object.defineProperty(S, "__esModule", { value: !0 });
+S.default = {
+  id: "attr-unsafe-chars",
+  description: "Attribute values cannot contain unsafe chars.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1, s = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/;
+      let l;
+      for (let o = 0, d = a.length; o < d; o++)
+        if (e = a[o], l = s.exec(e.value), l !== null) {
+          const c = escape(l[0]).replace(/%u/, "\\u").replace(/%/, "\\x");
+          r.warn(`The value of attribute [ ${e.name} ] cannot contain an unsafe char [ ${c} ].`, t.line, n + e.index, this, e.raw);
+        }
+    });
+  }
+};
+var D = {};
+Object.defineProperty(D, "__esModule", { value: !0 });
+D.default = {
+  id: "attr-value-double-quotes",
+  description: "Attribute values must be in double quotes.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1;
+      for (let s = 0, l = a.length; s < l; s++)
+        e = a[s], (e.value !== "" && e.quote !== '"' || e.value === "" && e.quote === "'") && r.error(`The value of attribute [ ${e.name} ] must be in double quotes.`, t.line, n + e.index, this, e.raw);
+    });
+  }
+};
+var z = {};
+Object.defineProperty(z, "__esModule", { value: !0 });
+z.default = {
+  id: "attr-value-not-empty",
+  description: "All attributes must have values.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1;
+      for (let s = 0, l = a.length; s < l; s++)
+        e = a[s], e.quote === "" && e.value === "" && r.warn(`The attribute [ ${e.name} ] must have a value.`, t.line, n + e.index, this, e.raw);
     });
   }
 };
 var I = {};
 Object.defineProperty(I, "__esModule", { value: !0 });
 I.default = {
-  id: "attr-no-duplication",
-  description: "Elements cannot have duplicate attributes.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l, i = e.col + e.tagName.length + 1, o = {}, u = 0, d = t.length; u < d; u++)
-        a = t[u], l = a.name, o[l] === !0 && r.error("Duplicate of attribute name [ " + a.name + " ] was found.", e.line, i + a.index, n, a.raw), o[l] = !0;
+  id: "attr-value-single-quotes",
+  description: "Attribute values must be in single quotes.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1;
+      for (let s = 0, l = a.length; s < l; s++)
+        e = a[s], (e.value !== "" && e.quote !== "'" || e.value === "" && e.quote === '"') && r.error(`The value of attribute [ ${e.name} ] must be in single quotes.`, t.line, n + e.index, this, e.raw);
     });
   }
 };
 var U = {};
 Object.defineProperty(U, "__esModule", { value: !0 });
 U.default = {
-  id: "attr-unsafe-chars",
-  description: "Attribute values cannot contain unsafe chars.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/, o, u = 0, d = t.length; u < d; u++)
-        if (a = t[u], o = i.exec(a.value), o !== null) {
-          var f = escape(o[0]).replace(/%u/, "\\u").replace(/%/, "\\x");
-          r.warn("The value of attribute [ " + a.name + " ] cannot contain an unsafe char [ " + f + " ].", e.line, l + a.index, n, a.raw);
+  id: "attr-whitespace",
+  description: "All attributes should be separated by only one space and not have leading/trailing whitespace.",
+  init(i, r, t) {
+    const a = Array.isArray(t) ? t : [];
+    i.addListener("tagstart", (e) => {
+      const n = e.attrs;
+      let s;
+      const l = e.col + e.tagName.length + 1;
+      n.forEach((o) => {
+        s = o;
+        const d = o.name;
+        a.indexOf(d) === -1 && (o.value.trim() !== o.value && r.error(`The attributes of [ ${d} ] must not have leading or trailing whitespace.`, e.line, l + s.index, this, s.raw), o.value.replace(/ +(?= )/g, "") !== o.value && r.error(`The attributes of [ ${d} ] must be separated by only one space.`, e.line, l + s.index, this, s.raw));
+      });
+    });
+  }
+};
+var H = {};
+Object.defineProperty(H, "__esModule", { value: !0 });
+H.default = {
+  id: "doctype-first",
+  description: "Doctype must be declared first.",
+  init(i, r) {
+    const t = (a) => {
+      a.type === "start" || a.type === "text" && /^\s*$/.test(a.raw) || ((a.type !== "comment" && a.long === !1 || /^DOCTYPE\s+/i.test(a.content) === !1) && r.error("Doctype must be declared first.", a.line, a.col, this, a.raw), i.removeListener("all", t));
+    };
+    i.addListener("all", t);
+  }
+};
+var F = {};
+Object.defineProperty(F, "__esModule", { value: !0 });
+F.default = {
+  id: "doctype-html5",
+  description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
+  init(i, r) {
+    const t = (e) => {
+      e.long === !1 && e.content.toLowerCase() !== "doctype html" && r.warn('Invalid doctype. Use: "<!DOCTYPE html>"', e.line, e.col, this, e.raw);
+    }, a = () => {
+      i.removeListener("comment", t), i.removeListener("tagstart", a);
+    };
+    i.addListener("all", t), i.addListener("tagstart", a);
+  }
+};
+var Z = {};
+Object.defineProperty(Z, "__esModule", { value: !0 });
+Z.default = {
+  id: "head-script-disabled",
+  description: "The <script> tag cannot be used in a <head> tag.",
+  init(i, r) {
+    const t = /^(text\/javascript|application\/javascript)$/i;
+    let a = !1;
+    const e = (s) => {
+      const o = i.getMapAttrs(s.attrs).type, d = s.tagName.toLowerCase();
+      d === "head" && (a = !0), a === !0 && d === "script" && (!o || t.test(o) === !0) && r.warn("The <script> tag cannot be used in a <head> tag.", s.line, s.col, this, s.raw);
+    }, n = (s) => {
+      s.tagName.toLowerCase() === "head" && (i.removeListener("tagstart", e), i.removeListener("tagend", n));
+    };
+    i.addListener("tagstart", e), i.addListener("tagend", n);
+  }
+};
+var V = {};
+Object.defineProperty(V, "__esModule", { value: !0 });
+V.default = {
+  id: "href-abs-or-rel",
+  description: "An href attribute must be either absolute or relative.",
+  init(i, r, t) {
+    const a = t === "abs" ? "absolute" : "relative";
+    i.addListener("tagstart", (e) => {
+      const n = e.attrs;
+      let s;
+      const l = e.col + e.tagName.length + 1;
+      for (let o = 0, d = n.length; o < d; o++)
+        if (s = n[o], s.name === "href") {
+          (a === "absolute" && /^\w+?:/.test(s.value) === !1 || a === "relative" && /^https?:\/\//.test(s.value) === !0) && r.warn(`The value of the href attribute [ ${s.value} ] must be ${a}.`, e.line, l + s.index, this, s.raw);
+          break;
         }
+    });
+  }
+};
+var W = {};
+Object.defineProperty(W, "__esModule", { value: !0 });
+const Pe = "(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang)", ve = "(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)", je = `(?<grandfathered>${ve}|${Pe})`, Me = "(?<privateUse>x(-[A-Za-z0-9]{1,8})+)", Ee = "(?<privateUse2>x(-[A-Za-z0-9]{1,8})+)", xe = "[0-9A-WY-Za-wy-z]", ke = `(?<extension>${xe}(-[A-Za-z0-9]{2,8})+)`, qe = "(?<variant>[A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3})", Re = "(?<region>[A-Za-z]{2}|[0-9]{3})", Se = "(?<script>[A-Za-z]{4})", De = "(?<extlang>[A-Za-z]{3}(-[A-Za-z]{3}){0,2})", ze = `(?<language>([A-Za-z]{2,3}(-${De})?)|[A-Za-z]{4}|[A-Za-z]{5,8})`, Ie = `(${ze}(-${Se})?(-${Re})?(-${qe})*(-${ke})*(-${Me})?)`, Ue = `(${je}|${Ie}|${Ee})`;
+W.default = {
+  id: "html-lang-require",
+  description: "The lang attribute of an <html> element must be present and should be valid.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.tagName.toLowerCase(), e = i.getMapAttrs(t.attrs), n = t.col + a.length + 1, s = new RegExp(Ue, "g");
+      a === "html" && ("lang" in e ? e.lang ? s.test(e.lang) || r.warn("The lang attribute value of <html> element must be a valid BCP47.", t.line, n, this, t.raw) : r.warn("The lang attribute of <html> element must have a value.", t.line, n, this, t.raw) : r.warn("An lang attribute must be present on <html> elements.", t.line, n, this, t.raw));
     });
   }
 };
 var B = {};
 Object.defineProperty(B, "__esModule", { value: !0 });
 B.default = {
-  id: "attr-value-double-quotes",
-  description: "Attribute values must be in double quotes.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i = 0, o = t.length; i < o; i++)
-        a = t[i], (a.value !== "" && a.quote !== '"' || a.value === "" && a.quote === "'") && r.error("The value of attribute [ " + a.name + " ] must be in double quotes.", e.line, l + a.index, n, a.raw);
-    });
-  }
-};
-var V = {};
-Object.defineProperty(V, "__esModule", { value: !0 });
-V.default = {
-  id: "attr-value-not-empty",
-  description: "All attributes must have values.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i = 0, o = t.length; i < o; i++)
-        a = t[i], a.quote === "" && a.value === "" && r.warn("The attribute [ " + a.name + " ] must have a value.", e.line, l + a.index, n, a.raw);
-    });
-  }
-};
-var W = {};
-Object.defineProperty(W, "__esModule", { value: !0 });
-W.default = {
-  id: "attr-value-single-quotes",
-  description: "Attribute values must be in single quotes.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i = 0, o = t.length; i < o; i++)
-        a = t[i], (a.value !== "" && a.quote !== "'" || a.value === "" && a.quote === '"') && r.error("The value of attribute [ " + a.name + " ] must be in single quotes.", e.line, l + a.index, n, a.raw);
-    });
-  }
-};
-var G = {};
-Object.defineProperty(G, "__esModule", { value: !0 });
-G.default = {
-  id: "attr-whitespace",
-  description: "All attributes should be separated by only one space and not have leading/trailing whitespace.",
-  init: function(s, r, n) {
-    var e = this, t = Array.isArray(n) ? n : [];
-    s.addListener("tagstart", function(a) {
-      var l = a.attrs, i, o = a.col + a.tagName.length + 1;
-      l.forEach(function(u) {
-        i = u;
-        var d = u.name;
-        t.indexOf(d) === -1 && (u.value.trim() !== u.value && r.error("The attributes of [ " + d + " ] must not have trailing whitespace.", a.line, o + i.index, e, i.raw), u.value.replace(/ +(?= )/g, "") !== u.value && r.error("The attributes of [ " + d + " ] must be separated by only one space.", a.line, o + i.index, e, i.raw));
-      });
+  id: "id-class-ad-disabled",
+  description: "The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e, n;
+      const s = t.col + t.tagName.length + 1;
+      for (let l = 0, o = a.length; l < o; l++)
+        e = a[l], n = e.name, /^(id|class)$/i.test(n) && /(^|[-_])ad([-_]|$)/i.test(e.value) && r.warn(`The value of attribute ${n} cannot use the ad keyword.`, t.line, s + e.index, this, e.raw);
     });
   }
 };
 var Y = {};
 Object.defineProperty(Y, "__esModule", { value: !0 });
 Y.default = {
-  id: "doctype-first",
-  description: "Doctype must be declared first.",
-  init: function(s, r) {
-    var n = this, e = function(t) {
-      t.type === "start" || t.type === "text" && /^\s*$/.test(t.raw) || ((t.type !== "comment" && t.long === !1 || /^DOCTYPE\s+/i.test(t.content) === !1) && r.error("Doctype must be declared first.", t.line, t.col, n, t.raw), s.removeListener("all", e));
-    };
-    s.addListener("all", e);
-  }
-};
-var J = {};
-Object.defineProperty(J, "__esModule", { value: !0 });
-J.default = {
-  id: "doctype-html5",
-  description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
-  init: function(s, r) {
-    var n = this, e = function(a) {
-      a.long === !1 && a.content.toLowerCase() !== "doctype html" && r.warn('Invalid doctype. Use: "<!DOCTYPE html>"', a.line, a.col, n, a.raw);
-    }, t = function() {
-      s.removeListener("comment", e), s.removeListener("tagstart", t);
-    };
-    s.addListener("all", e), s.addListener("tagstart", t);
-  }
-};
-var Q = {};
-Object.defineProperty(Q, "__esModule", { value: !0 });
-Q.default = {
-  id: "head-script-disabled",
-  description: "The <script> tag cannot be used in a <head> tag.",
-  init: function(s, r) {
-    var n = this, e = /^(text\/javascript|application\/javascript)$/i, t = !1, a = function(i) {
-      var o = s.getMapAttrs(i.attrs), u = o.type, d = i.tagName.toLowerCase();
-      d === "head" && (t = !0), t === !0 && d === "script" && (!u || e.test(u) === !0) && r.warn("The <script> tag cannot be used in a <head> tag.", i.line, i.col, n, i.raw);
-    }, l = function(i) {
-      i.tagName.toLowerCase() === "head" && (s.removeListener("tagstart", a), s.removeListener("tagend", l));
-    };
-    s.addListener("tagstart", a), s.addListener("tagend", l);
-  }
-};
-var K = {};
-Object.defineProperty(K, "__esModule", { value: !0 });
-K.default = {
-  id: "href-abs-or-rel",
-  description: "An href attribute must be either absolute or relative.",
-  init: function(s, r, n) {
-    var e = this, t = n === "abs" ? "absolute" : "relative";
-    s.addListener("tagstart", function(a) {
-      for (var l = a.attrs, i, o = a.col + a.tagName.length + 1, u = 0, d = l.length; u < d; u++)
-        if (i = l[u], i.name === "href") {
-          (t === "absolute" && /^\w+?:/.test(i.value) === !1 || t === "relative" && /^https?:\/\//.test(i.value) === !0) && r.warn("The value of the href attribute [ " + i.value + " ] must be " + t + ".", a.line, o + i.index, e, i.raw);
-          break;
-        }
-    });
-  }
-};
-var X = {};
-Object.defineProperty(X, "__esModule", { value: !0 });
-var je = "(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang)", xe = "(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)", Pe = "(?<grandfathered>" + xe + "|" + je + ")", Ce = "(?<privateUse>x(-[A-Za-z0-9]{1,8})+)", Ee = "(?<privateUse2>x(-[A-Za-z0-9]{1,8})+)", Me = "[0-9A-WY-Za-wy-z]", ke = "(?<extension>" + Me + "(-[A-Za-z0-9]{2,8})+)", $e = "(?<variant>[A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3})", qe = "(?<region>[A-Za-z]{2}|[0-9]{3})", Re = "(?<script>[A-Za-z]{4})", ze = "(?<extlang>[A-Za-z]{3}(-[A-Za-z]{3}){0,2})", He = "(?<language>([A-Za-z]{2,3}(-" + ze + ")?)|[A-Za-z]{4}|[A-Za-z]{5,8})", De = "(" + He + "(-" + Re + ")?" + ("(-" + qe + ")?") + ("(-" + $e + ")*") + ("(-" + ke + ")*") + ("(-" + Ce + ")?") + ")", Se = "(" + Pe + "|" + De + "|" + Ee + ")";
-X.default = {
-  id: "html-lang-require",
-  description: "The lang attribute of an <html> element must be present and should be valid.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      var t = e.tagName.toLowerCase(), a = s.getMapAttrs(e.attrs), l = e.col + t.length + 1, i = new RegExp(Se, "g");
-      t === "html" && ("lang" in a ? a.lang ? i.test(a.lang) || r.warn("The lang attribute value of <html> element must be a valid BCP47.", e.line, l, n, e.raw) : r.warn("The lang attribute of <html> element must have a value.", e.line, l, n, e.raw) : r.warn("An lang attribute must be present on <html> elements.", e.line, l, n, e.raw));
-    });
-  }
-};
-var ee = {};
-Object.defineProperty(ee, "__esModule", { value: !0 });
-ee.default = {
-  id: "id-class-ad-disabled",
-  description: "The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l, i = e.col + e.tagName.length + 1, o = 0, u = t.length; o < u; o++)
-        a = t[o], l = a.name, /^(id|class)$/i.test(l) && /(^|[-_])ad([-_]|$)/i.test(a.value) && r.warn("The value of attribute " + l + " cannot use the ad keyword.", e.line, i + a.index, n, a.raw);
-    });
-  }
-};
-var te = {};
-Object.defineProperty(te, "__esModule", { value: !0 });
-te.default = {
   id: "id-class-value",
   description: "The id and class attribute values must meet the specified rules.",
-  init: function(s, r, n) {
-    var e = this, t = {
+  init(i, r, t) {
+    const a = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
         message: "The id and class attribute values must be in lowercase and split by an underscore."
@@ -395,266 +504,294 @@ te.default = {
         regId: /^[a-z][a-zA-Z\d]*([A-Z][a-zA-Z\d]*)*$/,
         message: "The id and class attribute values must meet the camelCase style."
       }
-    }, a;
-    if (typeof n == "string" ? a = t[n] : a = n, typeof a == "object" && a.regId) {
-      var l = a.regId, i = a.message;
-      l instanceof RegExp || (l = new RegExp(l)), s.addListener("tagstart", function(o) {
-        for (var u = o.attrs, d, f = o.col + o.tagName.length + 1, c = 0, p = u.length; c < p; c++)
-          if (d = u[c], d.name.toLowerCase() === "id" && l.test(d.value) === !1 && r.warn(i, o.line, f + d.index, e, d.raw), d.name.toLowerCase() === "class")
-            for (var m = d.value.split(/\s+/g), g = void 0, h = 0, b = m.length; h < b; h++)
-              g = m[h], g && l.test(g) === !1 && r.warn(i, o.line, f + d.index, e, g);
+    };
+    let e;
+    if (typeof t == "string" ? e = a[t] : e = t, typeof e == "object" && e.regId) {
+      let n = e.regId;
+      const s = e.message;
+      n instanceof RegExp || (n = new RegExp(n)), i.addListener("tagstart", (l) => {
+        const o = l.attrs;
+        let d;
+        const c = l.col + l.tagName.length + 1;
+        for (let u = 0, h = o.length; u < h; u++)
+          if (d = o[u], d.name.toLowerCase() === "id" && n.test(d.value) === !1 && r.warn(s, l.line, c + d.index, this, d.raw), d.name.toLowerCase() === "class") {
+            const f = d.value.split(/\s+/g);
+            let w;
+            for (let m = 0, _ = f.length; m < _; m++)
+              w = f[m], w && n.test(w) === !1 && r.warn(s, l.line, c + d.index, this, w);
+          }
       });
     }
+  }
+};
+var Q = {};
+Object.defineProperty(Q, "__esModule", { value: !0 });
+Q.default = {
+  id: "id-unique",
+  description: "The value of id attributes must be unique.",
+  init(i, r) {
+    const t = {};
+    i.addListener("tagstart", (a) => {
+      const e = a.attrs;
+      let n, s;
+      const l = a.col + a.tagName.length + 1;
+      for (let o = 0, d = e.length; o < d; o++)
+        if (n = e[o], n.name.toLowerCase() === "id") {
+          s = n.value, s && (t[s] === void 0 ? t[s] = 1 : t[s]++, t[s] > 1 && r.error(`The id value [ ${s} ] must be unique.`, a.line, l + n.index, this, n.raw));
+          break;
+        }
+    });
+  }
+};
+var G = {};
+Object.defineProperty(G, "__esModule", { value: !0 });
+G.default = {
+  id: "inline-script-disabled",
+  description: "Inline script cannot be used.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1;
+      let s;
+      const l = /^on(unload|message|submit|select|scroll|resize|mouseover|mouseout|mousemove|mouseleave|mouseenter|mousedown|load|keyup|keypress|keydown|focus|dblclick|click|change|blur|error)$/i;
+      for (let o = 0, d = a.length; o < d; o++)
+        e = a[o], s = e.name.toLowerCase(), l.test(s) === !0 ? r.warn(`Inline script [ ${e.raw} ] cannot be used.`, t.line, n + e.index, this, e.raw) : (s === "src" || s === "href") && /^\s*javascript:/i.test(e.value) && r.warn(`Inline script [ ${e.raw} ] cannot be used.`, t.line, n + e.index, this, e.raw);
+    });
+  }
+};
+var J = {};
+Object.defineProperty(J, "__esModule", { value: !0 });
+J.default = {
+  id: "inline-style-disabled",
+  description: "Inline style cannot be used.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.attrs;
+      let e;
+      const n = t.col + t.tagName.length + 1;
+      for (let s = 0, l = a.length; s < l; s++)
+        e = a[s], e.name.toLowerCase() === "style" && r.warn(`Inline style [ ${e.raw} ] cannot be used.`, t.line, n + e.index, this, e.raw);
+    });
+  }
+};
+var X = {};
+Object.defineProperty(X, "__esModule", { value: !0 });
+X.default = {
+  id: "input-requires-label",
+  description: "All [ input ] tags must have a corresponding [ label ] tag. ",
+  init(i, r) {
+    const t = [], a = [];
+    i.addListener("tagstart", (n) => {
+      const s = n.tagName.toLowerCase(), l = i.getMapAttrs(n.attrs), o = n.col + s.length + 1;
+      s === "input" && l.type !== "hidden" && a.push({ event: n, col: o, id: l.id }), s === "label" && "for" in l && l.for !== "" && t.push({ event: n, col: o, forValue: l.for });
+    }), i.addListener("end", () => {
+      a.forEach((n) => {
+        e(n) || r.warn("No matching [ label ] tag found.", n.event.line, n.col, this, n.event.raw);
+      });
+    });
+    function e(n) {
+      let s = !1;
+      return t.forEach((l) => {
+        n.id && n.id === l.forValue && (s = !0);
+      }), s;
+    }
+  }
+};
+var K = {};
+Object.defineProperty(K, "__esModule", { value: !0 });
+K.default = {
+  id: "script-disabled",
+  description: "The <script> tag cannot be used.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      t.tagName.toLowerCase() === "script" && r.error("The <script> tag cannot be used.", t.line, t.col, this, t.raw);
+    });
+  }
+};
+var ee = {};
+Object.defineProperty(ee, "__esModule", { value: !0 });
+ee.default = {
+  id: "space-tab-mixed-disabled",
+  description: "Do not mix tabs and spaces for indentation.",
+  init(i, r, t) {
+    let a = "nomix", e = null;
+    if (typeof t == "string") {
+      const n = /^([a-z]+)(\d+)?/.exec(t);
+      n && (a = n[1], e = n[2] && parseInt(n[2], 10));
+    }
+    i.addListener("text", (n) => {
+      const s = n.raw, l = /(^|\r?\n)([ \t]+)/g;
+      let o;
+      for (; o = l.exec(s); ) {
+        const d = i.fixPos(n, o.index + o[1].length);
+        if (d.col !== 1)
+          continue;
+        const c = o[2];
+        a === "space" ? e ? (/^ +$/.test(c) === !1 || c.length % e !== 0) && r.warn(`Please use space for indentation and keep ${e} length.`, d.line, 1, this, n.raw) : /^ +$/.test(c) === !1 && r.warn("Please use space for indentation.", d.line, 1, this, n.raw) : a === "tab" && /^\t+$/.test(c) === !1 ? r.warn("Please use tab for indentation.", d.line, 1, this, n.raw) : / +\t|\t+ /.test(c) === !0 && r.warn("Do not mix tabs and spaces for indentation.", d.line, 1, this, n.raw);
+      }
+    });
+  }
+};
+var te = {};
+Object.defineProperty(te, "__esModule", { value: !0 });
+te.default = {
+  id: "spec-char-escape",
+  description: "Special characters must be escaped.",
+  init(i, r) {
+    i.addListener("text", (t) => {
+      const a = t.raw, e = /([<>])|( \& )/g;
+      let n;
+      for (; n = e.exec(a); ) {
+        const s = i.fixPos(t, n.index);
+        r.error(`Special characters must be escaped : [ ${n[0]} ].`, s.line, s.col, this, t.raw);
+      }
+    });
   }
 };
 var ae = {};
 Object.defineProperty(ae, "__esModule", { value: !0 });
 ae.default = {
-  id: "id-unique",
-  description: "The value of id attributes must be unique.",
-  init: function(s, r) {
-    var n = this, e = {};
-    s.addListener("tagstart", function(t) {
-      for (var a = t.attrs, l, i, o = t.col + t.tagName.length + 1, u = 0, d = a.length; u < d; u++)
-        if (l = a[u], l.name.toLowerCase() === "id") {
-          i = l.value, i && (e[i] === void 0 ? e[i] = 1 : e[i]++, e[i] > 1 && r.error("The id value [ " + i + " ] must be unique.", t.line, o + l.index, n, l.raw));
-          break;
-        }
+  id: "src-not-empty",
+  description: "The src attribute of an img(script,link) must have a value.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      const a = t.tagName, e = t.attrs;
+      let n;
+      const s = t.col + a.length + 1;
+      for (let l = 0, o = e.length; l < o; l++)
+        n = e[l], (/^(img|script|embed|bgsound|iframe)$/.test(a) === !0 && n.name === "src" || a === "link" && n.name === "href" || a === "object" && n.name === "data") && n.value === "" && r.error(`The attribute [ ${n.name} ] of the tag [ ${a} ] must have a value.`, t.line, s + n.index, this, n.raw);
     });
   }
 };
 var re = {};
 Object.defineProperty(re, "__esModule", { value: !0 });
 re.default = {
-  id: "inline-script-disabled",
-  description: "Inline script cannot be used.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i, o = /^on(unload|message|submit|select|scroll|resize|mouseover|mouseout|mousemove|mouseleave|mouseenter|mousedown|load|keyup|keypress|keydown|focus|dblclick|click|change|blur|error)$/i, u = 0, d = t.length; u < d; u++)
-        a = t[u], i = a.name.toLowerCase(), (o.test(i) === !0 || (i === "src" || i === "href") && /^\s*javascript:/i.test(a.value)) && r.warn("Inline script [ " + a.raw + " ] cannot be used.", e.line, l + a.index, n, a.raw);
+  id: "style-disabled",
+  description: "<style> tags cannot be used.",
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      t.tagName.toLowerCase() === "style" && r.warn("The <style> tag cannot be used.", t.line, t.col, this, t.raw);
     });
   }
 };
 var ie = {};
 Object.defineProperty(ie, "__esModule", { value: !0 });
 ie.default = {
-  id: "inline-style-disabled",
-  description: "Inline style cannot be used.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.attrs, a, l = e.col + e.tagName.length + 1, i = 0, o = t.length; i < o; i++)
-        a = t[i], a.name.toLowerCase() === "style" && r.warn("Inline style [ " + a.raw + " ] cannot be used.", e.line, l + a.index, n, a.raw);
+  id: "tag-pair",
+  description: "Tag must be paired.",
+  init(i, r) {
+    const t = [], a = i.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");
+    i.addListener("tagstart", (e) => {
+      const n = e.tagName.toLowerCase();
+      a[n] === void 0 && !e.close && t.push({
+        tagName: n,
+        line: e.line,
+        raw: e.raw
+      });
+    }), i.addListener("tagend", (e) => {
+      const n = e.tagName.toLowerCase();
+      let s;
+      for (s = t.length - 1; s >= 0 && t[s].tagName !== n; s--)
+        ;
+      if (s >= 0) {
+        const l = [];
+        for (let o = t.length - 1; o > s; o--)
+          l.push(`</${t[o].tagName}>`);
+        if (l.length > 0) {
+          const o = t[t.length - 1];
+          r.error(`Tag must be paired, missing: [ ${l.join("")} ], start tag match failed [ ${o.raw} ] on line ${o.line}.`, e.line, e.col, this, e.raw);
+        }
+        t.length = s;
+      } else
+        r.error(`Tag must be paired, no start tag: [ ${e.raw} ]`, e.line, e.col, this, e.raw);
+    }), i.addListener("end", (e) => {
+      const n = [];
+      for (let s = t.length - 1; s >= 0; s--)
+        n.push(`</${t[s].tagName}>`);
+      if (n.length > 0) {
+        const s = t[t.length - 1];
+        r.error(`Tag must be paired, missing: [ ${n.join("")} ], open tag match failed [ ${s.raw} ] on line ${s.line}.`, e.line, e.col, this, "");
+      }
+    });
+  }
+};
+var se = {};
+Object.defineProperty(se, "__esModule", { value: !0 });
+se.default = {
+  id: "tag-self-close",
+  description: "Empty tags must be self closed.",
+  init(i, r) {
+    const t = i.makeMap("area,base,basefont,bgsound,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");
+    i.addListener("tagstart", (a) => {
+      const e = a.tagName.toLowerCase();
+      t[e] !== void 0 && (a.close || r.warn(`The empty tag : [ ${e} ] must be self closed.`, a.line, a.col, this, a.raw));
     });
   }
 };
 var ne = {};
 Object.defineProperty(ne, "__esModule", { value: !0 });
 ne.default = {
-  id: "input-requires-label",
-  description: "All [ input ] tags must have a corresponding [ label ] tag. ",
-  init: function(s, r) {
-    var n = this, e = [], t = [];
-    s.addListener("tagstart", function(l) {
-      var i = l.tagName.toLowerCase(), o = s.getMapAttrs(l.attrs), u = l.col + i.length + 1;
-      i === "input" && t.push({ event: l, col: u, id: o.id }), i === "label" && "for" in o && o.for !== "" && e.push({ event: l, col: u, forValue: o.for });
-    }), s.addListener("end", function() {
-      t.forEach(function(l) {
-        a(l) || r.warn("No matching [ label ] tag found.", l.event.line, l.col, n, l.event.raw);
-      });
-    });
-    function a(l) {
-      var i = !1;
-      return e.forEach(function(o) {
-        l.id && l.id === o.forValue && (i = !0);
-      }), i;
-    }
-  }
-};
-var se = {};
-Object.defineProperty(se, "__esModule", { value: !0 });
-se.default = {
-  id: "script-disabled",
-  description: "The <script> tag cannot be used.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      e.tagName.toLowerCase() === "script" && r.error("The <script> tag cannot be used.", e.line, e.col, n, e.raw);
+  id: "empty-tag-not-self-closed",
+  description: "Empty tags must not use self closed syntax.",
+  init(i, r) {
+    const t = i.makeMap("area,base,basefont,bgsound,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");
+    i.addListener("tagstart", (a) => {
+      const e = a.tagName.toLowerCase();
+      t[e] !== void 0 && a.close && r.error(`The empty tag : [ ${e} ] must not use self closed syntax.`, a.line, a.col, this, a.raw);
     });
   }
 };
 var le = {};
 Object.defineProperty(le, "__esModule", { value: !0 });
 le.default = {
-  id: "space-tab-mixed-disabled",
-  description: "Do not mix tabs and spaces for indentation.",
-  init: function(s, r, n) {
-    var e = this, t = "nomix", a = null;
-    if (typeof n == "string") {
-      var l = /^([a-z]+)(\d+)?/.exec(n);
-      l && (t = l[1], a = l[2] && parseInt(l[2], 10));
-    }
-    s.addListener("text", function(i) {
-      for (var o = i.raw, u = /(^|\r?\n)([ \t]+)/g, d; d = u.exec(o); ) {
-        var f = s.fixPos(i, d.index + d[1].length);
-        if (f.col === 1) {
-          var c = d[2];
-          t === "space" ? a ? (/^ +$/.test(c) === !1 || c.length % a !== 0) && r.warn("Please use space for indentation and keep " + a + " length.", f.line, 1, e, i.raw) : /^ +$/.test(c) === !1 && r.warn("Please use space for indentation.", f.line, 1, e, i.raw) : t === "tab" && /^\t+$/.test(c) === !1 ? r.warn("Please use tab for indentation.", f.line, 1, e, i.raw) : / +\t|\t+ /.test(c) === !0 && r.warn("Do not mix tabs and spaces for indentation.", f.line, 1, e, i.raw);
-        }
-      }
+  id: "tagname-lowercase",
+  description: "All html element names must be in lowercase.",
+  init(i, r, t) {
+    const a = Array.isArray(t) ? t : [];
+    i.addListener("tagstart,tagend", (e) => {
+      const n = e.tagName;
+      a.indexOf(n) === -1 && n !== n.toLowerCase() && r.error(`The html element name of [ ${n} ] must be in lowercase.`, e.line, e.col, this, e.raw);
     });
   }
 };
 var oe = {};
 Object.defineProperty(oe, "__esModule", { value: !0 });
 oe.default = {
-  id: "spec-char-escape",
-  description: "Special characters must be escaped.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("text", function(e) {
-      for (var t = e.raw, a = /([<>])|( \& )/g, l; l = a.exec(t); ) {
-        var i = s.fixPos(e, l.index);
-        r.error("Special characters must be escaped : [ " + l[0] + " ].", i.line, i.col, n, e.raw);
-      }
-    });
-  }
-};
-var ue = {};
-Object.defineProperty(ue, "__esModule", { value: !0 });
-ue.default = {
-  id: "src-not-empty",
-  description: "The src attribute of an img(script,link) must have a value.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      for (var t = e.tagName, a = e.attrs, l, i = e.col + t.length + 1, o = 0, u = a.length; o < u; o++)
-        l = a[o], (/^(img|script|embed|bgsound|iframe)$/.test(t) === !0 && l.name === "src" || t === "link" && l.name === "href" || t === "object" && l.name === "data") && l.value === "" && r.error("The attribute [ " + l.name + " ] of the tag [ " + t + " ] must have a value.", e.line, i + l.index, n, l.raw);
+  id: "tagname-specialchars",
+  description: "All special characters must be escaped.",
+  init(i, r) {
+    const t = /[^a-zA-Z0-9\-:_]/;
+    i.addListener("tagstart,tagend", (a) => {
+      const e = a.tagName;
+      t.test(e) && r.error(`The html element name of [ ${e} ] contains special character.`, a.line, a.col, this, a.raw);
     });
   }
 };
 var de = {};
 Object.defineProperty(de, "__esModule", { value: !0 });
 de.default = {
-  id: "style-disabled",
-  description: "<style> tags cannot be used.",
-  init: function(s, r) {
-    var n = this;
-    s.addListener("tagstart", function(e) {
-      e.tagName.toLowerCase() === "style" && r.warn("The <style> tag cannot be used.", e.line, e.col, n, e.raw);
-    });
+  id: "title-require",
+  description: "<title> must be present in <head> tag.",
+  init(i, r) {
+    let t = !1, a = !1;
+    const e = (s) => {
+      const l = s.tagName.toLowerCase();
+      l === "head" ? t = !0 : l === "title" && t && (a = !0);
+    }, n = (s) => {
+      const l = s.tagName.toLowerCase();
+      if (a && l === "title") {
+        const o = s.lastEvent;
+        (o.type !== "text" || o.type === "text" && /^\s*$/.test(o.raw) === !0) && r.error("<title></title> must not be empty.", s.line, s.col, this, s.raw);
+      } else
+        l === "head" && (a === !1 && r.error("<title> must be present in <head> tag.", s.line, s.col, this, s.raw), i.removeListener("tagstart", e), i.removeListener("tagend", n));
+    };
+    i.addListener("tagstart", e), i.addListener("tagend", n);
   }
 };
 var ce = {};
 Object.defineProperty(ce, "__esModule", { value: !0 });
-ce.default = {
-  id: "tag-pair",
-  description: "Tag must be paired.",
-  init: function(s, r) {
-    var n = this, e = [], t = s.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");
-    s.addListener("tagstart", function(a) {
-      var l = a.tagName.toLowerCase();
-      t[l] === void 0 && !a.close && e.push({
-        tagName: l,
-        line: a.line,
-        raw: a.raw
-      });
-    }), s.addListener("tagend", function(a) {
-      var l = a.tagName.toLowerCase(), i;
-      for (i = e.length - 1; i >= 0 && e[i].tagName !== l; i--)
-        ;
-      if (i >= 0) {
-        for (var o = [], u = e.length - 1; u > i; u--)
-          o.push("</" + e[u].tagName + ">");
-        if (o.length > 0) {
-          var d = e[e.length - 1];
-          r.error("Tag must be paired, missing: [ " + o.join("") + " ], start tag match failed [ " + d.raw + " ] on line " + d.line + ".", a.line, a.col, n, a.raw);
-        }
-        e.length = i;
-      } else
-        r.error("Tag must be paired, no start tag: [ " + a.raw + " ]", a.line, a.col, n, a.raw);
-    }), s.addListener("end", function(a) {
-      for (var l = [], i = e.length - 1; i >= 0; i--)
-        l.push("</" + e[i].tagName + ">");
-      if (l.length > 0) {
-        var o = e[e.length - 1];
-        r.error("Tag must be paired, missing: [ " + l.join("") + " ], open tag match failed [ " + o.raw + " ] on line " + o.line + ".", a.line, a.col, n, "");
-      }
-    });
-  }
-};
-var fe = {};
-Object.defineProperty(fe, "__esModule", { value: !0 });
-fe.default = {
-  id: "tag-self-close",
-  description: "Empty tags must be self closed.",
-  init: function(s, r) {
-    var n = this, e = s.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");
-    s.addListener("tagstart", function(t) {
-      var a = t.tagName.toLowerCase();
-      e[a] !== void 0 && (t.close || r.warn("The empty tag : [ " + a + " ] must be self closed.", t.line, t.col, n, t.raw));
-    });
-  }
-};
-var he = {};
-Object.defineProperty(he, "__esModule", { value: !0 });
-he.default = {
-  id: "tagname-lowercase",
-  description: "All html element names must be in lowercase.",
-  init: function(s, r, n) {
-    var e = this, t = Array.isArray(n) ? n : [];
-    s.addListener("tagstart,tagend", function(a) {
-      var l = a.tagName;
-      t.indexOf(l) === -1 && l !== l.toLowerCase() && r.error("The html element name of [ " + l + " ] must be in lowercase.", a.line, a.col, e, a.raw);
-    });
-  }
-};
-var ge = {};
-Object.defineProperty(ge, "__esModule", { value: !0 });
-ge.default = {
-  id: "tagname-specialchars",
-  description: "All html element names must be in lowercase.",
-  init: function(s, r) {
-    var n = this, e = /[^a-zA-Z0-9\-:_]/;
-    s.addListener("tagstart,tagend", function(t) {
-      var a = t.tagName;
-      e.test(a) && r.error("The html element name of [ " + a + " ] contains special character.", t.line, t.col, n, t.raw);
-    });
-  }
-};
-var me = {};
-Object.defineProperty(me, "__esModule", { value: !0 });
-me.default = {
-  id: "title-require",
-  description: "<title> must be present in <head> tag.",
-  init: function(s, r) {
-    var n = this, e = !1, t = !1, a = function(i) {
-      var o = i.tagName.toLowerCase();
-      o === "head" ? e = !0 : o === "title" && e && (t = !0);
-    }, l = function(i) {
-      var o = i.tagName.toLowerCase();
-      if (t && o === "title") {
-        var u = i.lastEvent;
-        (u.type !== "text" || u.type === "text" && /^\s*$/.test(u.raw) === !0) && r.error("<title></title> must not be empty.", i.line, i.col, n, i.raw);
-      } else
-        o === "head" && (t === !1 && r.error("<title> must be present in <head> tag.", i.line, i.col, n, i.raw), s.removeListener("tagstart", a), s.removeListener("tagend", l));
-    };
-    s.addListener("tagstart", a), s.addListener("tagend", l);
-  }
-};
-var pe = {}, M = be && be.__assign || function() {
-  return M = Object.assign || function(s) {
-    for (var r, n = 1, e = arguments.length; n < e; n++) {
-      r = arguments[n];
-      for (var t in r)
-        Object.prototype.hasOwnProperty.call(r, t) && (s[t] = r[t]);
-    }
-    return s;
-  }, M.apply(this, arguments);
-};
-Object.defineProperty(pe, "__esModule", { value: !0 });
-var E = {
+let P = {
   a: {
     selfclosing: !1,
     attrsRequired: ["href", "title"],
@@ -682,217 +819,198 @@ var E = {
     attrsRequired: ["src", "alt", "title"]
   }
 };
-pe.default = {
+ce.default = {
   id: "tags-check",
   description: "Checks html tags.",
-  init: function(s, r, n) {
-    var e = this;
-    E = M(M({}, E), n), s.addListener("tagstart", function(t) {
-      var a = t.attrs, l = t.col + t.tagName.length + 1, i = t.tagName.toLowerCase();
-      if (E[i]) {
-        var o = E[i];
-        if (o.selfclosing === !0 && !t.close ? r.warn("The <" + i + "> tag must be selfclosing.", t.line, t.col, e, t.raw) : o.selfclosing === !1 && t.close && r.warn("The <" + i + "> tag must not be selfclosing.", t.line, t.col, e, t.raw), Array.isArray(o.attrsRequired)) {
-          var u = o.attrsRequired;
-          u.forEach(function(c) {
-            if (Array.isArray(c)) {
-              var p = c.map(function(h) {
-                return h;
-              }), m = p.shift(), g = p;
-              a.some(function(h) {
-                return h.name === m;
-              }) ? a.forEach(function(h) {
-                h.name === m && g.indexOf(h.value) === -1 && r.error("The <" + i + "> tag must have attr '" + m + "' with one value of '" + g.join("' or '") + "'.", t.line, l, e, t.raw);
-              }) : r.error("The <" + i + "> tag must have attr '" + m + "'.", t.line, l, e, t.raw);
-            } else
-              a.some(function(h) {
-                return c.split("|").indexOf(h.name) !== -1;
-              }) || r.error("The <" + i + "> tag must have attr '" + c + "'.", t.line, l, e, t.raw);
-          });
-        }
-        if (Array.isArray(o.attrsOptional)) {
-          var d = o.attrsOptional;
-          d.forEach(function(c) {
-            if (Array.isArray(c)) {
-              var p = c.map(function(h) {
-                return h;
-              }), m = p.shift(), g = p;
-              a.some(function(h) {
-                return h.name === m;
-              }) && a.forEach(function(h) {
-                h.name === m && g.indexOf(h.value) === -1 && r.error("The <" + i + "> tag must have optional attr '" + m + "' with one value of '" + g.join("' or '") + "'.", t.line, l, e, t.raw);
-              });
-            }
-          });
-        }
-        if (Array.isArray(o.redundantAttrs)) {
-          var f = o.redundantAttrs;
-          f.forEach(function(c) {
-            a.some(function(p) {
-              return p.name === c;
-            }) && r.error("The attr '" + c + "' is redundant for <" + i + "> and should be ommited.", t.line, l, e, t.raw);
-          });
-        }
+  init(i, r, t) {
+    P = Object.assign(Object.assign({}, P), t), i.addListener("tagstart", (a) => {
+      const e = a.attrs, n = a.col + a.tagName.length + 1, s = a.tagName.toLowerCase();
+      if (P[s]) {
+        const l = P[s];
+        l.selfclosing === !0 && !a.close ? r.warn(`The <${s}> tag must be selfclosing.`, a.line, a.col, this, a.raw) : l.selfclosing === !1 && a.close && r.warn(`The <${s}> tag must not be selfclosing.`, a.line, a.col, this, a.raw), Array.isArray(l.attrsRequired) && l.attrsRequired.forEach((d) => {
+          if (Array.isArray(d)) {
+            const c = d.map((f) => f), u = c.shift(), h = c;
+            e.some((f) => f.name === u) ? e.forEach((f) => {
+              f.name === u && h.indexOf(f.value) === -1 && r.error(`The <${s}> tag must have attr '${u}' with one value of '${h.join("' or '")}'.`, a.line, n, this, a.raw);
+            }) : r.error(`The <${s}> tag must have attr '${u}'.`, a.line, n, this, a.raw);
+          } else
+            e.some((c) => d.split("|").indexOf(c.name) !== -1) || r.error(`The <${s}> tag must have attr '${d}'.`, a.line, n, this, a.raw);
+        }), Array.isArray(l.attrsOptional) && l.attrsOptional.forEach((d) => {
+          if (Array.isArray(d)) {
+            const c = d.map((f) => f), u = c.shift(), h = c;
+            e.some((f) => f.name === u) && e.forEach((f) => {
+              f.name === u && h.indexOf(f.value) === -1 && r.error(`The <${s}> tag must have optional attr '${u}' with one value of '${h.join("' or '")}'.`, a.line, n, this, a.raw);
+            });
+          }
+        }), Array.isArray(l.redundantAttrs) && l.redundantAttrs.forEach((d) => {
+          e.some((c) => c.name === d) && r.error(`The attr '${d}' is redundant for <${s}> and should be omitted.`, a.line, n, this, a.raw);
+        });
       }
     });
   }
 };
-var ve = {};
-Object.defineProperty(ve, "__esModule", { value: !0 });
-ve.default = {
+var ue = {};
+Object.defineProperty(ue, "__esModule", { value: !0 });
+ue.default = {
   id: "attr-no-unnecessary-whitespace",
   description: "No spaces between attribute names and values.",
-  init: function(s, r, n) {
-    var e = this, t = Array.isArray(n) ? n : [];
-    s.addListener("tagstart", function(a) {
-      for (var l = a.attrs, i = a.col + a.tagName.length + 1, o = 0; o < l.length; o++)
-        if (t.indexOf(l[o].name) === -1) {
-          var u = /(\s*)=(\s*)/.exec(l[o].raw.trim());
-          u && (u[1].length !== 0 || u[2].length !== 0) && r.error("The attribute '" + l[o].name + "' must not have spaces between the name and value.", a.line, i + l[o].index, e, l[o].raw);
+  init(i, r, t) {
+    const a = Array.isArray(t) ? t : [];
+    i.addListener("tagstart", (e) => {
+      const n = e.attrs, s = e.col + e.tagName.length + 1;
+      for (let l = 0; l < n.length; l++)
+        if (a.indexOf(n[l].name) === -1) {
+          const o = /(\s*)=(\s*)/.exec(n[l].raw.trim());
+          o && (o[1].length !== 0 || o[2].length !== 0) && r.error(`The attribute '${n[l].name}' must not have spaces between the name and value.`, e.line, s + n[l].index, this, n[l].raw);
         }
     });
   }
 };
-(function(s) {
-  Object.defineProperty(s, "__esModule", { value: !0 });
-  var r = S;
-  Object.defineProperty(s, "altRequire", { enumerable: !0, get: function() {
+(function(i) {
+  Object.defineProperty(i, "__esModule", { value: !0 }), i.attrNoUnnecessaryWhitespace = i.tagsCheck = i.titleRequire = i.tagnameSpecialChars = i.tagnameLowercase = i.emptyTagNotSelfClosed = i.tagSelfClose = i.tagPair = i.styleDisabled = i.srcNotEmpty = i.specCharEscape = i.spaceTabMixedDisabled = i.scriptDisabled = i.inputRequiresLabel = i.inlineStyleDisabled = i.inlineScriptDisabled = i.idUnique = i.idClassValue = i.idClsasAdDisabled = i.htmlLangRequire = i.hrefAbsOrRel = i.headScriptDisabled = i.doctypeHTML5 = i.doctypeFirst = i.attrWhitespace = i.attrValueSingleQuotes = i.attrValueNotEmpty = i.attrValueDoubleQuotes = i.attrUnsafeChars = i.attrNoDuplication = i.attrSort = i.attrLowercase = i.altRequire = void 0;
+  var r = x;
+  Object.defineProperty(i, "altRequire", { enumerable: !0, get: function() {
     return r.default;
   } });
-  var n = Z;
-  Object.defineProperty(s, "attrLowercase", { enumerable: !0, get: function() {
-    return n.default;
-  } });
-  var e = F;
-  Object.defineProperty(s, "attrSort", { enumerable: !0, get: function() {
-    return e.default;
-  } });
-  var t = I;
-  Object.defineProperty(s, "attrNoDuplication", { enumerable: !0, get: function() {
+  var t = k;
+  Object.defineProperty(i, "attrLowercase", { enumerable: !0, get: function() {
     return t.default;
   } });
-  var a = U;
-  Object.defineProperty(s, "attrUnsafeChars", { enumerable: !0, get: function() {
+  var a = q;
+  Object.defineProperty(i, "attrSort", { enumerable: !0, get: function() {
     return a.default;
   } });
-  var l = B;
-  Object.defineProperty(s, "attrValueDoubleQuotes", { enumerable: !0, get: function() {
+  var e = R;
+  Object.defineProperty(i, "attrNoDuplication", { enumerable: !0, get: function() {
+    return e.default;
+  } });
+  var n = S;
+  Object.defineProperty(i, "attrUnsafeChars", { enumerable: !0, get: function() {
+    return n.default;
+  } });
+  var s = D;
+  Object.defineProperty(i, "attrValueDoubleQuotes", { enumerable: !0, get: function() {
+    return s.default;
+  } });
+  var l = z;
+  Object.defineProperty(i, "attrValueNotEmpty", { enumerable: !0, get: function() {
     return l.default;
   } });
-  var i = V;
-  Object.defineProperty(s, "attrValueNotEmpty", { enumerable: !0, get: function() {
-    return i.default;
-  } });
-  var o = W;
-  Object.defineProperty(s, "attrValueSingleQuotes", { enumerable: !0, get: function() {
+  var o = I;
+  Object.defineProperty(i, "attrValueSingleQuotes", { enumerable: !0, get: function() {
     return o.default;
   } });
-  var u = G;
-  Object.defineProperty(s, "attrWhitespace", { enumerable: !0, get: function() {
-    return u.default;
-  } });
-  var d = Y;
-  Object.defineProperty(s, "doctypeFirst", { enumerable: !0, get: function() {
+  var d = U;
+  Object.defineProperty(i, "attrWhitespace", { enumerable: !0, get: function() {
     return d.default;
   } });
-  var f = J;
-  Object.defineProperty(s, "doctypeHTML5", { enumerable: !0, get: function() {
-    return f.default;
-  } });
-  var c = Q;
-  Object.defineProperty(s, "headScriptDisabled", { enumerable: !0, get: function() {
+  var c = H;
+  Object.defineProperty(i, "doctypeFirst", { enumerable: !0, get: function() {
     return c.default;
   } });
-  var p = K;
-  Object.defineProperty(s, "hrefAbsOrRel", { enumerable: !0, get: function() {
-    return p.default;
+  var u = F;
+  Object.defineProperty(i, "doctypeHTML5", { enumerable: !0, get: function() {
+    return u.default;
   } });
-  var m = X;
-  Object.defineProperty(s, "htmlLangRequire", { enumerable: !0, get: function() {
-    return m.default;
-  } });
-  var g = ee;
-  Object.defineProperty(s, "idClsasAdDisabled", { enumerable: !0, get: function() {
-    return g.default;
-  } });
-  var h = te;
-  Object.defineProperty(s, "idClassValue", { enumerable: !0, get: function() {
+  var h = Z;
+  Object.defineProperty(i, "headScriptDisabled", { enumerable: !0, get: function() {
     return h.default;
   } });
-  var b = ae;
-  Object.defineProperty(s, "idUnique", { enumerable: !0, get: function() {
-    return b.default;
+  var f = V;
+  Object.defineProperty(i, "hrefAbsOrRel", { enumerable: !0, get: function() {
+    return f.default;
   } });
-  var _ = re;
-  Object.defineProperty(s, "inlineScriptDisabled", { enumerable: !0, get: function() {
-    return _.default;
-  } });
-  var O = ie;
-  Object.defineProperty(s, "inlineStyleDisabled", { enumerable: !0, get: function() {
-    return O.default;
-  } });
-  var T = ne;
-  Object.defineProperty(s, "inputRequiresLabel", { enumerable: !0, get: function() {
-    return T.default;
-  } });
-  var w = se;
-  Object.defineProperty(s, "scriptDisabled", { enumerable: !0, get: function() {
+  var w = W;
+  Object.defineProperty(i, "htmlLangRequire", { enumerable: !0, get: function() {
     return w.default;
   } });
-  var A = le;
-  Object.defineProperty(s, "spaceTabMixedDisabled", { enumerable: !0, get: function() {
+  var m = B;
+  Object.defineProperty(i, "idClsasAdDisabled", { enumerable: !0, get: function() {
+    return m.default;
+  } });
+  var _ = Y;
+  Object.defineProperty(i, "idClassValue", { enumerable: !0, get: function() {
+    return _.default;
+  } });
+  var b = Q;
+  Object.defineProperty(i, "idUnique", { enumerable: !0, get: function() {
+    return b.default;
+  } });
+  var A = G;
+  Object.defineProperty(i, "inlineScriptDisabled", { enumerable: !0, get: function() {
     return A.default;
   } });
-  var y = oe;
-  Object.defineProperty(s, "specCharEscape", { enumerable: !0, get: function() {
-    return y.default;
-  } });
-  var C = ue;
-  Object.defineProperty(s, "srcNotEmpty", { enumerable: !0, get: function() {
-    return C.default;
-  } });
-  var k = de;
-  Object.defineProperty(s, "styleDisabled", { enumerable: !0, get: function() {
-    return k.default;
-  } });
-  var $ = ce;
-  Object.defineProperty(s, "tagPair", { enumerable: !0, get: function() {
+  var $ = J;
+  Object.defineProperty(i, "inlineStyleDisabled", { enumerable: !0, get: function() {
     return $.default;
   } });
-  var q = fe;
-  Object.defineProperty(s, "tagSelfClose", { enumerable: !0, get: function() {
-    return q.default;
+  var y = X;
+  Object.defineProperty(i, "inputRequiresLabel", { enumerable: !0, get: function() {
+    return y.default;
   } });
-  var x = he;
-  Object.defineProperty(s, "tagnameLowercase", { enumerable: !0, get: function() {
-    return x.default;
-  } });
-  var j = ge;
-  Object.defineProperty(s, "tagnameSpecialChars", { enumerable: !0, get: function() {
-    return j.default;
-  } });
-  var P = me;
-  Object.defineProperty(s, "titleRequire", { enumerable: !0, get: function() {
-    return P.default;
-  } });
-  var L = pe;
-  Object.defineProperty(s, "tagsCheck", { enumerable: !0, get: function() {
+  var L = K;
+  Object.defineProperty(i, "scriptDisabled", { enumerable: !0, get: function() {
     return L.default;
   } });
-  var R = ve;
-  Object.defineProperty(s, "attrNoUnnecessaryWhitespace", { enumerable: !0, get: function() {
-    return R.default;
+  var g = ee;
+  Object.defineProperty(i, "spaceTabMixedDisabled", { enumerable: !0, get: function() {
+    return g.default;
   } });
-})(_e);
-(function(s) {
-  Object.defineProperty(s, "__esModule", { value: !0 }), s.HTMLParser = s.Reporter = s.HTMLRules = s.HTMLHint = void 0;
-  var r = H;
-  s.HTMLParser = r.default;
-  var n = D;
-  s.Reporter = n.default;
-  var e = _e;
-  s.HTMLRules = e;
-  var t = function() {
-    function l() {
+  var O = te;
+  Object.defineProperty(i, "specCharEscape", { enumerable: !0, get: function() {
+    return O.default;
+  } });
+  var T = ae;
+  Object.defineProperty(i, "srcNotEmpty", { enumerable: !0, get: function() {
+    return T.default;
+  } });
+  var C = re;
+  Object.defineProperty(i, "styleDisabled", { enumerable: !0, get: function() {
+    return C.default;
+  } });
+  var v = ie;
+  Object.defineProperty(i, "tagPair", { enumerable: !0, get: function() {
+    return v.default;
+  } });
+  var me = se;
+  Object.defineProperty(i, "tagSelfClose", { enumerable: !0, get: function() {
+    return me.default;
+  } });
+  var pe = ne;
+  Object.defineProperty(i, "emptyTagNotSelfClosed", { enumerable: !0, get: function() {
+    return pe.default;
+  } });
+  var be = le;
+  Object.defineProperty(i, "tagnameLowercase", { enumerable: !0, get: function() {
+    return be.default;
+  } });
+  var ye = oe;
+  Object.defineProperty(i, "tagnameSpecialChars", { enumerable: !0, get: function() {
+    return ye.default;
+  } });
+  var we = de;
+  Object.defineProperty(i, "titleRequire", { enumerable: !0, get: function() {
+    return we.default;
+  } });
+  var _e = ce;
+  Object.defineProperty(i, "tagsCheck", { enumerable: !0, get: function() {
+    return _e.default;
+  } });
+  var Le = ue;
+  Object.defineProperty(i, "attrNoUnnecessaryWhitespace", { enumerable: !0, get: function() {
+    return Le.default;
+  } });
+})(ge);
+(function(i) {
+  Object.defineProperty(i, "__esModule", { value: !0 }), i.HTMLParser = i.Reporter = i.HTMLRules = i.HTMLHint = void 0;
+  const r = M;
+  i.HTMLParser = r.default;
+  const t = E;
+  i.Reporter = t.default;
+  const a = ge;
+  i.HTMLRules = a;
+  class e {
+    constructor() {
       this.rules = {}, this.defaultRuleset = {
         "tagname-lowercase": !0,
         "attr-lowercase": !0,
@@ -906,44 +1024,45 @@ ve.default = {
         "title-require": !0
       };
     }
-    return l.prototype.addRule = function(i) {
-      this.rules[i.id] = i;
-    }, l.prototype.verify = function(i, o) {
-      o === void 0 && (o = this.defaultRuleset), Object.keys(o).length === 0 && (o = this.defaultRuleset), i = i.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(m, g) {
-        return g.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, function(h, b, _) {
-          return o[b] = _ !== void 0 && _.length > 0 ? JSON.parse(_) : !0, "";
-        }), "";
-      });
-      var u = new r.default(), d = new n.default(i, o), f = this.rules, c;
-      for (var p in o)
-        c = f[p], c !== void 0 && o[p] !== !1 && c.init(u, d, o[p]);
-      return u.parse(i), d.messages;
-    }, l.prototype.format = function(i, o) {
-      o === void 0 && (o = {});
-      var u = [], d = {
+    addRule(l) {
+      this.rules[l.id] = l;
+    }
+    verify(l, o = this.defaultRuleset) {
+      Object.keys(o).length === 0 && (o = this.defaultRuleset), l = l.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, (f, w) => (w.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, (m, _, b) => (o[_] = b !== void 0 && b.length > 0 ? JSON.parse(b) : !0, "")), ""));
+      const d = new r.default(), c = new t.default(l, o), u = this.rules;
+      let h;
+      for (const f in o)
+        h = u[f], h !== void 0 && o[f] !== !1 && h.init(d, c, o[f]);
+      return d.parse(l), c.messages;
+    }
+    format(l, o = {}) {
+      const d = [], c = {
         white: "",
         grey: "",
         red: "",
         reset: ""
       };
-      o.colors && (d.white = "\x1B[37m", d.grey = "\x1B[90m", d.red = "\x1B[31m", d.reset = "\x1B[39m");
-      var f = o.indent || 0;
-      return i.forEach(function(c) {
-        var p = 40, m = p + 20, g = c.evidence, h = c.line, b = c.col, _ = g.length, O = b > p + 1 ? b - p : 1, T = g.length > b + m ? b + m : _;
-        b < p + 1 && (T += p - b + 1), g = g.replace(/\t/g, " ").substring(O - 1, T), O > 1 && (g = "..." + g, O -= 3), T < _ && (g += "..."), u.push(d.white + a(f) + "L" + h + " |" + d.grey + g + d.reset);
-        var w = b - O, A = g.substring(0, w).match(/[^\u0000-\u00ff]/g);
-        A !== null && (w += A.length), u.push(d.white + a(f) + a(String(h).length + 3 + w) + "^ " + d.red + c.message + " (" + c.rule.id + ")" + d.reset);
-      }), u;
-    }, l;
-  }();
-  function a(l, i) {
-    return new Array(l + 1).join(i || " ");
+      o.colors && (c.white = "\x1B[37m", c.grey = "\x1B[90m", c.red = "\x1B[31m", c.reset = "\x1B[39m");
+      const u = o.indent || 0;
+      return l.forEach((h) => {
+        let m = h.evidence;
+        const _ = h.line, b = h.col, A = m.length;
+        let $ = b > 40 + 1 ? b - 40 : 1, y = m.length > b + 60 ? b + 60 : A;
+        b < 40 + 1 && (y += 40 - b + 1), m = m.replace(/\t/g, " ").substring($ - 1, y), $ > 1 && (m = `...${m}`, $ -= 3), y < A && (m += "..."), d.push(`${c.white + n(u)}L${_} |${c.grey}${m}${c.reset}`);
+        let L = b - $;
+        const g = m.substring(0, L).match(/[^\u0000-\u00ff]/g);
+        g !== null && (L += g.length), d.push(`${c.white + n(u) + n(String(_).length + 3 + L)}^ ${c.red}${h.message} (${h.rule.id})${c.reset}`);
+      }), d;
+    }
   }
-  s.HTMLHint = new t(), Object.keys(e).forEach(function(l) {
-    s.HTMLHint.addRule(e[l]);
+  function n(s, l) {
+    return new Array(s + 1).join(l || " ");
+  }
+  i.HTMLHint = new e(), Object.keys(a).forEach((s) => {
+    i.HTMLHint.addRule(a[s]);
   });
-})(z);
-const Ze = {
+})(j);
+const He = {
   "attr-no-duplication": !0,
   "body-no-duplicates": !0,
   "head-body-descendents-html": !0,
@@ -996,30 +1115,30 @@ const Ze = {
   "keygen",
   "wbr"
 ];
-class ye {
-  constructor(r, n) {
-    v(this, "children");
-    v(this, "closed");
-    v(this, "root");
-    v(this, "tagName");
-    v(this, "attrs");
-    v(this, "from");
-    v(this, "to");
-    v(this, "col");
-    v(this, "line");
-    v(this, "raw");
-    this.event = r, this.parent = n;
-    const e = (r == null ? void 0 : r.tagName) && r.tagName.toLowerCase();
-    this.children = [], n ? (this.closed = !!r.close || Fe.indexOf(e) > -1, this.parent = n, this.tagName = e, this.attrs = r.attrs, this.from = r.pos, this.to = void 0, this.col = r.col, this.line = r.line, this.raw = r.raw) : this.root = this;
+class fe {
+  constructor(r, t) {
+    p(this, "children");
+    p(this, "closed");
+    p(this, "root");
+    p(this, "tagName");
+    p(this, "attrs");
+    p(this, "from");
+    p(this, "to");
+    p(this, "col");
+    p(this, "line");
+    p(this, "raw");
+    this.event = r, this.parent = t;
+    const a = (r == null ? void 0 : r.tagName) && r.tagName.toLowerCase();
+    this.children = [], t ? (this.closed = !!r.close || Fe.indexOf(a) > -1, this.parent = t, this.tagName = a, this.attrs = r.attrs, this.from = r.pos, this.to = void 0, this.col = r.col, this.line = r.line, this.raw = r.raw) : this.root = this;
   }
   get depth() {
-    let r = 0, n = this.parent;
-    for (; n.parent; )
-      r++, n = n.parent;
+    let r = 0, t = this.parent;
+    for (; t.parent; )
+      r++, t = t.parent;
     return r;
   }
-  close(r, n) {
-    this.to = r.pos + r.raw.length, this.raw = n.html.slice(this.from, this.to);
+  close(r, t) {
+    this.to = r.pos + r.raw.length, this.raw = t.html.slice(this.from, this.to);
   }
   push(r) {
     return this.children.push(r);
@@ -1031,8 +1150,8 @@ class ye {
     return this.children.slice(r + 1);
   }
   find(...r) {
-    const n = (e) => e.reduce((t, a) => (a.match(...r) && t.push(a), a.children.length && (t = t.concat(n(a.children))), t), []);
-    return n(this.children);
+    const t = (a) => a.reduce((e, n) => (n.match(...r) && e.push(n), n.children.length && (e = e.concat(t(n.children))), e), []);
+    return t(this.children);
   }
   findFirst(r) {
     return this.find(r)[0];
@@ -1063,83 +1182,83 @@ class ye {
   }
 }
 class N {
-  constructor(r, n, e) {
-    this.parser = r, this.reporter = n;
-    const t = [], a = new ye();
-    let l = a;
-    r.addListener("tagstart", (i) => {
-      const o = new ye(i, l);
-      l.push(o), o.closed || t.push(l = o);
-    }), r.addListener("tagend", (i) => {
-      const o = i.tagName.toLowerCase();
-      let u;
-      for (u = t.length - 1; u >= 0 && t[u].tagName !== o; u--)
+  constructor(r, t, a) {
+    this.parser = r, this.reporter = t;
+    const e = [], n = new fe();
+    let s = n;
+    r.addListener("tagstart", (l) => {
+      const o = new fe(l, s);
+      s.push(o), o.closed || e.push(s = o);
+    }), r.addListener("tagend", (l) => {
+      const o = l.tagName.toLowerCase();
+      let d;
+      for (d = e.length - 1; d >= 0 && e[d].tagName !== o; d--)
         ;
-      t[u] && (t[u].close(i, this.reporter), l = t[u].parent, t.splice(u, 1));
+      e[d] && (e[d].close(l, this.reporter), s = e[d].parent, e.splice(d, 1));
     }), r.addListener("end", () => {
-      a.closed = !0, e && e(a);
+      n.closed = !0, a && a(n);
     });
   }
 }
-const Ie = {
+const Ze = {
   id: "body-no-duplicates",
   description: "The body tag must not be a duplicate.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      let e;
-      for (let t of n.find("body")) {
-        if (!e) {
-          e = t;
+  init(i, r) {
+    new N(i, r, (t) => {
+      let a;
+      for (let e of t.find("body")) {
+        if (!a) {
+          a = e;
           continue;
         }
         r.error(
-          `The [ body ] tag already exists on line ${e.line}.`,
-          t.line,
-          t.col,
+          `The [ body ] tag already exists on line ${a.line}.`,
+          e.line,
+          e.col,
           this,
-          t.raw
-        );
-      }
-    });
-  }
-}, Ue = {
-  id: "head-body-descendents-html",
-  description: "The head and body tags must be a direct child descendents of the html tag.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      const e = n.findFirst("html");
-      n.find("head", "body").filter((t) => !e || !t.isChildOf(e)).forEach((t) => {
-        const { line: a, col: l, raw: i } = t, o = e ? `The [ ${t.tagName} ] tag must be a direct child descendent of the [ html ] tag on line ${e.line}.` : `The [ ${t.tagName} ] tag must be a direct child descendent of an [ html ] tag.`;
-        r.error(o, a, l, this, i);
-      });
-    });
-  }
-}, Be = {
-  id: "head-no-duplicates",
-  description: "The head tag must not be a duplicate.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      let e;
-      for (let t of n.find("head")) {
-        if (!e) {
-          e = t;
-          continue;
-        }
-        r.error(
-          `The [ head ] tag is a duplicate of the tag on line ${e.line}.`,
-          t.line,
-          t.col,
-          this,
-          t.raw
+          e.raw
         );
       }
     });
   }
 }, Ve = {
+  id: "head-body-descendents-html",
+  description: "The head and body tags must be a direct child descendents of the html tag.",
+  init(i, r) {
+    new N(i, r, (t) => {
+      const a = t.findFirst("html");
+      t.find("head", "body").filter((e) => !a || !e.isChildOf(a)).forEach((e) => {
+        const { line: n, col: s, raw: l } = e, o = a ? `The [ ${e.tagName} ] tag must be a direct child descendent of the [ html ] tag on line ${a.line}.` : `The [ ${e.tagName} ] tag must be a direct child descendent of an [ html ] tag.`;
+        r.error(o, n, s, this, l);
+      });
+    });
+  }
+}, We = {
+  id: "head-no-duplicates",
+  description: "The head tag must not be a duplicate.",
+  init(i, r) {
+    new N(i, r, (t) => {
+      let a;
+      for (let e of t.find("head")) {
+        if (!a) {
+          a = e;
+          continue;
+        }
+        r.error(
+          `The [ head ] tag is a duplicate of the tag on line ${a.line}.`,
+          e.line,
+          e.col,
+          this,
+          e.raw
+        );
+      }
+    });
+  }
+}, Be = {
   id: "head-valid-children",
   description: "The head tag must only contain valid elements.",
-  init(s, r, n) {
-    const e = Array.isArray(n) ? n : [
+  init(i, r, t) {
+    const a = Array.isArray(t) ? t : [
       "base",
       "link",
       "meta",
@@ -1149,55 +1268,55 @@ const Ie = {
       "template",
       "title"
     ];
-    new N(s, r, (t) => {
-      for (let a of t.find("head"))
-        for (let l of a.children) {
-          if (e.indexOf(l.tagName.toLowerCase()) > -1)
+    new N(i, r, (e) => {
+      for (let n of e.find("head"))
+        for (let s of n.children) {
+          if (a.indexOf(s.tagName.toLowerCase()) > -1)
             return;
           r.error(
-            `The [ ${l.tagName} ] tag is not allowed inside the [ head ] tag on line ${a.line}.`,
-            l.line,
-            l.col,
+            `The [ ${s.tagName} ] tag is not allowed inside the [ head ] tag on line ${n.line}.`,
+            s.line,
+            s.col,
             this,
-            l.raw
+            s.raw
           );
         }
     });
   }
-}, We = {
+}, Ye = {
   id: "html-no-duplicates",
   description: "The html tag must be a unique root element.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      const e = n.find("html");
-      e.filter((t) => t !== e[0]).forEach((t) => {
-        const { line: a, col: l, raw: i } = t, o = `The [ ${t.tagName} ] tag already exists on line ${e[0].line}.`;
-        r.error(o, a, l, this, i);
+  init(i, r) {
+    new N(i, r, (t) => {
+      const a = t.find("html");
+      a.filter((e) => e !== a[0]).forEach((e) => {
+        const { line: n, col: s, raw: l } = e, o = `The [ ${e.tagName} ] tag already exists on line ${a[0].line}.`;
+        r.error(o, n, s, this, l);
+      });
+    });
+  }
+}, Qe = {
+  id: "html-root-node",
+  description: "The html tag must be the only root node in the document.",
+  init(i, r) {
+    new N(i, r, (t) => {
+      const a = t.findFirst("html");
+      a && t.children.filter((e) => e.tagName !== "html").forEach((e) => {
+        const { line: n, col: s, raw: l } = e, o = `The [ ${e.tagName} ] cannot come ${e.isBefore(a) ? "before" : "after"} the [ html ] tag on line ${a.line}.`;
+        r.error(o, n, s, this, l);
       });
     });
   }
 }, Ge = {
-  id: "html-root-node",
-  description: "The html tag must be the only root node in the document.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      const e = n.findFirst("html");
-      e && n.children.filter((t) => t.tagName !== "html").forEach((t) => {
-        const { line: a, col: l, raw: i } = t, o = `The [ ${t.tagName} ] cannot come ${t.isBefore(e) ? "before" : "after"} the [ html ] tag on line ${e.line}.`;
-        r.error(o, a, l, this, i);
-      });
-    });
-  }
-}, Ye = {
   id: "html-valid-children",
   description: "The html tag must only contain a head and body tag.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      const e = n.findFirst("html");
-      e && e.children.forEach((t) => {
-        if (!t.match("head", "body")) {
-          const { line: a, col: l, raw: i } = t, o = `The [ ${t.tagName} ] tag cannot be a direct descendent of the [ html ] tag on line ${e.line}.`;
-          r.error(o, a, l, this, i);
+  init(i, r) {
+    new N(i, r, (t) => {
+      const a = t.findFirst("html");
+      a && a.children.forEach((e) => {
+        if (!e.match("head", "body")) {
+          const { line: n, col: s, raw: l } = e, o = `The [ ${e.tagName} ] tag cannot be a direct descendent of the [ html ] tag on line ${a.line}.`;
+          r.error(o, n, s, this, l);
         }
       });
     });
@@ -1205,192 +1324,192 @@ const Ie = {
 }, Je = {
   id: "html-valid-children-order",
   description: "The head and body tags must be in the correct order.",
-  init(s, r) {
-    new N(s, r, (n) => {
-      const e = n.findFirst("html"), t = n.find("head", "body").filter((i) => !e || i.isChildOf(e)), a = t.filter((i) => i.tagName === "body"), l = t.filter((i) => i.tagName === "head");
-      if (a[0] && l[0] && a[0].isBefore(l[0])) {
-        const { line: i, col: o, raw: u } = a[0], d = `The [ ${a[0].tagName} ] tag must come after the [ head ] tag on line ${l[0].line}.`;
-        r.error(d, i, o, this, u);
+  init(i, r) {
+    new N(i, r, (t) => {
+      const a = t.findFirst("html"), e = t.find("head", "body").filter((l) => !a || l.isChildOf(a)), n = e.filter((l) => l.tagName === "body"), s = e.filter((l) => l.tagName === "head");
+      if (n[0] && s[0] && n[0].isBefore(s[0])) {
+        const { line: l, col: o, raw: d } = n[0], c = `The [ ${n[0].tagName} ] tag must come after the [ head ] tag on line ${s[0].line}.`;
+        r.error(c, l, o, this, d);
       }
-      if (a[0] && l[0] && l[0].isAfter(a[0])) {
-        const { line: i, col: o, raw: u } = l[0], d = `The [ ${l[0].tagName} ] tag must come before the [ body ] tag on line ${a[0].line}.`;
-        r.error(d, i, o, this, u);
+      if (n[0] && s[0] && s[0].isAfter(n[0])) {
+        const { line: l, col: o, raw: d } = s[0], c = `The [ ${s[0].tagName} ] tag must come before the [ body ] tag on line ${n[0].line}.`;
+        r.error(c, l, o, this, d);
       }
     });
   }
-}, Qe = {
+}, Xe = {
   id: "img-src-required",
   description: "The img tag must have a src attribute.",
-  init(s, r) {
-    s.addListener("tagstart", (n) => {
-      if (n.tagName.toLowerCase() === "img") {
-        for (let i of n.attrs)
-          if (i.name.toLowerCase() === "src")
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      if (t.tagName.toLowerCase() === "img") {
+        for (let l of t.attrs)
+          if (l.name.toLowerCase() === "src")
             return;
-        const { line: e, col: t, raw: a } = n, l = `The [ ${n.tagName} ] tag must have a [ src ] attribute`;
-        r.error(l, e, t, this, a);
+        const { line: a, col: e, raw: n } = t, s = `The [ ${t.tagName} ] tag must have a [ src ] attribute`;
+        r.error(s, a, e, this, n);
       }
     });
   }
 }, Ke = {
   id: "invalid-attribute-char",
   description: "Attribute must contain valid characters.",
-  init(s, r) {
-    s.addListener("tagstart", (n) => {
-      let e = 1;
-      n.attrs.forEach(({ name: t, index: a }) => {
-        e += n.raw.slice(e).indexOf(t);
-        let l = 0;
-        const i = t.match(/[^a-zA-Z:\-1-9]/g);
-        if (i)
-          for (; i.length; ) {
-            const o = t.slice(l), u = i.shift(), d = o.indexOf(u);
+  init(i, r) {
+    i.addListener("tagstart", (t) => {
+      let a = 1;
+      t.attrs.forEach(({ name: e, index: n }) => {
+        a += t.raw.slice(a).indexOf(e);
+        let s = 0;
+        const l = e.match(/[^a-zA-Z:\-1-9]/g);
+        if (l)
+          for (; l.length; ) {
+            const o = e.slice(s), d = l.shift(), c = o.indexOf(d);
             r.error(
-              `[ ${u} ] character cannot be used for attribute names.`,
-              n.line,
-              n.col + e + l + d,
+              `[ ${d} ] character cannot be used for attribute names.`,
+              t.line,
+              t.col + a + s + c,
               this,
-              u
-            ), l += d + 1;
+              d
+            ), s += c + 1;
           }
       });
     });
   }
-}, Xe = {
+}, et = {
   id: "nested-paragraphs",
   description: "Nested paragraphs are prohibited.",
-  init(s, r) {
-    let n;
-    const e = [];
-    s.addListener("tagstart", (t) => {
-      t.tagName.toLowerCase() === "p" && (n ? e.push(t) : n = t);
-    }), s.addListener("tagend", (t) => {
-      const a = t.tagName.toLowerCase() === "p";
-      if (n && a) {
-        const [l] = e.splice(e.length - 1);
-        if (!l) {
-          n = void 0;
+  init(i, r) {
+    let t;
+    const a = [];
+    i.addListener("tagstart", (e) => {
+      e.tagName.toLowerCase() === "p" && (t ? a.push(e) : t = e);
+    }), i.addListener("tagend", (e) => {
+      const n = e.tagName.toLowerCase() === "p";
+      if (t && n) {
+        const [s] = a.splice(a.length - 1);
+        if (!s) {
+          t = void 0;
           return;
         }
         r.error(
-          `[ p ] tags cannot be nested inside the [ p ] tag on line ${n.line}.`,
-          l.line,
-          l.col,
+          `[ p ] tags cannot be nested inside the [ p ] tag on line ${t.line}.`,
+          s.line,
+          s.col,
           this,
-          r.html.slice(l.pos, t.pos + t.raw.length)
+          r.html.slice(s.pos, e.pos + e.raw.length)
         );
       } else
-        a || (n = void 0);
-    }), s.addListener("end", (t) => {
-      n && e.length && e.forEach((a) => {
+        n || (t = void 0);
+    }), i.addListener("end", (e) => {
+      t && a.length && a.forEach((n) => {
         r.error(
-          `[ p ] tags cannot be nested inside the [ p ] tag on line ${n.line}.`,
-          a.line,
-          a.col,
+          `[ p ] tags cannot be nested inside the [ p ] tag on line ${t.line}.`,
+          n.line,
+          n.col,
           this,
-          r.html.slice(a.pos, t.lastEvent.pos + t.lastEvent.raw.length)
+          r.html.slice(n.pos, e.lastEvent.pos + e.lastEvent.raw.length)
         );
       });
     });
   }
-}, et = {
+}, tt = {
   absolute: /^https?:\/\//,
   relative: /^\w+?:/
 };
-class tt {
+class at {
   constructor(r) {
-    v(this, "name");
-    v(this, "pattern");
-    v(this, "regex");
-    const { name: n, pattern: e } = Object.assign({
+    p(this, "name");
+    p(this, "pattern");
+    p(this, "regex");
+    const { name: t, pattern: a } = Object.assign({
       pattern: null,
       name: null
     }, typeof r == "object" ? r : {
       pattern: r
     });
-    this.name = n || e, this.pattern = e, this.regex = et[e] || new RegExp(e);
+    this.name = t || a, this.pattern = a, this.regex = tt[a] || new RegExp(a);
   }
   test(r) {
     return this.regex.test(r);
   }
-  error(r, n) {
-    return new at(this, r, n);
-  }
-}
-class at extends Error {
-  constructor(n, e, t) {
-    super();
-    v(this, "line");
-    v(this, "col");
-    this.message = `The [ ${t.name} ] attribute "${t.value}" must follow the ${n.name} format.`, this.name = n.name, this.line = e.line, this.col = e.col + e.tagName.length + 1 + t.index;
+  error(r, t) {
+    return new rt(this, r, t);
   }
 }
 class rt extends Error {
-  constructor(n, e, t) {
-    super(e.length === 1 ? e[0].message : `The [ ${t.name} ] attribute "${t.value}" must one of the following formats: ${e.map((a) => `"${a.name}"`).join(", ")}.`);
-    v(this, "line");
-    v(this, "col");
-    this.line = n.line, this.col = n.col + n.tagName.length + 1 + t.index;
+  constructor(t, a, e) {
+    super();
+    p(this, "line");
+    p(this, "col");
+    this.message = `The [ ${e.name} ] attribute "${e.value}" must follow the ${t.name} format.`, this.name = t.name, this.line = a.line, this.col = a.col + a.tagName.length + 1 + e.index;
   }
 }
-function it(s, r, n) {
-  const e = [];
-  for (const [t, a] of Object.entries(s)) {
-    if (a.test(n.value))
-      return !0;
-    e.push(a.error(r, n));
+class it extends Error {
+  constructor(t, a, e) {
+    super(a.length === 1 ? a[0].message : `The [ ${e.name} ] attribute "${e.value}" must one of the following formats: ${a.map((n) => `"${n.name}"`).join(", ")}.`);
+    p(this, "line");
+    p(this, "col");
+    this.line = t.line, this.col = t.col + t.tagName.length + 1 + e.index;
   }
-  throw new rt(r, e, n);
+}
+function st(i, r, t) {
+  const a = [];
+  for (const [e, n] of Object.entries(i)) {
+    if (n.test(t.value))
+      return !0;
+    a.push(n.error(r, t));
+  }
+  throw new it(r, a, t);
 }
 const nt = {
   id: "valid-path-format",
   description: "Paths must be a valid format.",
-  init(s, r, n) {
-    s.addListener("tagstart", (e) => {
-      n.forEach((t) => {
-        const a = t.formats.map((i) => new tt(i));
-        let l = Array.isArray(t.tag) ? t.tag : t.tag ? [t.tag] : [];
-        (!l.length || l.indexOf(e.tagName) > -1) && e.attrs.forEach((i) => {
-          if (!t.attr || t.attr === i.name)
+  init(i, r, t) {
+    i.addListener("tagstart", (a) => {
+      t.forEach((e) => {
+        const n = e.formats.map((l) => new at(l));
+        let s = Array.isArray(e.tag) ? e.tag : e.tag ? [e.tag] : [];
+        (!s.length || s.indexOf(a.tagName) > -1) && a.attrs.forEach((l) => {
+          if (!e.attr || e.attr === l.name)
             try {
-              it(a, e, i);
+              st(n, a, l);
             } catch (o) {
               r.error(
                 o.message,
                 o.line,
                 o.col,
                 this,
-                i.raw
+                l.raw
               );
             }
         });
       });
     });
   }
-}, we = {
-  "body-no-duplicates": Ie,
-  "head-body-descendents-html": Ue,
-  "head-no-duplicates": Be,
-  "head-valid-children": Ve,
+}, he = {
+  "body-no-duplicates": Ze,
+  "head-body-descendents-html": Ve,
+  "head-no-duplicates": We,
+  "head-valid-children": Be,
   "html-valid-children-order": Je,
-  "html-no-duplicates": We,
-  "html-root-node": Ge,
-  "html-valid-children": Ye,
-  "img-src-required": Qe,
+  "html-no-duplicates": Ye,
+  "html-root-node": Qe,
+  "html-valid-children": Ge,
+  "img-src-required": Xe,
   "invalid-attribute-char": Ke,
-  "nested-paragraphs": Xe,
+  "nested-paragraphs": et,
   "valid-path-format": nt
 };
-Object.keys(we).forEach((s) => {
-  z.HTMLHint.addRule(we[s]);
+Object.keys(he).forEach((i) => {
+  j.HTMLHint.addRule(he[i]);
 });
-function lt(s, r) {
-  return z.HTMLHint.verify(s, r || Ze).map((n) => (n.rule.link = n.rule.link.replace(
-    "https://github.com/thedaviddias/HTMLHint/wiki/",
+function ot(i, r) {
+  return j.HTMLHint.verify(i, r || He).map((t) => (t.rule.link = t.rule.link.replace(
+    "https://htmlhint.com/docs/user-guide/rules/",
     "https://thecapsule.email/docs/codes/"
-  ), n));
+  ), t));
 }
 export {
-  lt as lint
+  ot as lint
 };
 //# sourceMappingURL=capsule-lint.js.map
