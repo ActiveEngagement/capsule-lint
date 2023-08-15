@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-export default {
+module.exports = {
     branches: [
-        'main',
+        'master',
         {
             name: 'beta',
             channel: 'beta',
