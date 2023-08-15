@@ -13,7 +13,7 @@ program
     .version(version)
     .description('Lint the HTML file(s).')
     .arguments('<file...>')
-    .option('-c, --config <path>', 'The JSON config file that defines the rules.', path.resolve('./capsule.config.json'))
+    .option('-c, --config <path>', 'The JSON config file that defines the rules.', path.resolve('./src/capsule.config.ts'))
     .option('-r, --rules [value...]', 'Select which rule(s) you want to use from the config file.')
     .option('-o, --output <path>', 'Define a file path to output the errors.')
     .action((file, command) => {
