@@ -1,9 +1,16 @@
+import { Attr, Block } from "htmlhint/htmlparser";
+import { Rule } from 'htmlhint/types';
+
 const regex = {
     'absolute': /^https?:\/\//,
     'relative': /^\w+?:/
 };
 
 class Pattern {
+    public name: string;
+    public pattern: string;
+    public regex: RegExp;
+
     constructor(options) {
         const { name, pattern } =Object.assign({
             pattern: null,
@@ -27,6 +34,9 @@ class Pattern {
 }
 
 class MatchError extends Error {
+    public line: number;
+    public col: number;
+
     constructor(pattern, event, attr) {
         super();
 
@@ -38,6 +48,8 @@ class MatchError extends Error {
 }
 
 class ReporterError extends Error {
+    public line: number;
+    public col: number;
     
     constructor(event, errors, attr) {
         super(errors.length === 1 ? errors[0].message : (
@@ -49,7 +61,7 @@ class ReporterError extends Error {
     }
     
 }
-function test(patterns, event, attr) {
+function test(patterns: Pattern[], event: Block, attr: Attr) {
     const errors = [];
 
     for(const [i, pattern] of Object.entries(patterns)) {
@@ -63,25 +75,25 @@ function test(patterns, event, attr) {
     throw new ReporterError(event, errors, attr);
 }
 
-module.exports = {
+export type ValidPathFormatOptions = {
+    tag: string,
+    attr: string,
+    formats: ('absolute' | 'relative' | RegExp)[]
+}
+
+const rule: Rule = {
     id: 'valid-path-format',
     description: 'Paths must be a valid format.',
-    init(parser, reporter, options) {
-        options = Array.isArray(options) ? options : [];
-
+    init(parser, reporter, options: ValidPathFormatOptions[]) {
         parser.addListener('tagstart', (event) => {
             options.forEach(config => {
-                config = Object.assign({
-                    formats: []
-                }, config || {});
-        
                 const patterns = config.formats.map(pattern => new Pattern(pattern));
         
-                if(config.tag && !Array.isArray(config.tag)) {
-                    config.tag = [config.tag];
-                }
+                let tags: string[] = Array.isArray(config.tag)
+                    ? config.tag
+                    : config.tag ? [config.tag] : [];
 
-                if(!config.tag || config.tag.indexOf(event.tagName) > -1) {
+                if(!tags.length || tags.indexOf(event.tagName) > -1) {
                     event.attrs.forEach(attr => {
                         if(!config.attr || config.attr === attr.name) {
                             try {
@@ -103,3 +115,5 @@ module.exports = {
         });
     }
 };
+
+export default rule;

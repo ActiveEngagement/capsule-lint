@@ -14,9 +14,9 @@ export default defineConfig(config => ({
         lib: {
             // Could also be a dictionary or array of multiple entry points
             entry: resolve(__dirname, 'src/index.ts'),
-            name: 'Capsulate',
+            name: 'CapsuleLint',
             // the proper extensions will be added
-            fileName: 'capsule-capsulate',
+            fileName: 'capsule-lint',
         },
         rollupOptions: {
             // make sure to externalize deps that shouldn't be bundled

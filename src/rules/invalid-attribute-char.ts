@@ -1,7 +1,9 @@
-module.exports = {
+import { Rule } from 'htmlhint/types';
+
+const rule: Rule ={
     id: 'invalid-attribute-char',
     description: 'Attribute must contain valid characters.',
-    init(parser, reporter, chars) {
+    init(parser, reporter) {
         parser.addListener('tagstart', event => {
             let offset = 1;
 
@@ -33,3 +35,5 @@ module.exports = {
         });
     }
 }
+
+export default rule;

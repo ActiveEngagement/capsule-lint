@@ -17,7 +17,7 @@
       "declaration": true,
       "emitDeclarationOnly": true,
       "sourceRoot": "./src",
-      "outDir": "./dist"
+      "outDir": "./dist",
     },
     "include": ["src"],
   }

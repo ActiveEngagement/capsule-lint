@@ -1,3 +1,6 @@
+import { HTMLParser, Reporter } from "htmlhint";
+import { Attr, Block } from "htmlhint/htmlparser";
+
 const EMPTY_TAGS = [
     'area', 'base', 'basefont', 'br', 'col', 'frame', 'hr', 'img', 'input',
     'isindex', 'link', 'meta', 'param', 'embed', 'track', 'command', 'source',
@@ -5,15 +8,29 @@ const EMPTY_TAGS = [
 ];
 
 class EventNode {
-    constructor(event, parent) {
-        event = event || {};
+    public children: EventNode[];
+    public closed: boolean;
+    public root: EventNode;
+    public tagName?: string;
+    public attrs: Attr[];
 
-        const tagName = event.tagName && event.tagName.toLowerCase();
+    public from?: number;
+    public to?: number;
+    public col?: number;
+    public line?: number;
+    public raw?: string;
+
+    constructor(
+        public event?: Block,
+        public parent?: EventNode) {
+        // event = event || {};
+
+        const tagName = event?.tagName && event.tagName.toLowerCase();
 
         this.children = [];
 
-        if(this.root === parent) {
-            this.root = true;
+        if(!parent) {
+            this.root = this;
         }
         else {
             this.closed = !!event.close || EMPTY_TAGS.indexOf(tagName) > -1;
@@ -21,7 +38,7 @@ class EventNode {
             this.tagName = tagName;
             this.attrs = event.attrs;
             this.from = event.pos;
-            this.to = null;
+            this.to = undefined;
             this.col = event.col;
             this.line = event.line;
             this.raw = event.raw;
@@ -114,9 +131,12 @@ class EventNode {
 };
 
 class EventTree {
-    constructor(parser, reporter, finish) {
-        this.reporter = reporter;
-
+    constructor(
+        public parser: HTMLParser, 
+        public reporter: Reporter,
+        callack?: (root: EventNode) => void)
+    {
+        
         const stack = [], root = new EventNode();
         
         let parentNode = root;
@@ -151,15 +171,15 @@ class EventTree {
             }
         });
 
-        parser.addListener('end', event => {
+        parser.addListener('end', () => {
             root.closed = true;
             
-            finish && finish(root);
+            callack && callack(root);
         });
     }
 };
 
-module.exports = {
+export {
     EventNode,
     EventTree
-}
+};

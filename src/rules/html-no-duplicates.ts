@@ -1,9 +1,10 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
+import { EventTree } from '../lib/EventTree';
 
-module.exports = {
+const rule: Rule = {
     id: 'html-no-duplicates',
     description: 'The html tag must be a unique root element.',
-    init(parser, reporter, options) {
+    init(parser, reporter) {
         new EventTree(parser, reporter, root => {
             const htmls = root.find('html');
 
@@ -18,3 +19,5 @@ module.exports = {
         });
     }
 };
+
+export default rule;

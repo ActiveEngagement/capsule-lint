@@ -1,9 +1,10 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
+import { EventTree } from '../lib/EventTree';
 
-module.exports = {
+const rule: Rule = {
     id: 'head-no-duplicates',
     description: 'The head tag must not be a duplicate.',
-    init(parser, reporter, options) {
+    init(parser, reporter) {
         new EventTree(parser, reporter, root => {
             let head;
 
@@ -25,3 +26,5 @@ module.exports = {
         });
     }
 };
+
+export default rule;

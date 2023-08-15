@@ -1,8 +1,11 @@
-module.exports = {
+import { Block } from "htmlhint/htmlparser";
+import { Rule } from 'htmlhint/types';
+
+const rule: Rule = {
     id: 'nested-paragraphs',
     description: 'Nested paragraphs are prohibited.',
     init(parser, reporter) {
-        let openingTag = false;
+        let openingTag: Block|undefined;
         
         const stack = [];
 
@@ -24,7 +27,7 @@ module.exports = {
                 const [ start ] = stack.splice(stack.length - 1);
 
                 if(!start) {
-                    openingTag = false;
+                    openingTag = undefined;
 
                     return;
                 }
@@ -38,7 +41,7 @@ module.exports = {
                 );
             }
             else if(!isParagraph) {
-                openingTag = false;
+                openingTag = undefined;
             }
         });
 
@@ -57,3 +60,5 @@ module.exports = {
         });
     }
 }
+
+export default rule;

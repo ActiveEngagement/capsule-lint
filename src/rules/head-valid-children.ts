@@ -1,9 +1,14 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
+import { EventTree } from '../lib/EventTree';
 
-module.exports = {
+type HeadValidChildrenPossibleTags = 'base' | 'link' | 'meta' | 'noscript' | 'script' | 'style' | 'template' | 'title';
+
+export type HeadValidChildrenOptions = HeadValidChildrenPossibleTags | HeadValidChildrenPossibleTags[];
+
+const rule: Rule = {
     id: 'head-valid-children',
     description: 'The head tag must only contain valid elements.',
-    init(parser, reporter, options) {
+    init(parser, reporter, options: HeadValidChildrenOptions) {
         const tags = Array.isArray(options) ? options : [
             'base', 'link', 'meta', 'noscript', 'script', 'style', 'template', 'title'
         ];
@@ -27,3 +32,5 @@ module.exports = {
         });
     }
 };
+
+export default rule;

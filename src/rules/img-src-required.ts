@@ -1,9 +1,9 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
 
-module.exports = {
+const rule: Rule = {
     id: 'img-src-required',
     description: 'The img tag must have a src attribute.',
-    init(parser, reporter, options) {
+    init(parser, reporter) {
         parser.addListener('tagstart', event => {
             if(event.tagName.toLowerCase() === 'img') {
                 for(let attr of event.attrs) {
@@ -21,3 +21,5 @@ module.exports = {
         });
     }
 }
+
+export default rule;

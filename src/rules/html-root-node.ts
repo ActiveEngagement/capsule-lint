@@ -1,9 +1,10 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
+import { EventTree } from '../lib/EventTree';
 
-module.exports = {
+const rule: Rule = {
     id: 'html-root-node',
     description: 'The html tag must be the only root node in the document.',
-    init(parser, reporter, options) {
+    init(parser, reporter) {
         new EventTree(parser, reporter, root => {
             const html = root.findFirst('html');
 
@@ -20,3 +21,5 @@ module.exports = {
         });
     }
 };
+
+export default rule;

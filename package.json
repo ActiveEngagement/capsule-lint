@@ -65,7 +65,11 @@
     "vite-plugin-dts": "^3.5.0"
   },
   "dependencies": {
-    "@codemirror/view": "^0.19.4",
+    "@codemirror/language": "^6.8.0",
+    "@codemirror/lint": "^6.4.0",
+    "@codemirror/state": "^6.2.1",
+    "@codemirror/view": "^6.16.0",
+    "codemirror": "^6.0.1",
     "htmlhint": "^0.15.1"
   }
 }

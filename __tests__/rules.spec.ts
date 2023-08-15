@@ -1,20 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const { verify } = require('../index');
-const rules = require('../capsule.config.json');
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import rules from '../src/capsule.config';
+import { lint } from '../src/index';
 
-function document(rule) {
-    return fs.readFileSync(path.resolve(`./examples/${rule}/document.html`), 'utf8');
+function doc(rule) {
+    return readFileSync(resolve(__dirname, `examples/${rule}/document.html`), 'utf8');
 }
 
 function errors(rule) {
-    return require(path.resolve(`./examples/${rule}/errors.js`));
+    return require(resolve(__dirname, `examples/${rule}/errors.js`));
 }
 
 function rule(rule) {
     const key = rule.split('/')[0];
 
-    return expect(verify(document(rule), {
+    return expect(lint(doc(rule), {
         [key]: rules[key] 
     })).toMatchObject(errors(rule));
 }

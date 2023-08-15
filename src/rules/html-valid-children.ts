@@ -1,9 +1,10 @@
-const { EventTree } = require('../lib/EventTree');
+import { Rule } from 'htmlhint/types';
+import { EventTree } from '../lib/EventTree';
 
-module.exports = {
+const rule: Rule = {
     id: 'html-valid-children',
     description: 'The html tag must only contain a head and body tag.',
-    init(parser, reporter, options) {
+    init(parser, reporter) {
         new EventTree(parser, reporter, root => {
             const html = root.findFirst('html');
 
@@ -21,3 +22,5 @@ module.exports = {
         });
     }
 }
+
+export default rule;
