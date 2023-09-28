@@ -1,4 +1,5 @@
 import bodyNoDuplicates from './body-no-duplicates';
+import freemarkerTags from './freemarker-tags';
 import headBodyDescendentsHtml from './head-body-descendents-html';
 import headNoDuplicates from './head-no-duplicates';
 import headValidContentModel from './head-valid-children';
@@ -9,10 +10,13 @@ import htmlValidChildrenOrder from './html-valid-children-order';
 import imgSrcRequired from './img-src-required';
 import invalidAttributeChar from './invalid-attribute-char';
 import nestedParagraphs from './nested-paragraphs';
+import specialCharEscape from './special-char-escape';
+import tagPair from './tag-pair';
 import validPathFormat from './valid-path-format';
 
 export default {
     'body-no-duplicates': bodyNoDuplicates,
+    'freemarker-tags': freemarkerTags,
     'head-body-descendents-html': headBodyDescendentsHtml,
     'head-no-duplicates': headNoDuplicates,
     'head-valid-children': headValidContentModel,
@@ -23,5 +27,7 @@ export default {
     'img-src-required': imgSrcRequired,
     'invalid-attribute-char': invalidAttributeChar,
     'nested-paragraphs': nestedParagraphs,
+    'special-char-escape': specialCharEscape,
+    'tag-pair': tagPair,
     'valid-path-format': validPathFormat,
 };

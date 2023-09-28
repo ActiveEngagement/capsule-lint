@@ -19,7 +19,7 @@ export type CapsuleRuleset = Ruleset & {
 }
 
 export function lint(html: string, config?: Ruleset): Hint[] {
-    return HTMLHint.verify(html, config || defaultConfig).map(error => {
+    return HTMLHint.verify(html, config ?? defaultConfig).map(error => {
         error.rule.link = error.rule.link.replace(
             'https://htmlhint.com/docs/user-guide/rules/',
             'https://thecapsule.email/docs/codes/'

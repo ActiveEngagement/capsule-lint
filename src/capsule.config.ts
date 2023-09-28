@@ -1,6 +1,7 @@
 export default {
 	"attr-no-duplication": true,
 	"body-no-duplicates": true,
+	"freemarker-tags": true,
 	"head-body-descendents-html": true,
 	"head-no-duplicates": true,
 	"head-valid-children": true,
