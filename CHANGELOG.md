@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.1...v0.3.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* issues with linting Freemarker tags ([f98e0af](https://github.com/ActiveEngagement/capsule-lint/commit/f98e0af11a26fbc326cb4a07ea6e0e5c63b2a6fa))
+
 ## [0.3.1](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.0...v0.3.1) (2023-09-11)
 
 
