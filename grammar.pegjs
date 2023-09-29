@@ -8,16 +8,16 @@ char
   = (!("<#if"/"${")) value:. { return value } 
 
 tag
-  = value: ("${" _ expression _ "}") { return value.flat(100).join('') }
+  = value: ("${" _ tag_expression _ "}") { return value.flat(100).join('') }
 
 conditional
   = value: ("<#if" required_whitespace expression ">") { return value.flat(100).filter(Boolean).join('') }
 
+tag_expression "expression"
+  = ("(" _ unsafe_expression _ ")" / unsafe_expression) _ (unsafe_operator tag_expression)* modifier_expression*
+
 expression "expression"
   = ("(" _ unsafe_expression _ ")" / safe_expression) _ (safe_operator expression)* modifier_expression*
-
-expression_og "expression"
-  = value: ("(" _ unsafe_expression _ ")" / safe_expression) _ (safe_operator expression)*
 
 unsafe_expression "equation"
   = variable (_ unsafe_operator _ (variable/expression))*
@@ -26,7 +26,7 @@ safe_expression "equation"
   = variable (_ safe_operator _ (variable/expression))*
 
 variable
-   = string ("." string)* modifier_expression*
+  = string ("." string)* args?/(modifier_expression*)
 
 modifier_expression
   = "?" modifier args?
