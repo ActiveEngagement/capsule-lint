@@ -1643,7 +1643,7 @@ peg$parsesafe_expression() {
   function // @ts-ignore
 peg$parsevariable() {
 // @ts-ignore
-    var s0, s1, s2, s3, s4, s5;
+    var s0, s1, s2, s3, s4, s5, s6;
 
 // @ts-ignore
     s0 = peg$currPos;
@@ -1737,16 +1737,60 @@ peg$parsevariable() {
         }
       }
 // @ts-ignore
-      s3 = peg$parseargs();
+      s3 = peg$currPos;
 // @ts-ignore
-      if (s3 === peg$FAILED) {
+      s4 = peg$parseargs();
 // @ts-ignore
-        s3 = null;
+      if (s4 === peg$FAILED) {
+// @ts-ignore
+        s4 = null;
       }
 // @ts-ignore
-      s1 = [s1, s2, s3];
+      if (input.charCodeAt(peg$currPos) === 46) {
 // @ts-ignore
-      s0 = s1;
+        s5 = peg$c6;
+// @ts-ignore
+        peg$currPos++;
+// @ts-ignore
+      } else {
+// @ts-ignore
+        s5 = peg$FAILED;
+// @ts-ignore
+        if (peg$silentFails === 0) { peg$fail(peg$e9); }
+      }
+// @ts-ignore
+      if (s5 === peg$FAILED) {
+// @ts-ignore
+        s5 = null;
+      }
+// @ts-ignore
+      s6 = peg$parsevariable();
+// @ts-ignore
+      if (s6 !== peg$FAILED) {
+// @ts-ignore
+        s4 = [s4, s5, s6];
+// @ts-ignore
+        s3 = s4;
+// @ts-ignore
+      } else {
+// @ts-ignore
+        peg$currPos = s3;
+// @ts-ignore
+        s3 = peg$FAILED;
+      }
+// @ts-ignore
+      if (s3 !== peg$FAILED) {
+// @ts-ignore
+        s1 = [s1, s2, s3];
+// @ts-ignore
+        s0 = s1;
+// @ts-ignore
+      } else {
+// @ts-ignore
+        peg$currPos = s0;
+// @ts-ignore
+        s0 = peg$FAILED;
+      }
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2821,7 +2865,7 @@ export type SafeExpression = [
   [_, SafeOperator, _, Variable | Expression][]
 ];
 export type Variable =
-  | [String_1, [".", String_1][], Args | null]
+  | [String_1, [".", String_1][], [Args | null, "." | null, Variable]]
   | ModifierExpression[];
 export type ModifierExpression = ["?", Modifier, Args | null];
 export type Modifier = String_1;

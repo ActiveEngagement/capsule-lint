@@ -26,7 +26,7 @@ safe_expression "equation"
   = variable (_ safe_operator _ (variable/expression))*
 
 variable
-  = string ("." string)* args?/(modifier_expression*)
+  = string ("." string)* (args? "."? variable)/(modifier_expression*)
 
 modifier_expression
   = "?" modifier args?
