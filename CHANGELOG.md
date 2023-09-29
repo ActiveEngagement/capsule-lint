@@ -1,3 +1,10 @@
+## [0.3.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.3...v0.3.4) (2023-09-29)
+
+
+### Bug Fixes
+
+* more mg parsing issues ([6818ab9](https://github.com/ActiveEngagement/capsule-lint/commit/6818ab92f134e88b0954509bbac3e7323380e217))
+
 ## [0.3.3](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.2...v0.3.3) (2023-09-29)
 
 
