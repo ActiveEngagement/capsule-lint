@@ -1,3 +1,10 @@
+## [0.3.7](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.6...v0.3.7) (2023-10-02)
+
+
+### Bug Fixes
+
+* issues with special-char-escape rule ([b575900](https://github.com/ActiveEngagement/capsule-lint/commit/b57590068c58eedd3e0f6af59664d91f129da5d2))
+
 ## [0.3.6](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.5...v0.3.6) (2023-10-02)
 
 
