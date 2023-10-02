@@ -371,36 +371,49 @@ function peg$parse(input, options) {
 // @ts-ignore
 
   var peg$f0 = function(value) {// @ts-ignore
- return value.flat(Infinity).filter(Boolean) };// @ts-ignore
+ return value.join('') };// @ts-ignore
 
   var peg$f1 = function(value) {// @ts-ignore
- return };// @ts-ignore
-
-  var peg$f2 = function(value) {// @ts-ignore
  return value };// @ts-ignore
 
-  var peg$f3 = function(value) {// @ts-ignore
+  var peg$f2 = function(value) {// @ts-ignore
  return value.flat(Infinity).join('') };// @ts-ignore
 
+  var peg$f3 = function(value) {// @ts-ignore
+ return value.flat(Infinity).filter(Boolean).join('') };// @ts-ignore
+
   var peg$f4 = function(value) {// @ts-ignore
- return value.flat(100).filter(Boolean).join('') };// @ts-ignore
+ return value.flat(Infinity).filter(Boolean).join('') };// @ts-ignore
 
   var peg$f5 = function(value) {// @ts-ignore
- return value.flat(100).filter(Boolean).join('') };// @ts-ignore
+ return value };// @ts-ignore
 
-  var peg$f6 = function(negative, number, point, decimal) {// @ts-ignore
+  var peg$f6 = function(value) {// @ts-ignore
+ return value };// @ts-ignore
+
+  var peg$f7 = function(value) {
+// @ts-ignore
+  return value.flat(Infinity).join('')
+};// @ts-ignore
+
+  var peg$f8 = function(value) {
+// @ts-ignore
+    return value.flat(Infinity).join('')
+  };// @ts-ignore
+
+  var peg$f9 = function(negative, number, point, decimal) {// @ts-ignore
  return "." + decimal.join('') };// @ts-ignore
 
-  var peg$f7 = function(negative, number, decimal) {// @ts-ignore
+  var peg$f10 = function(negative, number, decimal) {// @ts-ignore
  return `${negative ?? ''}${number.join('')}${decimal ?? ''}` };// @ts-ignore
 
-  var peg$f8 = function(value) {// @ts-ignore
+  var peg$f11 = function(value) {// @ts-ignore
  return value.join('') };// @ts-ignore
 
-  var peg$f9 = function(value) {// @ts-ignore
+  var peg$f12 = function(value) {// @ts-ignore
  return value.join('') };// @ts-ignore
 
-  var peg$f10 = function(value) {// @ts-ignore
+  var peg$f13 = function(value) {// @ts-ignore
  return value.join('') };
 // @ts-ignore
   var peg$currPos = 0;
@@ -664,47 +677,39 @@ function peg$parse(input, options) {
   function // @ts-ignore
 peg$parsestart() {
 // @ts-ignore
-    var s0, s1, s2;
+    var s0, s1;
 
 // @ts-ignore
-    s0 = peg$currPos;
+    s0 = [];
 // @ts-ignore
-    s1 = [];
+    s1 = peg$parseconditional();
 // @ts-ignore
-    s2 = peg$parseconditional();
+    if (s1 === peg$FAILED) {
 // @ts-ignore
-    if (s2 === peg$FAILED) {
+      s1 = peg$parsetag();
 // @ts-ignore
-      s2 = peg$parsetag();
+      if (s1 === peg$FAILED) {
 // @ts-ignore
-      if (s2 === peg$FAILED) {
-// @ts-ignore
-        s2 = peg$parsetext();
+        s1 = peg$parsetext();
       }
     }
 // @ts-ignore
-    while (s2 !== peg$FAILED) {
+    while (s1 !== peg$FAILED) {
 // @ts-ignore
-      s1.push(s2);
+      s0.push(s1);
 // @ts-ignore
-      s2 = peg$parseconditional();
+      s1 = peg$parseconditional();
 // @ts-ignore
-      if (s2 === peg$FAILED) {
+      if (s1 === peg$FAILED) {
 // @ts-ignore
-        s2 = peg$parsetag();
+        s1 = peg$parsetag();
 // @ts-ignore
-        if (s2 === peg$FAILED) {
+        if (s1 === peg$FAILED) {
 // @ts-ignore
-          s2 = peg$parsetext();
+          s1 = peg$parsetext();
         }
       }
     }
-// @ts-ignore
-    peg$savedPos = s0;
-// @ts-ignore
-    s1 = peg$f0(s1);
-// @ts-ignore
-    s0 = s1;
 
 // @ts-ignore
     return s0;
@@ -741,7 +746,7 @@ peg$parsetext() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f1(s1);
+      s1 = peg$f0(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -858,7 +863,7 @@ peg$parsechar() {
 // @ts-ignore
         peg$savedPos = s0;
 // @ts-ignore
-        s0 = peg$f2(s2);
+        s0 = peg$f1(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -997,7 +1002,7 @@ peg$parsetag() {
 // @ts-ignore
         peg$savedPos = s0;
 // @ts-ignore
-        s0 = peg$f3(s2);
+        s0 = peg$f2(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -1162,7 +1167,7 @@ peg$parseif() {
 // @ts-ignore
         peg$savedPos = s0;
 // @ts-ignore
-        s0 = peg$f4(s2);
+        s0 = peg$f3(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -1299,7 +1304,7 @@ peg$parseelseif() {
 // @ts-ignore
         peg$savedPos = s0;
 // @ts-ignore
-        s0 = peg$f5(s2);
+        s0 = peg$f4(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -1375,9 +1380,9 @@ peg$parseelse() {
 // @ts-ignore
       if (s2 !== peg$FAILED) {
 // @ts-ignore
-        s1 = [s1, s2];
+        peg$savedPos = s0;
 // @ts-ignore
-        s0 = s1;
+        s0 = peg$f5(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -1453,9 +1458,9 @@ peg$parseendif() {
 // @ts-ignore
       if (s2 !== peg$FAILED) {
 // @ts-ignore
-        s1 = [s1, s2];
+        peg$savedPos = s0;
 // @ts-ignore
-        s0 = s1;
+        s0 = peg$f6(s2);
 // @ts-ignore
       } else {
 // @ts-ignore
@@ -1743,9 +1748,9 @@ peg$parseexpression() {
 // @ts-ignore
       s2 = peg$parse_();
 // @ts-ignore
-      s1 = [s1, s2];
+      peg$savedPos = s0;
 // @ts-ignore
-      s0 = s1;
+      s0 = peg$f7(s1);
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2011,108 +2016,20 @@ peg$parsesafe_expression() {
   function // @ts-ignore
 peg$parsevariable() {
 // @ts-ignore
-    var s0, s1, s2, s3, s4, s5, s6;
+    var s0, s1, s2, s3, s4, s5, s6, s7;
 
 // @ts-ignore
     s0 = peg$currPos;
 // @ts-ignore
-    s1 = peg$parsestring();
+    s1 = peg$currPos;
 // @ts-ignore
-    if (s1 !== peg$FAILED) {
+    s2 = peg$parsestring();
 // @ts-ignore
-      s2 = [];
+    if (s2 !== peg$FAILED) {
 // @ts-ignore
-      s3 = peg$currPos;
+      s3 = [];
 // @ts-ignore
-      if (input.charCodeAt(peg$currPos) === 46) {
-// @ts-ignore
-        s4 = peg$c13;
-// @ts-ignore
-        peg$currPos++;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        s4 = peg$FAILED;
-// @ts-ignore
-        if (peg$silentFails === 0) { peg$fail(peg$e17); }
-      }
-// @ts-ignore
-      if (s4 !== peg$FAILED) {
-// @ts-ignore
-        s5 = peg$parsestring();
-// @ts-ignore
-        if (s5 !== peg$FAILED) {
-// @ts-ignore
-          s4 = [s4, s5];
-// @ts-ignore
-          s3 = s4;
-// @ts-ignore
-        } else {
-// @ts-ignore
-          peg$currPos = s3;
-// @ts-ignore
-          s3 = peg$FAILED;
-        }
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s3;
-// @ts-ignore
-        s3 = peg$FAILED;
-      }
-// @ts-ignore
-      while (s3 !== peg$FAILED) {
-// @ts-ignore
-        s2.push(s3);
-// @ts-ignore
-        s3 = peg$currPos;
-// @ts-ignore
-        if (input.charCodeAt(peg$currPos) === 46) {
-// @ts-ignore
-          s4 = peg$c13;
-// @ts-ignore
-          peg$currPos++;
-// @ts-ignore
-        } else {
-// @ts-ignore
-          s4 = peg$FAILED;
-// @ts-ignore
-          if (peg$silentFails === 0) { peg$fail(peg$e17); }
-        }
-// @ts-ignore
-        if (s4 !== peg$FAILED) {
-// @ts-ignore
-          s5 = peg$parsestring();
-// @ts-ignore
-          if (s5 !== peg$FAILED) {
-// @ts-ignore
-            s4 = [s4, s5];
-// @ts-ignore
-            s3 = s4;
-// @ts-ignore
-          } else {
-// @ts-ignore
-            peg$currPos = s3;
-// @ts-ignore
-            s3 = peg$FAILED;
-          }
-// @ts-ignore
-        } else {
-// @ts-ignore
-          peg$currPos = s3;
-// @ts-ignore
-          s3 = peg$FAILED;
-        }
-      }
-// @ts-ignore
-      s3 = peg$currPos;
-// @ts-ignore
-      s4 = peg$parseargs();
-// @ts-ignore
-      if (s4 === peg$FAILED) {
-// @ts-ignore
-        s4 = null;
-      }
+      s4 = peg$currPos;
 // @ts-ignore
       if (input.charCodeAt(peg$currPos) === 46) {
 // @ts-ignore
@@ -2127,59 +2044,158 @@ peg$parsevariable() {
         if (peg$silentFails === 0) { peg$fail(peg$e17); }
       }
 // @ts-ignore
+      if (s5 !== peg$FAILED) {
+// @ts-ignore
+        s6 = peg$parsestring();
+// @ts-ignore
+        if (s6 !== peg$FAILED) {
+// @ts-ignore
+          s5 = [s5, s6];
+// @ts-ignore
+          s4 = s5;
+// @ts-ignore
+        } else {
+// @ts-ignore
+          peg$currPos = s4;
+// @ts-ignore
+          s4 = peg$FAILED;
+        }
+// @ts-ignore
+      } else {
+// @ts-ignore
+        peg$currPos = s4;
+// @ts-ignore
+        s4 = peg$FAILED;
+      }
+// @ts-ignore
+      while (s4 !== peg$FAILED) {
+// @ts-ignore
+        s3.push(s4);
+// @ts-ignore
+        s4 = peg$currPos;
+// @ts-ignore
+        if (input.charCodeAt(peg$currPos) === 46) {
+// @ts-ignore
+          s5 = peg$c13;
+// @ts-ignore
+          peg$currPos++;
+// @ts-ignore
+        } else {
+// @ts-ignore
+          s5 = peg$FAILED;
+// @ts-ignore
+          if (peg$silentFails === 0) { peg$fail(peg$e17); }
+        }
+// @ts-ignore
+        if (s5 !== peg$FAILED) {
+// @ts-ignore
+          s6 = peg$parsestring();
+// @ts-ignore
+          if (s6 !== peg$FAILED) {
+// @ts-ignore
+            s5 = [s5, s6];
+// @ts-ignore
+            s4 = s5;
+// @ts-ignore
+          } else {
+// @ts-ignore
+            peg$currPos = s4;
+// @ts-ignore
+            s4 = peg$FAILED;
+          }
+// @ts-ignore
+        } else {
+// @ts-ignore
+          peg$currPos = s4;
+// @ts-ignore
+          s4 = peg$FAILED;
+        }
+      }
+// @ts-ignore
+      s4 = peg$currPos;
+// @ts-ignore
+      s5 = peg$parseargs();
+// @ts-ignore
       if (s5 === peg$FAILED) {
 // @ts-ignore
         s5 = null;
       }
 // @ts-ignore
-      s6 = peg$parsevariable();
+      if (input.charCodeAt(peg$currPos) === 46) {
 // @ts-ignore
-      if (s6 !== peg$FAILED) {
+        s6 = peg$c13;
 // @ts-ignore
-        s4 = [s4, s5, s6];
-// @ts-ignore
-        s3 = s4;
+        peg$currPos++;
 // @ts-ignore
       } else {
 // @ts-ignore
-        peg$currPos = s3;
+        s6 = peg$FAILED;
 // @ts-ignore
-        s3 = peg$FAILED;
+        if (peg$silentFails === 0) { peg$fail(peg$e17); }
       }
 // @ts-ignore
-      if (s3 === peg$FAILED) {
+      if (s6 === peg$FAILED) {
 // @ts-ignore
-        s3 = [];
+        s6 = null;
+      }
 // @ts-ignore
-        s4 = peg$parsemodifier_expression();
+      s7 = peg$parsevariable();
 // @ts-ignore
-        while (s4 !== peg$FAILED) {
+      if (s7 !== peg$FAILED) {
 // @ts-ignore
-          s3.push(s4);
+        s5 = [s5, s6, s7];
 // @ts-ignore
-          s4 = peg$parsemodifier_expression();
+        s4 = s5;
+// @ts-ignore
+      } else {
+// @ts-ignore
+        peg$currPos = s4;
+// @ts-ignore
+        s4 = peg$FAILED;
+      }
+// @ts-ignore
+      if (s4 === peg$FAILED) {
+// @ts-ignore
+        s4 = [];
+// @ts-ignore
+        s5 = peg$parsemodifier_expression();
+// @ts-ignore
+        while (s5 !== peg$FAILED) {
+// @ts-ignore
+          s4.push(s5);
+// @ts-ignore
+          s5 = peg$parsemodifier_expression();
         }
       }
 // @ts-ignore
-      if (s3 !== peg$FAILED) {
+      if (s4 !== peg$FAILED) {
 // @ts-ignore
-        s1 = [s1, s2, s3];
+        s2 = [s2, s3, s4];
 // @ts-ignore
-        s0 = s1;
+        s1 = s2;
 // @ts-ignore
       } else {
 // @ts-ignore
-        peg$currPos = s0;
+        peg$currPos = s1;
 // @ts-ignore
-        s0 = peg$FAILED;
+        s1 = peg$FAILED;
       }
 // @ts-ignore
     } else {
 // @ts-ignore
-      peg$currPos = s0;
+      peg$currPos = s1;
 // @ts-ignore
-      s0 = peg$FAILED;
+      s1 = peg$FAILED;
     }
+// @ts-ignore
+    if (s1 !== peg$FAILED) {
+// @ts-ignore
+      peg$savedPos = s0;
+// @ts-ignore
+      s1 = peg$f8(s1);
+    }
+// @ts-ignore
+    s0 = s1;
 
 // @ts-ignore
     return s0;
@@ -2775,7 +2791,7 @@ peg$parsenumber() {
 // @ts-ignore
           peg$savedPos = s3;
 // @ts-ignore
-          s3 = peg$f6(s1, s2, s4, s5);
+          s3 = peg$f9(s1, s2, s4, s5);
 // @ts-ignore
         } else {
 // @ts-ignore
@@ -2798,7 +2814,7 @@ peg$parsenumber() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s0 = peg$f7(s1, s2, s3);
+      s0 = peg$f10(s1, s2, s3);
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2875,7 +2891,7 @@ peg$parsestring() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f8(s1);
+      s1 = peg$f11(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -3002,7 +3018,7 @@ peg$parserequired_whitespace() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f9(s1);
+      s1 = peg$f12(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -3066,7 +3082,7 @@ peg$parse_() {
 // @ts-ignore
     peg$savedPos = s0;
 // @ts-ignore
-    s1 = peg$f10(s1);
+    s1 = peg$f13(s1);
 // @ts-ignore
     s0 = s1;
 // @ts-ignore
@@ -3207,51 +3223,22 @@ export const PeggySyntaxError = peggyParser.SyntaxError as typeof _PeggySyntaxEr
 export type PeggySyntaxError = _PeggySyntaxError;
 
 // These types were autogenerated by ts-pegjs
-export type Start = ((Conditional | Tag | Text)[] extends (infer InnerArr)[]
-  ? FlatArray<
-      InnerArr,
-      | 0
-      | 1
-      | -1
-      | 2
-      | 3
-      | 4
-      | 5
-      | 6
-      | 7
-      | 8
-      | 9
-      | 10
-      | 11
-      | 12
-      | 13
-      | 14
-      | 15
-      | 16
-      | 17
-      | 18
-      | 19
-      | 20
-    >
-  : (Conditional | Tag | Text)[])[];
-export type Text = void;
+export type Start = (Conditional | Tag | Text)[];
+export type Text = string;
 export type Char = string;
 export type Tag = string;
 export type Conditional = If | Elseif | Else | Endif;
 export type If = string;
 export type Elseif = string;
-export type Else = [undefined, "<#else>"];
-export type Endif = [undefined, "</#if>"];
+export type Else = "<#else>";
+export type Endif = "</#if>";
 export type TagExpression = [
   ["(", _, UnsafeExpression, _, ")"] | UnsafeExpression,
   _,
   [UnsafeOperator, TagExpression][],
   ModifierExpression[]
 ];
-export type Expression = [
-  ["(", _, UnsafeExpression, _, ")"] | SafeExpression,
-  _
-];
+export type Expression = any;
 export type UnsafeExpression = [
   Variable,
   [_, UnsafeOperator, _, Variable | Expression][]
@@ -3260,11 +3247,7 @@ export type SafeExpression = [
   Variable,
   [_, SafeOperator, _, Variable | Expression][]
 ];
-export type Variable = [
-  String_1,
-  [".", String_1][],
-  [Args | null, "." | null, Variable] | ModifierExpression[]
-];
+export type Variable = string;
 export type ModifierExpression = ["?", Modifier, Args | null];
 export type Modifier = String_1;
 export type Args = ["(", Arg | null, [Comma, Arg][], ")"];
