@@ -9,6 +9,8 @@ Object.keys(rules).forEach((key) => {
     HTMLHint.addRule(rules[key]);
 });
 
+export * from './parser';
+
 export type {
     Rule
 };
