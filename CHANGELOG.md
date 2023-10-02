@@ -1,3 +1,11 @@
+## [0.3.6](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.5...v0.3.6) (2023-10-02)
+
+
+### Bug Fixes
+
+* more issues with freemarker parsing. added </#if> to parser ([9513082](https://github.com/ActiveEngagement/capsule-lint/commit/95130825507313bcb5767acaa4fd33cbccfbe7fa))
+* updated ts and grammar ([6fcd5be](https://github.com/ActiveEngagement/capsule-lint/commit/6fcd5be43410f22bc1370071e5048be9c21a83f1))
+
 ## [0.3.5](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.4...v0.3.5) (2023-10-02)
 
 
