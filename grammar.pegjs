@@ -1,23 +1,35 @@
 start
-  = value: (text / tag / value: (conditional) { return value })* { return value.filter(Boolean) }
+  = value: (conditional / tag / text)* { return value.flat(Infinity).filter(Boolean) }
   
 text
   = value: char+ { return }
 
-char
-  = (!("<#if"/"${")) value:. { return value } 
+char "string"
+  = (!("<#"/"<#"/"</#"/"${")) value:. { return value } 
 
 tag
-  = value: ("${" _ tag_expression _ "}") { return value.flat(100).join('') }
+  = &"${" value: ("${" _ tag_expression _ "}") { return value.flat(Infinity).join('') }
 
 conditional
-  = value: ("<#if" required_whitespace expression ">") { return value.flat(100).filter(Boolean).join('') }
+  = if / elseif / else / endif
+  
+if
+  = &"<#if" value:("<#if" required_whitespace expression ">") { return value.flat(100).filter(Boolean).join('') }
+
+elseif
+  = &"<#elseif" value: ("<#elseif" required_whitespace expression ">") { return value.flat(100).filter(Boolean).join('') }
+
+else
+  = &"<#else" "<#else>"
+  
+endif
+  = &"</#if" "</#if>"
 
 tag_expression "expression"
   = ("(" _ unsafe_expression _ ")" / unsafe_expression) _ (unsafe_operator tag_expression)* modifier_expression*
 
 expression "expression"
-  = ("(" _ unsafe_expression _ ")" / safe_expression) _ (safe_operator expression)* modifier_expression*
+  = ("(" _ unsafe_expression _ ")" / safe_expression) _
 
 unsafe_expression "equation"
   = variable (_ unsafe_operator _ (variable/expression))*
@@ -26,7 +38,7 @@ safe_expression "equation"
   = variable (_ safe_operator _ (variable/expression))*
 
 variable
-  = string ("." string)* (args? "."? variable)/(modifier_expression*)
+  = (string ("." string)* ((args? "."? variable)/(modifier_expression*)))
 
 modifier_expression
   = "?" modifier args?
