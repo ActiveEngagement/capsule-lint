@@ -8,32 +8,46 @@ const rule: Rule = {
         parser.addListener('text', (event) => {
             const raw = event.raw;
             const reSpecChar = /[<>]| \& /g;
-            let match;
             
+            let tags = [];
+
+            try {
+                let index = 0;
+
+                tags = parse(raw).map(tag => {
+                    const sliced = raw.slice(index);
+
+                    const start = index;
+                    const end = index + tag.length;
+
+                    index += tag.length + sliced.indexOf(tag);
+                    
+                    return {
+                        start,
+                        end,
+                        tag
+                    }
+                }).filter(Boolean)
+            }
+            catch(e) {
+                // Do nothing
+            }
+
+            let match;
+
             while (match = reSpecChar.exec(raw)) {
-                const fixedPos = parser.fixPos(event, match.index);
-
-                try {
-                    const tags = parse(raw);
-
-                    if(tags.length) {
-                        for(const tag of tags) {
-                            const start = raw.indexOf(tag);
-                            const end = start + tag.length - 1;
-
-                            if(match.index >= start && match.index <= end) {
-                                continue;
-                            }
-
-                            reporter.error(`Special characters must be escaped : [ ${match[0]} ].`, fixedPos.line, fixedPos.col, this, event.raw);
-                        }
+                for(const {start, end, tag} of tags) {
+                    if(tag.match(/^<#?[a-zA-]/)) {
+                        continue;
                     }
-                    else {
-                        reporter.error(`Special characters must be escaped : [ ${match[0]} ].`, fixedPos.line, fixedPos.col, this, event.raw);
+
+                    if(!(match.index >= start && match.index <= end)) {
+                        continue;
                     }
-                }
-                catch(e) {
-                    // Do nothing
+                        
+                    const { line, col } = parser.fixPos(event, match.index);
+                
+                    reporter.error(`Special characters must be escaped : [ ${match[0]} ].`, line, col, this, event.raw);
                 }
             }
         });
