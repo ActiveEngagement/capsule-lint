@@ -33,10 +33,6 @@ const rule: Rule = {
                 // Do nothing
             }
 
-            
-
-            console.log(tags);
-
             let match;
 
             for(const {start, end, tag} of tags) {
@@ -45,8 +41,6 @@ const rule: Rule = {
                 }
 
                 while (match = reSpecChar.exec(tag)) {
-                    console.log(match);
-                    
                     if(!(match.index >= start && match.index <= end)) {
                         continue;
                     }
