@@ -94,3 +94,9 @@ describe('Rule: "valid-path-format"', () => {
         rule('valid-path-format');
     });
 });
+
+describe('Rule: "freemarker-tags"', () => {
+    it('Throws errors for invalid freemarker tags.', () => {
+        rule('freemarker-tags');
+    });
+});
