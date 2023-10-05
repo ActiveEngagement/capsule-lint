@@ -1,3 +1,11 @@
+## [0.3.8](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.7...v0.3.8) (2023-10-05)
+
+
+### Bug Fixes
+
+* audit issues ([03a6bb3](https://github.com/ActiveEngagement/capsule-lint/commit/03a6bb3e9d886408e814a6dae581441870313111))
+* grammar issues ([947321c](https://github.com/ActiveEngagement/capsule-lint/commit/947321c9aad95ea56e898fdd3549d2a882f411d9))
+
 ## [0.3.7](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.6...v0.3.7) (2023-10-02)
 
 
