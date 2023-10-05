@@ -26,7 +26,9 @@ endif
   = &"</#if" value: "</#if>" { return value }
 
 tag_expression "expression"
-  = ("(" _ unsafe_expression _ ")" / unsafe_expression) _ (unsafe_operator tag_expression)* modifier_expression*
+  = value: ("(" _ unsafe_expression _ ")" / unsafe_expression) _ {
+  return value.flat(Infinity).join('')
+}
 
 expression "expression"
   = value: ("(" _ unsafe_expression _ ")" / safe_expression) _ {
@@ -40,7 +42,7 @@ safe_expression "equation"
   = variable (_ safe_operator _ (variable/expression))*
 
 variable
-  = value: (string ("." string)* ((args? "."? variable)/(modifier_expression*))) {
+  = value: (string ("." string)* ((args? "."? variable?)/(modifier_expression*))) {
     return value.flat(Infinity).join('')
   }
 

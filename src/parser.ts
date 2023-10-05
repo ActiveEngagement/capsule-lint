@@ -398,22 +398,27 @@ function peg$parse(input, options) {
 
   var peg$f8 = function(value) {
 // @ts-ignore
+  return value.flat(Infinity).join('')
+};// @ts-ignore
+
+  var peg$f9 = function(value) {
+// @ts-ignore
     return value.flat(Infinity).join('')
   };// @ts-ignore
 
-  var peg$f9 = function(negative, number, point, decimal) {// @ts-ignore
+  var peg$f10 = function(negative, number, point, decimal) {// @ts-ignore
  return "." + decimal.join('') };// @ts-ignore
 
-  var peg$f10 = function(negative, number, decimal) {// @ts-ignore
+  var peg$f11 = function(negative, number, decimal) {// @ts-ignore
  return `${negative ?? ''}${number.join('')}${decimal ?? ''}` };// @ts-ignore
-
-  var peg$f11 = function(value) {// @ts-ignore
- return value.join('') };// @ts-ignore
 
   var peg$f12 = function(value) {// @ts-ignore
  return value.join('') };// @ts-ignore
 
   var peg$f13 = function(value) {// @ts-ignore
+ return value.join('') };// @ts-ignore
+
+  var peg$f14 = function(value) {// @ts-ignore
  return value.join('') };
 // @ts-ignore
   var peg$currPos = 0;
@@ -1565,83 +1570,9 @@ peg$parsetag_expression() {
 // @ts-ignore
       s2 = peg$parse_();
 // @ts-ignore
-      s3 = [];
+      peg$savedPos = s0;
 // @ts-ignore
-      s4 = peg$currPos;
-// @ts-ignore
-      s5 = peg$parseunsafe_operator();
-// @ts-ignore
-      if (s5 !== peg$FAILED) {
-// @ts-ignore
-        s6 = peg$parsetag_expression();
-// @ts-ignore
-        if (s6 !== peg$FAILED) {
-// @ts-ignore
-          s5 = [s5, s6];
-// @ts-ignore
-          s4 = s5;
-// @ts-ignore
-        } else {
-// @ts-ignore
-          peg$currPos = s4;
-// @ts-ignore
-          s4 = peg$FAILED;
-        }
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s4;
-// @ts-ignore
-        s4 = peg$FAILED;
-      }
-// @ts-ignore
-      while (s4 !== peg$FAILED) {
-// @ts-ignore
-        s3.push(s4);
-// @ts-ignore
-        s4 = peg$currPos;
-// @ts-ignore
-        s5 = peg$parseunsafe_operator();
-// @ts-ignore
-        if (s5 !== peg$FAILED) {
-// @ts-ignore
-          s6 = peg$parsetag_expression();
-// @ts-ignore
-          if (s6 !== peg$FAILED) {
-// @ts-ignore
-            s5 = [s5, s6];
-// @ts-ignore
-            s4 = s5;
-// @ts-ignore
-          } else {
-// @ts-ignore
-            peg$currPos = s4;
-// @ts-ignore
-            s4 = peg$FAILED;
-          }
-// @ts-ignore
-        } else {
-// @ts-ignore
-          peg$currPos = s4;
-// @ts-ignore
-          s4 = peg$FAILED;
-        }
-      }
-// @ts-ignore
-      s4 = [];
-// @ts-ignore
-      s5 = peg$parsemodifier_expression();
-// @ts-ignore
-      while (s5 !== peg$FAILED) {
-// @ts-ignore
-        s4.push(s5);
-// @ts-ignore
-        s5 = peg$parsemodifier_expression();
-      }
-// @ts-ignore
-      s1 = [s1, s2, s3, s4];
-// @ts-ignore
-      s0 = s1;
+      s0 = peg$f7(s1);
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -1750,7 +1681,7 @@ peg$parseexpression() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s0 = peg$f7(s1);
+      s0 = peg$f8(s1);
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2141,45 +2072,18 @@ peg$parsevariable() {
 // @ts-ignore
       s7 = peg$parsevariable();
 // @ts-ignore
-      if (s7 !== peg$FAILED) {
+      if (s7 === peg$FAILED) {
 // @ts-ignore
-        s5 = [s5, s6, s7];
-// @ts-ignore
-        s4 = s5;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s4;
-// @ts-ignore
-        s4 = peg$FAILED;
+        s7 = null;
       }
 // @ts-ignore
-      if (s4 === peg$FAILED) {
+      s5 = [s5, s6, s7];
 // @ts-ignore
-        s4 = [];
+      s4 = s5;
 // @ts-ignore
-        s5 = peg$parsemodifier_expression();
+      s2 = [s2, s3, s4];
 // @ts-ignore
-        while (s5 !== peg$FAILED) {
-// @ts-ignore
-          s4.push(s5);
-// @ts-ignore
-          s5 = peg$parsemodifier_expression();
-        }
-      }
-// @ts-ignore
-      if (s4 !== peg$FAILED) {
-// @ts-ignore
-        s2 = [s2, s3, s4];
-// @ts-ignore
-        s1 = s2;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s1;
-// @ts-ignore
-        s1 = peg$FAILED;
-      }
+      s1 = s2;
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2192,7 +2096,7 @@ peg$parsevariable() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f8(s1);
+      s1 = peg$f9(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -2791,7 +2695,7 @@ peg$parsenumber() {
 // @ts-ignore
           peg$savedPos = s3;
 // @ts-ignore
-          s3 = peg$f9(s1, s2, s4, s5);
+          s3 = peg$f10(s1, s2, s4, s5);
 // @ts-ignore
         } else {
 // @ts-ignore
@@ -2814,7 +2718,7 @@ peg$parsenumber() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s0 = peg$f10(s1, s2, s3);
+      s0 = peg$f11(s1, s2, s3);
 // @ts-ignore
     } else {
 // @ts-ignore
@@ -2891,7 +2795,7 @@ peg$parsestring() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f11(s1);
+      s1 = peg$f12(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -3018,7 +2922,7 @@ peg$parserequired_whitespace() {
 // @ts-ignore
       peg$savedPos = s0;
 // @ts-ignore
-      s1 = peg$f12(s1);
+      s1 = peg$f13(s1);
     }
 // @ts-ignore
     s0 = s1;
@@ -3082,7 +2986,7 @@ peg$parse_() {
 // @ts-ignore
     peg$savedPos = s0;
 // @ts-ignore
-    s1 = peg$f13(s1);
+    s1 = peg$f14(s1);
 // @ts-ignore
     s0 = s1;
 // @ts-ignore
@@ -3232,12 +3136,7 @@ export type If = string;
 export type Elseif = string;
 export type Else = "<#else>";
 export type Endif = "</#if>";
-export type TagExpression = [
-  ["(", _, UnsafeExpression, _, ")"] | UnsafeExpression,
-  _,
-  [UnsafeOperator, TagExpression][],
-  ModifierExpression[]
-];
+export type TagExpression = any;
 export type Expression = any;
 export type UnsafeExpression = [
   Variable,
