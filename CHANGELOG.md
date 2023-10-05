@@ -1,3 +1,10 @@
+## [0.3.11](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.10...v0.3.11) (2023-10-05)
+
+
+### Bug Fixes
+
+* added unit tests ([cf3e16b](https://github.com/ActiveEngagement/capsule-lint/commit/cf3e16b717da4ba49fb35b61a5d3b197dfe18830))
+
 ## [0.3.10](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.9...v0.3.10) (2023-10-05)
 
 
