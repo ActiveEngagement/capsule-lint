@@ -1,3 +1,10 @@
+## [0.3.9](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.8...v0.3.9) (2023-10-05)
+
+
+### Bug Fixes
+
+* issue with special char encoding rule ([a1c5441](https://github.com/ActiveEngagement/capsule-lint/commit/a1c54417c484ca4a8e3949b4f4d40b6818008833))
+
 ## [0.3.8](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.7...v0.3.8) (2023-10-05)
 
 
