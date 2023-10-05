@@ -33,14 +33,20 @@ const rule: Rule = {
                 // Do nothing
             }
 
+            
+
+            console.log(tags);
+
             let match;
 
-            while (match = reSpecChar.exec(raw)) {
-                for(const {start, end, tag} of tags) {
-                    if(tag.match(/^<#?[a-zA-]/)) {
-                        continue;
-                    }
+            for(const {start, end, tag} of tags) {
+                if(tag.match(/^<#.+>$/)) {
+                    continue;
+                }
 
+                while (match = reSpecChar.exec(tag)) {
+                    console.log(match);
+                    
                     if(!(match.index >= start && match.index <= end)) {
                         continue;
                     }
