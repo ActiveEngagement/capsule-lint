@@ -1,3 +1,10 @@
+## [0.3.10](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.9...v0.3.10) (2023-10-05)
+
+
+### Bug Fixes
+
+* remove console.log’s ([9674af0](https://github.com/ActiveEngagement/capsule-lint/commit/9674af0e00bd44a811ae49202027d3823358953e))
+
 ## [0.3.9](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.8...v0.3.9) (2023-10-05)
 
 
