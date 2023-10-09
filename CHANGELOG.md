@@ -1,3 +1,10 @@
+## [0.3.12](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.11...v0.3.12) (2023-10-09)
+
+
+### Bug Fixes
+
+* parser issues ([bba6e55](https://github.com/ActiveEngagement/capsule-lint/commit/bba6e55befa137c78afb57be8f6bea30acab4b5a))
+
 ## [0.3.11](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.10...v0.3.11) (2023-10-05)
 
 
