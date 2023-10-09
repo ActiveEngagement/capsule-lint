@@ -42,4 +42,12 @@ test('that the following freemarker syntax will parse', () => {
         'inner',
         '</#if>'
     ]);
+
+    expect(parse('${"test\'s"?test().a() && b < 2 || true}')).toEqual([
+        '${"test\'s"?test().a() && b < 2 || true}'
+    ]);
+
+    expect(parse('<#if a() && foo.bar()?trim>')).toEqual([
+        '<#if a() && foo.bar()?trim>'
+    ]);
 })

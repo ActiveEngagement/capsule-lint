@@ -1,7 +1,7 @@
 start
   = (conditional / tag / text)*
   
-text
+text "text"
   = value: char+ { return value.join('') }
 
 char "string"
@@ -26,31 +26,34 @@ endif
   = &"</#if" value: "</#if>" { return value }
 
 tag_expression "expression"
-  = value: ("(" _ unsafe_expression _ ")" / unsafe_expression) _ {
+  = value: ("!"? "(" _ unsafe_expression _ ")" / unsafe_expression) _ {
   return value.flat(Infinity).join('')
 }
 
 expression "expression"
-  = value: ("(" _ unsafe_expression _ ")" / safe_expression) _ {
+  = value: ("!"? "(" _ unsafe_expression _ ")" / safe_expression) _ {
   return value.flat(Infinity).join('')
 }
 
 unsafe_expression "equation"
-  = variable (_ unsafe_operator _ (variable/expression))*
+  = "!"? variable (_ unsafe_operator _ (variable/expression))*
     
 safe_expression "equation"
-  = variable (_ safe_operator _ (variable/expression))*
+  = "!"? variable (_ safe_operator _ (variable/expression))*
 
 variable
-  = value: (string ("." string)* ((args? "."? variable?)/(modifier_expression*))) {
-    return value.flat(Infinity).join('')
+  = value: (
+    (encapsulated_string ("." varname)* modifier_expression* ("." variable)*) / 
+    (varname ("." varname)* args* modifier_expression* ("." variable)*)
+  ) {
+    return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }
 
 modifier_expression
   = "?" modifier args?
     
 modifier "modifier"
-  = string
+  = varname
   
 args = "(" arg? (comma arg)* ")"
 
@@ -66,6 +69,8 @@ safe_operator "operator"
   / "-" 
   / "/"
   / "*"
+  / "&&"
+  / "||"
 
 unsafe_operator "operator"
   = safe_operator
@@ -77,9 +82,15 @@ number "number"
   point: "." decimal: [0-9]+ { return "." + decimal.join('') }
 )? { return `${negative ?? ''}${number.join('')}${decimal ?? ''}` }
 
-string "string"
-  = value: ["a-zA-Z0-9_]+ { return value.join('') }
+encapsulated_string
+  = &('"'/"'") value: (
+    ("'" ("\\'" / (!"'" char))* "'") /
+    ('"' ('\\"' / (!'"' char))* '"')
+  ) { return value.flat(Infinity).filter(Boolean).join('') }
 
+varname
+  = value: [a-zA-Z0-9_]+ { return value.join('') }
+  
 comma ","
   = _ "," _
 
