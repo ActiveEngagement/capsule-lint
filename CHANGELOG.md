@@ -1,3 +1,12 @@
+## [0.3.13](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.12...v0.3.13) (2023-12-19)
+
+
+### Bug Fixes
+
+* issue with freemarker syntax ([05a32b3](https://github.com/ActiveEngagement/capsule-lint/commit/05a32b30791fea685bf169abd0950572abb1f487))
+* issues with tag-pair so we can better lint closing tags ([afe76ba](https://github.com/ActiveEngagement/capsule-lint/commit/afe76ba066bc95191f5f4add9daa7d1148977bf5))
+* ts issues ([c272f10](https://github.com/ActiveEngagement/capsule-lint/commit/c272f104aa64c7ee6490107e57c5e634af4e544c))
+
 ## [0.3.12](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.11...v0.3.12) (2023-10-09)
 
 
