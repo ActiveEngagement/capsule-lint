@@ -31,15 +31,15 @@ tag_expression "expression"
 }
 
 expression "expression"
-  = value: ("!"? "(" _ unsafe_expression _ ")" / safe_expression) _ {
+  = value: (("!"? "(" _ unsafe_expression _ ")" / safe_expression) _ (safe_operator _ expression)?) _ {
   return value.flat(Infinity).join('')
 }
 
 unsafe_expression "equation"
-  = "!"? variable (_ unsafe_operator _ (variable/expression))*
+  = "!"? variable (_ unsafe_operator _ (expression))*
     
 safe_expression "equation"
-  = "!"? variable (_ safe_operator _ (variable/expression))*
+  = "!"? variable (_ safe_operator _ (expression))*
 
 variable
   = value: (

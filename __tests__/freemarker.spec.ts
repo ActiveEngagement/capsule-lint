@@ -1,6 +1,8 @@
 import { parse } from '../src/parser';
 
 test('that the following freemarker syntax will parse', () => {
+    console.log(parse('before<#if a></#if>after'));
+
     expect(parse('before<#if a></#if>after')).toEqual([
         'before',
         '<#if a>',
@@ -49,5 +51,13 @@ test('that the following freemarker syntax will parse', () => {
 
     expect(parse('<#if a() && foo.bar()?trim>')).toEqual([
         '<#if a() && foo.bar()?trim>'
+    ]);
+
+    expect(parse('<#if (Recipient.FirstName?has_content) && (Recipient.FirstName?trim?length > 0)>${Recipient.FirstName}<#else>Fellow American</#if>')).toEqual([
+        '<#if (Recipient.FirstName?has_content) && (Recipient.FirstName?trim?length > 0)>',
+        '${Recipient.FirstName}',
+        '<#else>',
+        'Fellow American',
+        '</#if>',
     ]);
 })

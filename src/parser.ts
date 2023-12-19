@@ -1645,7 +1645,7 @@ peg$parsetag_expression() {
   function // @ts-ignore
 peg$parseexpression() {
 // @ts-ignore
-    var s0, s1, s2, s3, s4, s5, s6, s7;
+    var s0, s1, s2, s3, s4, s5, s6, s7, s8;
 
 // @ts-ignore
     peg$silentFails++;
@@ -1654,27 +1654,11 @@ peg$parseexpression() {
 // @ts-ignore
     s1 = peg$currPos;
 // @ts-ignore
+    s2 = peg$currPos;
+// @ts-ignore
     if (input.charCodeAt(peg$currPos) === 33) {
 // @ts-ignore
-      s2 = peg$c11;
-// @ts-ignore
-      peg$currPos++;
-// @ts-ignore
-    } else {
-// @ts-ignore
-      s2 = peg$FAILED;
-// @ts-ignore
-      if (peg$silentFails === 0) { peg$fail(peg$e15); }
-    }
-// @ts-ignore
-    if (s2 === peg$FAILED) {
-// @ts-ignore
-      s2 = null;
-    }
-// @ts-ignore
-    if (input.charCodeAt(peg$currPos) === 40) {
-// @ts-ignore
-      s3 = peg$c12;
+      s3 = peg$c11;
 // @ts-ignore
       peg$currPos++;
 // @ts-ignore
@@ -1682,62 +1666,130 @@ peg$parseexpression() {
 // @ts-ignore
       s3 = peg$FAILED;
 // @ts-ignore
+      if (peg$silentFails === 0) { peg$fail(peg$e15); }
+    }
+// @ts-ignore
+    if (s3 === peg$FAILED) {
+// @ts-ignore
+      s3 = null;
+    }
+// @ts-ignore
+    if (input.charCodeAt(peg$currPos) === 40) {
+// @ts-ignore
+      s4 = peg$c12;
+// @ts-ignore
+      peg$currPos++;
+// @ts-ignore
+    } else {
+// @ts-ignore
+      s4 = peg$FAILED;
+// @ts-ignore
       if (peg$silentFails === 0) { peg$fail(peg$e16); }
     }
 // @ts-ignore
-    if (s3 !== peg$FAILED) {
+    if (s4 !== peg$FAILED) {
 // @ts-ignore
-      s4 = peg$parse_();
+      s5 = peg$parse_();
 // @ts-ignore
-      s5 = peg$parseunsafe_expression();
+      s6 = peg$parseunsafe_expression();
 // @ts-ignore
-      if (s5 !== peg$FAILED) {
+      if (s6 !== peg$FAILED) {
 // @ts-ignore
-        s6 = peg$parse_();
+        s7 = peg$parse_();
 // @ts-ignore
         if (input.charCodeAt(peg$currPos) === 41) {
 // @ts-ignore
-          s7 = peg$c13;
+          s8 = peg$c13;
 // @ts-ignore
           peg$currPos++;
 // @ts-ignore
         } else {
 // @ts-ignore
-          s7 = peg$FAILED;
+          s8 = peg$FAILED;
 // @ts-ignore
           if (peg$silentFails === 0) { peg$fail(peg$e17); }
         }
 // @ts-ignore
-        if (s7 !== peg$FAILED) {
+        if (s8 !== peg$FAILED) {
 // @ts-ignore
-          s2 = [s2, s3, s4, s5, s6, s7];
+          s3 = [s3, s4, s5, s6, s7, s8];
 // @ts-ignore
-          s1 = s2;
+          s2 = s3;
 // @ts-ignore
         } else {
 // @ts-ignore
-          peg$currPos = s1;
+          peg$currPos = s2;
 // @ts-ignore
-          s1 = peg$FAILED;
+          s2 = peg$FAILED;
         }
 // @ts-ignore
       } else {
 // @ts-ignore
-        peg$currPos = s1;
+        peg$currPos = s2;
 // @ts-ignore
-        s1 = peg$FAILED;
+        s2 = peg$FAILED;
       }
+// @ts-ignore
+    } else {
+// @ts-ignore
+      peg$currPos = s2;
+// @ts-ignore
+      s2 = peg$FAILED;
+    }
+// @ts-ignore
+    if (s2 === peg$FAILED) {
+// @ts-ignore
+      s2 = peg$parsesafe_expression();
+    }
+// @ts-ignore
+    if (s2 !== peg$FAILED) {
+// @ts-ignore
+      s3 = peg$parse_();
+// @ts-ignore
+      s4 = peg$currPos;
+// @ts-ignore
+      s5 = peg$parsesafe_operator();
+// @ts-ignore
+      if (s5 !== peg$FAILED) {
+// @ts-ignore
+        s6 = peg$parse_();
+// @ts-ignore
+        s7 = peg$parseexpression();
+// @ts-ignore
+        if (s7 !== peg$FAILED) {
+// @ts-ignore
+          s5 = [s5, s6, s7];
+// @ts-ignore
+          s4 = s5;
+// @ts-ignore
+        } else {
+// @ts-ignore
+          peg$currPos = s4;
+// @ts-ignore
+          s4 = peg$FAILED;
+        }
+// @ts-ignore
+      } else {
+// @ts-ignore
+        peg$currPos = s4;
+// @ts-ignore
+        s4 = peg$FAILED;
+      }
+// @ts-ignore
+      if (s4 === peg$FAILED) {
+// @ts-ignore
+        s4 = null;
+      }
+// @ts-ignore
+      s2 = [s2, s3, s4];
+// @ts-ignore
+      s1 = s2;
 // @ts-ignore
     } else {
 // @ts-ignore
       peg$currPos = s1;
 // @ts-ignore
       s1 = peg$FAILED;
-    }
-// @ts-ignore
-    if (s1 === peg$FAILED) {
-// @ts-ignore
-      s1 = peg$parsesafe_expression();
     }
 // @ts-ignore
     if (s1 !== peg$FAILED) {
@@ -1813,12 +1865,7 @@ peg$parseunsafe_expression() {
 // @ts-ignore
         s7 = peg$parse_();
 // @ts-ignore
-        s8 = peg$parsevariable();
-// @ts-ignore
-        if (s8 === peg$FAILED) {
-// @ts-ignore
-          s8 = peg$parseexpression();
-        }
+        s8 = peg$parseexpression();
 // @ts-ignore
         if (s8 !== peg$FAILED) {
 // @ts-ignore
@@ -1854,12 +1901,7 @@ peg$parseunsafe_expression() {
 // @ts-ignore
           s7 = peg$parse_();
 // @ts-ignore
-          s8 = peg$parsevariable();
-// @ts-ignore
-          if (s8 === peg$FAILED) {
-// @ts-ignore
-            s8 = peg$parseexpression();
-          }
+          s8 = peg$parseexpression();
 // @ts-ignore
           if (s8 !== peg$FAILED) {
 // @ts-ignore
@@ -1951,12 +1993,7 @@ peg$parsesafe_expression() {
 // @ts-ignore
         s7 = peg$parse_();
 // @ts-ignore
-        s8 = peg$parsevariable();
-// @ts-ignore
-        if (s8 === peg$FAILED) {
-// @ts-ignore
-          s8 = peg$parseexpression();
-        }
+        s8 = peg$parseexpression();
 // @ts-ignore
         if (s8 !== peg$FAILED) {
 // @ts-ignore
@@ -1992,12 +2029,7 @@ peg$parsesafe_expression() {
 // @ts-ignore
           s7 = peg$parse_();
 // @ts-ignore
-          s8 = peg$parsevariable();
-// @ts-ignore
-          if (s8 === peg$FAILED) {
-// @ts-ignore
-            s8 = peg$parseexpression();
-          }
+          s8 = peg$parseexpression();
 // @ts-ignore
           if (s8 !== peg$FAILED) {
 // @ts-ignore
@@ -4015,16 +4047,16 @@ export type Elseif = string;
 export type Else = "<#else>";
 export type Endif = "</#if>";
 export type TagExpression = any;
-export type Expression = any;
+export type Expression = string;
 export type UnsafeExpression = [
   "!" | null,
   Variable,
-  [_, UnsafeOperator, _, Variable | Expression][]
+  [_, UnsafeOperator, _, Expression][]
 ];
 export type SafeExpression = [
   "!" | null,
   Variable,
-  [_, SafeOperator, _, Variable | Expression][]
+  [_, SafeOperator, _, Expression][]
 ];
 export type Variable = string;
 export type ModifierExpression = ["?", Modifier, Args | null];
