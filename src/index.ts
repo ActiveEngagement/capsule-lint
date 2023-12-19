@@ -12,7 +12,9 @@ Object.keys(rules).forEach((key) => {
 export * from './parser';
 
 export type {
-    Rule
+    Hint,
+    Rule,
+    Ruleset
 };
 
 export type CapsuleRuleset = Ruleset & {
