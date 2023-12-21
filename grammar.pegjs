@@ -43,11 +43,15 @@ safe_expression "equation"
 
 variable
   = value: (
-    (encapsulated_string ("." varname)* modifier_expression* ("." variable)*) / 
-    (varname ("." varname)* args* modifier_expression* ("." variable)*)
+  	(encapsulated_string variable_notation) / (varname variable_notation)
   ) {
     return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }
+ 
+variable_notation = ("." varname)* array_expression* modifier_expression* ("." variable)*
+
+array_expression
+  = "[" expression "]"
 
 modifier_expression
   = "?" modifier args?
