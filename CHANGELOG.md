@@ -1,3 +1,11 @@
+## [0.4.1](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.0...v0.4.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* added rule for mailto links ([f5b03ed](https://github.com/ActiveEngagement/capsule-lint/commit/f5b03ed71e7db5f459cdec1a759eb18413ffe0d4))
+* tweak to the output of error messages ([ad81669](https://github.com/ActiveEngagement/capsule-lint/commit/ad8166933380f3fb1a7ade923b8a4f3f9ce75c44))
+
 # [0.4.0](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.13...v0.4.0) (2023-12-21)
 
 
