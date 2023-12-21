@@ -43,8 +43,8 @@ safe_expression "equation"
 
 variable
   = value: (
-  	(encapsulated_string variable_notation) / (varname variable_notation)
-  ) {
+  	(encapsulated_string / varname / html_entity) variable_notation
+  )* {
     return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }
  
@@ -93,7 +93,7 @@ encapsulated_string
   ) { return value.flat(Infinity).filter(Boolean).join('') }
 
 varname
-  = value: [a-zA-Z0-9_]+ { return value.join('') } / html_entity
+  = value: [a-zA-Z0-9_]+ { return value.join('') }
   
 html_entity
   = a: "&" b: [a-zA-Z0-9_]+ c:";" { return [a, ...b, c].join('') }
