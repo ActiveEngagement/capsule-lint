@@ -1,3 +1,10 @@
+## [0.4.5](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.4...v0.4.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* more freemarker parsing issues ([665344f](https://github.com/ActiveEngagement/capsule-lint/commit/665344f35ea52b0f485435ef6fc8e79e2cbb4dc0))
+
 ## [0.4.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.3...v0.4.4) (2023-12-21)
 
 
