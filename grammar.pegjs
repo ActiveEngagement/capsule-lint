@@ -48,7 +48,7 @@ variable
     return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }
  
-variable_notation = ("." varname)* array_expression* modifier_expression* ("." variable)*
+variable_notation = (("." varname) / array_expression / modifier_expression / args)*
 
 array_expression
   = "[" expression "]"

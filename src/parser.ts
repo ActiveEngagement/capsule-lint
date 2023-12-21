@@ -2147,206 +2147,123 @@ peg$parsevariable() {
   function // @ts-ignore
 peg$parsevariable_notation() {
 // @ts-ignore
-    var s0, s1, s2, s3, s4, s5, s6, s7;
+    var s0, s1, s2, s3;
 
 // @ts-ignore
-    s0 = peg$currPos;
+    s0 = [];
 // @ts-ignore
-    s1 = [];
-// @ts-ignore
-    s2 = peg$currPos;
+    s1 = peg$currPos;
 // @ts-ignore
     if (input.charCodeAt(peg$currPos) === 46) {
 // @ts-ignore
-      s3 = peg$c14;
+      s2 = peg$c14;
 // @ts-ignore
       peg$currPos++;
 // @ts-ignore
     } else {
 // @ts-ignore
-      s3 = peg$FAILED;
+      s2 = peg$FAILED;
 // @ts-ignore
       if (peg$silentFails === 0) { peg$fail(peg$e19); }
     }
 // @ts-ignore
-    if (s3 !== peg$FAILED) {
+    if (s2 !== peg$FAILED) {
 // @ts-ignore
-      s4 = peg$parsevarname();
-// @ts-ignore
-      if (s4 !== peg$FAILED) {
-// @ts-ignore
-        s3 = [s3, s4];
-// @ts-ignore
-        s2 = s3;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s2;
-// @ts-ignore
-        s2 = peg$FAILED;
-      }
-// @ts-ignore
-    } else {
-// @ts-ignore
-      peg$currPos = s2;
-// @ts-ignore
-      s2 = peg$FAILED;
-    }
-// @ts-ignore
-    while (s2 !== peg$FAILED) {
-// @ts-ignore
-      s1.push(s2);
-// @ts-ignore
-      s2 = peg$currPos;
-// @ts-ignore
-      if (input.charCodeAt(peg$currPos) === 46) {
-// @ts-ignore
-        s3 = peg$c14;
-// @ts-ignore
-        peg$currPos++;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        s3 = peg$FAILED;
-// @ts-ignore
-        if (peg$silentFails === 0) { peg$fail(peg$e19); }
-      }
+      s3 = peg$parsevarname();
 // @ts-ignore
       if (s3 !== peg$FAILED) {
 // @ts-ignore
-        s4 = peg$parsevarname();
+        s2 = [s2, s3];
 // @ts-ignore
-        if (s4 !== peg$FAILED) {
+        s1 = s2;
 // @ts-ignore
-          s3 = [s3, s4];
+      } else {
 // @ts-ignore
-          s2 = s3;
+        peg$currPos = s1;
 // @ts-ignore
-        } else {
+        s1 = peg$FAILED;
+      }
 // @ts-ignore
-          peg$currPos = s2;
+    } else {
 // @ts-ignore
-          s2 = peg$FAILED;
+      peg$currPos = s1;
+// @ts-ignore
+      s1 = peg$FAILED;
+    }
+// @ts-ignore
+    if (s1 === peg$FAILED) {
+// @ts-ignore
+      s1 = peg$parsearray_expression();
+// @ts-ignore
+      if (s1 === peg$FAILED) {
+// @ts-ignore
+        s1 = peg$parsemodifier_expression();
+// @ts-ignore
+        if (s1 === peg$FAILED) {
+// @ts-ignore
+          s1 = peg$parseargs();
         }
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s2;
-// @ts-ignore
-        s2 = peg$FAILED;
       }
     }
 // @ts-ignore
-    s2 = [];
+    while (s1 !== peg$FAILED) {
 // @ts-ignore
-    s3 = peg$parsearray_expression();
+      s0.push(s1);
 // @ts-ignore
-    while (s3 !== peg$FAILED) {
-// @ts-ignore
-      s2.push(s3);
-// @ts-ignore
-      s3 = peg$parsearray_expression();
-    }
-// @ts-ignore
-    s3 = [];
-// @ts-ignore
-    s4 = peg$parsemodifier_expression();
-// @ts-ignore
-    while (s4 !== peg$FAILED) {
-// @ts-ignore
-      s3.push(s4);
-// @ts-ignore
-      s4 = peg$parsemodifier_expression();
-    }
-// @ts-ignore
-    s4 = [];
-// @ts-ignore
-    s5 = peg$currPos;
-// @ts-ignore
-    if (input.charCodeAt(peg$currPos) === 46) {
-// @ts-ignore
-      s6 = peg$c14;
-// @ts-ignore
-      peg$currPos++;
-// @ts-ignore
-    } else {
-// @ts-ignore
-      s6 = peg$FAILED;
-// @ts-ignore
-      if (peg$silentFails === 0) { peg$fail(peg$e19); }
-    }
-// @ts-ignore
-    if (s6 !== peg$FAILED) {
-// @ts-ignore
-      s7 = peg$parsevariable();
-// @ts-ignore
-      if (s7 !== peg$FAILED) {
-// @ts-ignore
-        s6 = [s6, s7];
-// @ts-ignore
-        s5 = s6;
-// @ts-ignore
-      } else {
-// @ts-ignore
-        peg$currPos = s5;
-// @ts-ignore
-        s5 = peg$FAILED;
-      }
-// @ts-ignore
-    } else {
-// @ts-ignore
-      peg$currPos = s5;
-// @ts-ignore
-      s5 = peg$FAILED;
-    }
-// @ts-ignore
-    while (s5 !== peg$FAILED) {
-// @ts-ignore
-      s4.push(s5);
-// @ts-ignore
-      s5 = peg$currPos;
+      s1 = peg$currPos;
 // @ts-ignore
       if (input.charCodeAt(peg$currPos) === 46) {
 // @ts-ignore
-        s6 = peg$c14;
+        s2 = peg$c14;
 // @ts-ignore
         peg$currPos++;
 // @ts-ignore
       } else {
 // @ts-ignore
-        s6 = peg$FAILED;
+        s2 = peg$FAILED;
 // @ts-ignore
         if (peg$silentFails === 0) { peg$fail(peg$e19); }
       }
 // @ts-ignore
-      if (s6 !== peg$FAILED) {
+      if (s2 !== peg$FAILED) {
 // @ts-ignore
-        s7 = peg$parsevariable();
+        s3 = peg$parsevarname();
 // @ts-ignore
-        if (s7 !== peg$FAILED) {
+        if (s3 !== peg$FAILED) {
 // @ts-ignore
-          s6 = [s6, s7];
+          s2 = [s2, s3];
 // @ts-ignore
-          s5 = s6;
+          s1 = s2;
 // @ts-ignore
         } else {
 // @ts-ignore
-          peg$currPos = s5;
+          peg$currPos = s1;
 // @ts-ignore
-          s5 = peg$FAILED;
+          s1 = peg$FAILED;
         }
 // @ts-ignore
       } else {
 // @ts-ignore
-        peg$currPos = s5;
+        peg$currPos = s1;
 // @ts-ignore
-        s5 = peg$FAILED;
+        s1 = peg$FAILED;
+      }
+// @ts-ignore
+      if (s1 === peg$FAILED) {
+// @ts-ignore
+        s1 = peg$parsearray_expression();
+// @ts-ignore
+        if (s1 === peg$FAILED) {
+// @ts-ignore
+          s1 = peg$parsemodifier_expression();
+// @ts-ignore
+          if (s1 === peg$FAILED) {
+// @ts-ignore
+            s1 = peg$parseargs();
+          }
+        }
       }
     }
-// @ts-ignore
-    s1 = [s1, s2, s3, s4];
-// @ts-ignore
-    s0 = s1;
 
 // @ts-ignore
     return s0;
@@ -3975,12 +3892,12 @@ export type SafeExpression = [
   [_, SafeOperator, _, Expression][]
 ];
 export type Variable = string;
-export type VariableNotation = [
-  [".", Varname][],
-  ArrayExpression[],
-  ModifierExpression[],
-  [".", Variable][]
-];
+export type VariableNotation = (
+  | [".", Varname]
+  | ArrayExpression
+  | ModifierExpression
+  | Args
+)[];
 export type ArrayExpression = ["[", Expression, "]"];
 export type ModifierExpression = ["?", Modifier, Args | null];
 export type Modifier = Varname;
