@@ -23,6 +23,10 @@ export default {
 			{
 				"pattern": "\\${(\\s+)?Gears\\.unsubscribe\\(\\)(\\s+)?}",
 				"name": "MessageGears unsubscribe"
+			},
+			{
+				"pattern": "mailto:.+",
+				"name": "Mailto links"
 			}
 		]
 	}, {
