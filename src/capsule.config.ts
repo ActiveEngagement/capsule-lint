@@ -26,7 +26,7 @@ export default {
 			},
 			{
 				"pattern": "mailto:.+",
-				"name": "Mailto links"
+				"name": "Mailto link"
 			}
 		]
 	}, {
