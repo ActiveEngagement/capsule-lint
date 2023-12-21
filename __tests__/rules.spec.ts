@@ -95,6 +95,12 @@ describe('Rule: "valid-path-format"', () => {
     });
 });
 
+describe('Rule: "no-enties-in-attributes"', () => {
+    it('Throws errors when HTML entities are inside of tag attributes.', () => {
+        rule('no-enties-in-attributes');
+    });
+});
+
 describe('Rule: "freemarker-tags"', () => {
     it('Throws errors for invalid freemarker tags.', () => {
         rule('freemarker-tags');

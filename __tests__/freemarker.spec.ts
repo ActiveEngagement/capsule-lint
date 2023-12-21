@@ -1,8 +1,6 @@
 import { parse } from '../src/parser';
 
 test('that the following freemarker syntax will parse', () => {
-    console.log(parse('before<#if a></#if>after'));
-
     expect(parse('before<#if a></#if>after')).toEqual([
         'before',
         '<#if a>',

@@ -12,6 +12,7 @@ export default {
 	"img-src-required": true,
 	"invalid-attribute-char": true,
 	"nested-paragraphs": true,
+	"no-enties-in-attributes": true,
 	"spec-char-escape": true,
 	"src-not-empty": true,
 	"tag-pair": true,
