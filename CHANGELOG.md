@@ -1,3 +1,10 @@
+## [0.4.3](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.2...v0.4.3) (2023-12-21)
+
+
+### Bug Fixes
+
+* updated package.json ([2296078](https://github.com/ActiveEngagement/capsule-lint/commit/229607879b20a2d773435ee85eaea131d972df2e))
+
 ## [0.4.2](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.1...v0.4.2) (2023-12-21)
 
 
