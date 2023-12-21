@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.13...v0.4.0) (2023-12-21)
+
+
+### Features
+
+* add new lint rule “no-entities-in-attributes” ([b060474](https://github.com/ActiveEngagement/capsule-lint/commit/b060474b82e0bc770d4ef8e67d1ed69ce411bb7d))
+
 ## [0.3.13](https://github.com/ActiveEngagement/capsule-lint/compare/v0.3.12...v0.3.13) (2023-12-19)
 
 
