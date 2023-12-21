@@ -53,7 +53,7 @@ class ReporterError extends Error {
     
     constructor(event, errors, attr) {
         super(errors.length === 1 ? errors[0].message : (
-            `The [ ${attr.name} ] attribute "${attr.value}" must one of the following formats: ${errors.map(event => `"${event.name}"`).join(', ')}.`
+            `The [ ${attr.name} ] attribute "${attr.value}" must be one of the following formats: ${errors.map(event => `"${event.name}"`).join(', ')}.`
         ));
 
         this.line = event.line;
