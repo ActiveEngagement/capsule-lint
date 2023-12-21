@@ -93,7 +93,10 @@ encapsulated_string
   ) { return value.flat(Infinity).filter(Boolean).join('') }
 
 varname
-  = value: [a-zA-Z0-9_]+ { return value.join('') }
+  = value: [a-zA-Z0-9_]+ { return value.join('') } / html_entity
+  
+html_entity
+  = a: "&" b: [a-zA-Z0-9_]+ c:";" { return [a, ...b, c].join('') }
   
 comma ","
   = _ "," _
