@@ -6,9 +6,6 @@
   "main": "./dist/capsule-lint.umd.cjs",
   "module": "./dist/capsule-lint.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "test": "jest",
   "scripts": {
     "dev": "vite dev",
