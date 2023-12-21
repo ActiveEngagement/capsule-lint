@@ -1,11 +1,15 @@
 {
   "name": "capsule-lint",
-  "version": "0.4.2",
+  "version": "0.4.1",
   "description": "The official Capsule linting package.",
   "type": "module",
   "main": "./dist/capsule-lint.umd.cjs",
   "module": "./dist/capsule-lint.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "test": "jest",
   "scripts": {
     "dev": "vite dev",
