@@ -1,12 +1,18 @@
 import { Rule } from 'htmlhint/types';
 
 const rule: Rule = {
-    id: 'no-enties-in-attributes',
+    id: 'no-entities-in-attributes',
     description: 'No HTML entities within tag attributes.',
-    init(parser, reporter) {
+    init(parser, reporter, options) {
         parser.addListener('tagstart', event => {
-            event.attrs.forEach(({ value, name }) => {
-                value.split(/[\n\r\v]/gi).reduce(({ line, col }, str) => {
+            event.attrs.forEach((attr) => {
+                const { value, name, raw } = attr;
+
+                if(Array.isArray(options) && !options.includes(name)) {
+                    return;
+                }
+
+                raw.split(/[\n\r\v]/gi).reduce(({ line, col }, str) => {
                     const matches = str.match(
                         /&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/ig
                     );
@@ -26,7 +32,7 @@ const rule: Rule = {
                         reporter.error(
                             `Invalid entity [ ${match} ] encapsulated in the [ ${name} ] attribute on line ${line}.`,
                             line,
-                            col + index + 1,
+                            col + index,
                             this,
                             match
                         );
@@ -40,7 +46,7 @@ const rule: Rule = {
                     };
                 }, {
                     line: event.line,
-                    col: event.raw.indexOf(value)
+                    col: event.col + event.raw.indexOf(raw)
                 });
             });
         });
