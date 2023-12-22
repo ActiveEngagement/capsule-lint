@@ -95,9 +95,9 @@ describe('Rule: "valid-path-format"', () => {
     });
 });
 
-describe('Rule: "no-enties-in-attributes"', () => {
+describe('Rule: "no-entities-in-attributes"', () => {
     it('Throws errors when HTML entities are inside of tag attributes.', () => {
-        rule('no-enties-in-attributes');
+        rule('no-entities-in-attributes');
     });
 });
 
