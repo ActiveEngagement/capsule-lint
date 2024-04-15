@@ -1,3 +1,10 @@
+## [0.4.7](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.6...v0.4.7) (2023-12-22)
+
+
+### Bug Fixes
+
+* fixed issue with no-entities-in-attributes ([7d1f26a](https://github.com/ActiveEngagement/capsule-lint/commit/7d1f26aee1d701ce6455d809a7594967254c1c3b))
+
 ## [0.4.6](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.5...v0.4.6) (2023-12-21)
 
 
