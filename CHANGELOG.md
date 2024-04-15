@@ -1,3 +1,10 @@
+## [0.4.8](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.7...v0.4.8) (2024-04-15)
+
+
+### Bug Fixes
+
+* improved tag-pair rule line numbers and tests ([be53ea0](https://github.com/ActiveEngagement/capsule-lint/commit/be53ea00700523d2f7e1c6e34f811ae859d69d82))
+
 ## [0.4.7](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.6...v0.4.7) (2023-12-22)
 
 
