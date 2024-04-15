@@ -45,9 +45,7 @@ describe('Rule: "head-no-duplicates"', () => {
     it('Throws errors for duplicate <head> tags.', () => {
         rule('head-no-duplicates');
     });
-});
-
-describe('Rule: "html-no-duplicates"', () => {
+    
     it('Throws errors for duplicate <html> tags.', () => {
         rule('html-no-duplicates');
     });
@@ -104,5 +102,19 @@ describe('Rule: "no-entities-in-attributes"', () => {
 describe('Rule: "freemarker-tags"', () => {
     it('Throws errors for invalid freemarker tags.', () => {
         rule('freemarker-tags');
+    });
+});
+
+describe('Rule: "tag-pair"', () => {
+    it('Throws errors when missing closing tag.', () => {
+        rule('tag-pair/missing-closing-tag');
+    });
+
+    it('Throws errors when missing nested closing tag.', () => {
+        rule('tag-pair/missing-nested-closing-tag');
+    });
+
+    it('Throws errors when missing closing tag.', () => {
+        rule('tag-pair/missing-opening-tag');
     });
 });

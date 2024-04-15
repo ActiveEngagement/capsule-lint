@@ -45,10 +45,10 @@ const rule: Rule =  {
                     
                     reporter.error(
                         `Tag must be paired, missing: [ ${arrTags.join('')} ], start tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`,
-                        event.line,
-                        event.col,
+                        lastEvent.line,
+                        lastEvent.col,
                         this,
-                        event.raw
+                        lastEvent.raw
                     );
                 }
 
@@ -66,33 +66,15 @@ const rule: Rule =  {
         });
 
         parser.addListener('end', (event) => {
-            const arrTags = [];
-
             for (let i = stack.length - 1; i >= 0; i--) {
                 reporter.error(
                     `Tag must be paired, missing: [ </${stack[i].tagName}> ], start tag match failed [ ${stack[i].raw} ] on line ${stack[i].line}.`,
-                    event.line, 
-                    event.col,
+                    stack[i].line, 
+                    stack[i].col,
                     this,
                     stack[i].raw
                 );
-
-                // arrTags.push(`</${stack[i].tagName}>`);
             }
-
-            // if (arrTags.length > 0) {
-            //     const lastEvent = stack[stack.length - 1];
-
-            //     console.log(stack);
-                    
-            //     reporter.error(
-            //         `Tag must be paired, missing: [ ${arrTags.join('')} ], open tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`,
-            //         event.line, 
-            //         event.col,
-            //         this,
-            //         lastEvent.raw
-            //     );
-            // }
         });
     },
 };
