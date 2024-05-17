@@ -21,7 +21,7 @@ const rule: Rule =  {
         parser.addListener('tagend', (event) => {
             const tagName = event.tagName.toLowerCase();
             
-            if(tagName === '#if') {
+            if(tagName.startsWith('#')) {
                 return;
             }
 

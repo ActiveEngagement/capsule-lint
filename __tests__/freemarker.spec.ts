@@ -58,4 +58,10 @@ test('that the following freemarker syntax will parse', () => {
         'Fellow American',
         '</#if>',
     ]);
+
+    expect(parse('<#list a.b.c as foo>${foo.test}</#list>')).toEqual([
+        '<#list a.b.c as foo>',
+        '${foo.test}',
+        '</#list>',
+    ]);
 })

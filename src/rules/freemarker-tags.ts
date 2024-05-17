@@ -11,11 +11,14 @@ const rule: Rule =  {
             event: Block
         }[] = [];
 
+        const blockTags = ['#if', '#list'];
+        const pattern = new RegExp(`^<(${blockTags.join('|')})`)
+
         parser.addListener('text', (event) => {
             try {
                 for(const tag of parse(event.raw)) {
-                    if(tag.match(/^<#if/)) {
-                        stack.push({ tag, event  });
+                    if(tag.match(pattern)) {
+                        stack.push({ tag, event });
                     }
                 }
             }
@@ -33,7 +36,7 @@ const rule: Rule =  {
         });
 
         parser.addListener('tagend', (event) => {
-            if(event.tagName !== '#if') {
+            if(!blockTags.includes(event.tagName)) {
                 return;
             }
 
@@ -46,7 +49,7 @@ const rule: Rule =  {
 
         parser.addListener('end', () => {
             for(const { tag, event } of stack) {
-                reporter.error(`Conditional [${tag}] is missing a closing tag: [</#if>]`, event.line, event.col, this, event.raw)
+                reporter.error(`Tag [${tag}] is missing a closing tag: [</${tag.match(pattern)[1]}>]`, event.line, event.col, this, event.raw)
             }
         })
     },

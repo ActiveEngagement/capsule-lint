@@ -3,10 +3,7 @@ import { TextareaField } from '@vue-interface/textarea-field';
 import { ref, watchEffect } from 'vue';
 import { lint } from '../src/index';
 
-const document = ref<string>(`<div>
-    <div>test</div>
-    <span>1
-</div>`);
+const document = ref<string>('<#list a as b>${a.name}');
 
 const errors = ref<any[]>();
 

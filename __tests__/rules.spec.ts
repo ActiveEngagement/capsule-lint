@@ -99,9 +99,15 @@ describe('Rule: "no-entities-in-attributes"', () => {
     });
 });
 
-describe('Rule: "freemarker-tags"', () => {
-    it('Throws errors for invalid freemarker tags.', () => {
-        rule('freemarker-tags');
+describe('Rule: "freemarker-if-tags"', () => {
+    it('Throws errors for invalid Freemarker if tags.', () => {
+        rule('freemarker-tags/freemarker-if-tags');
+    });
+});
+
+describe('Rule: "freemarker-list-tags"', () => {
+    it('Throws errors for invalid Freemarker list tags.', () => {
+        rule('freemarker-tags/freemarker-list-tags');
     });
 });
 

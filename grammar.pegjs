@@ -1,5 +1,5 @@
 start
-  = (conditional / tag / text)*
+  = (if / list / assign / tag / text)*
   
 text "text"
   = value: char+ { return value.join('') }
@@ -10,10 +10,10 @@ char "string"
 tag
   = &"${" value: ("${" _ tag_expression _ "}") { return value.flat(Infinity).join('') }
 
-conditional
-  = value: (if / elseif / else / endif)
-  
 if
+  = value: (openif / elseif / else / endif)
+  
+openif
   = &"<#if" value:("<#if" required_whitespace expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
 
 elseif
@@ -24,6 +24,18 @@ else
   
 endif
   = &"</#if" value: "</#if>" { return value }
+
+list
+  = value: (openlist / endlist)
+  
+openlist
+  = &"<#list" value:("<#list" required_whitespace variable required_whitespace "as" required_whitespace variable">") { return value.flat(Infinity).filter(Boolean).join('') }
+
+endlist
+  = "</#list>"
+
+assign
+  = &"<#assign" value:("<#assign" required_whitespace variable _ "=" _ expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
 
 tag_expression "expression"
   = value: ("!"? "(" _ unsafe_expression _ ")" / unsafe_expression) _ {
