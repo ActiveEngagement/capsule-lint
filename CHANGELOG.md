@@ -1,3 +1,10 @@
+## [0.4.9](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.8...v0.4.9) (2024-05-17)
+
+
+### Bug Fixes
+
+* added linting support for list tags ([5c8f05a](https://github.com/ActiveEngagement/capsule-lint/commit/5c8f05ad748910a6d0654582b410ffcf87cfefd3))
+
 ## [0.4.8](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.7...v0.4.8) (2024-04-15)
 
 
