@@ -64,4 +64,12 @@ test('that the following freemarker syntax will parse', () => {
         '${foo.test}',
         '</#list>',
     ]);
+
+    expect(parse('<#if (Recipient.showUnsub=\'true\' )>')).toEqual([
+        '<#if (Recipient.showUnsub=\'true\' )>'
+    ]);
+
+    expect(parse('<#if (Recipient.showUnsub="true" )>')).toEqual([
+        '<#if (Recipient.showUnsub="true" )>'
+    ]);
 })

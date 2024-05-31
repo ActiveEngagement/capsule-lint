@@ -3023,24 +3023,24 @@ peg$parsesafe_operator() {
 // @ts-ignore
     if (s0 === peg$FAILED) {
 // @ts-ignore
-      if (input.substr(peg$currPos, 2) === peg$c24) {
+      if (input.charCodeAt(peg$currPos) === 61) {
 // @ts-ignore
-        s0 = peg$c24;
+        s0 = peg$c15;
 // @ts-ignore
-        peg$currPos += 2;
+        peg$currPos++;
 // @ts-ignore
       } else {
 // @ts-ignore
         s0 = peg$FAILED;
 // @ts-ignore
-        if (peg$silentFails === 0) { peg$fail(peg$e31); }
+        if (peg$silentFails === 0) { peg$fail(peg$e18); }
       }
 // @ts-ignore
       if (s0 === peg$FAILED) {
 // @ts-ignore
-        if (input.substr(peg$currPos, 2) === peg$c25) {
+        if (input.substr(peg$currPos, 2) === peg$c24) {
 // @ts-ignore
-          s0 = peg$c25;
+          s0 = peg$c24;
 // @ts-ignore
           peg$currPos += 2;
 // @ts-ignore
@@ -3048,14 +3048,14 @@ peg$parsesafe_operator() {
 // @ts-ignore
           s0 = peg$FAILED;
 // @ts-ignore
-          if (peg$silentFails === 0) { peg$fail(peg$e32); }
+          if (peg$silentFails === 0) { peg$fail(peg$e31); }
         }
 // @ts-ignore
         if (s0 === peg$FAILED) {
 // @ts-ignore
-          if (input.substr(peg$currPos, 2) === peg$c26) {
+          if (input.substr(peg$currPos, 2) === peg$c25) {
 // @ts-ignore
-            s0 = peg$c26;
+            s0 = peg$c25;
 // @ts-ignore
             peg$currPos += 2;
 // @ts-ignore
@@ -3063,29 +3063,29 @@ peg$parsesafe_operator() {
 // @ts-ignore
             s0 = peg$FAILED;
 // @ts-ignore
-            if (peg$silentFails === 0) { peg$fail(peg$e33); }
+            if (peg$silentFails === 0) { peg$fail(peg$e32); }
           }
 // @ts-ignore
           if (s0 === peg$FAILED) {
 // @ts-ignore
-            if (input.charCodeAt(peg$currPos) === 43) {
+            if (input.substr(peg$currPos, 2) === peg$c26) {
 // @ts-ignore
-              s0 = peg$c27;
+              s0 = peg$c26;
 // @ts-ignore
-              peg$currPos++;
+              peg$currPos += 2;
 // @ts-ignore
             } else {
 // @ts-ignore
               s0 = peg$FAILED;
 // @ts-ignore
-              if (peg$silentFails === 0) { peg$fail(peg$e34); }
+              if (peg$silentFails === 0) { peg$fail(peg$e33); }
             }
 // @ts-ignore
             if (s0 === peg$FAILED) {
 // @ts-ignore
-              if (input.charCodeAt(peg$currPos) === 45) {
+              if (input.charCodeAt(peg$currPos) === 43) {
 // @ts-ignore
-                s0 = peg$c28;
+                s0 = peg$c27;
 // @ts-ignore
                 peg$currPos++;
 // @ts-ignore
@@ -3093,14 +3093,14 @@ peg$parsesafe_operator() {
 // @ts-ignore
                 s0 = peg$FAILED;
 // @ts-ignore
-                if (peg$silentFails === 0) { peg$fail(peg$e35); }
+                if (peg$silentFails === 0) { peg$fail(peg$e34); }
               }
 // @ts-ignore
               if (s0 === peg$FAILED) {
 // @ts-ignore
-                if (input.charCodeAt(peg$currPos) === 47) {
+                if (input.charCodeAt(peg$currPos) === 45) {
 // @ts-ignore
-                  s0 = peg$c29;
+                  s0 = peg$c28;
 // @ts-ignore
                   peg$currPos++;
 // @ts-ignore
@@ -3108,14 +3108,14 @@ peg$parsesafe_operator() {
 // @ts-ignore
                   s0 = peg$FAILED;
 // @ts-ignore
-                  if (peg$silentFails === 0) { peg$fail(peg$e36); }
+                  if (peg$silentFails === 0) { peg$fail(peg$e35); }
                 }
 // @ts-ignore
                 if (s0 === peg$FAILED) {
 // @ts-ignore
-                  if (input.charCodeAt(peg$currPos) === 42) {
+                  if (input.charCodeAt(peg$currPos) === 47) {
 // @ts-ignore
-                    s0 = peg$c30;
+                    s0 = peg$c29;
 // @ts-ignore
                     peg$currPos++;
 // @ts-ignore
@@ -3123,29 +3123,29 @@ peg$parsesafe_operator() {
 // @ts-ignore
                     s0 = peg$FAILED;
 // @ts-ignore
-                    if (peg$silentFails === 0) { peg$fail(peg$e37); }
+                    if (peg$silentFails === 0) { peg$fail(peg$e36); }
                   }
 // @ts-ignore
                   if (s0 === peg$FAILED) {
 // @ts-ignore
-                    if (input.substr(peg$currPos, 2) === peg$c31) {
+                    if (input.charCodeAt(peg$currPos) === 42) {
 // @ts-ignore
-                      s0 = peg$c31;
+                      s0 = peg$c30;
 // @ts-ignore
-                      peg$currPos += 2;
+                      peg$currPos++;
 // @ts-ignore
                     } else {
 // @ts-ignore
                       s0 = peg$FAILED;
 // @ts-ignore
-                      if (peg$silentFails === 0) { peg$fail(peg$e38); }
+                      if (peg$silentFails === 0) { peg$fail(peg$e37); }
                     }
 // @ts-ignore
                     if (s0 === peg$FAILED) {
 // @ts-ignore
-                      if (input.substr(peg$currPos, 2) === peg$c32) {
+                      if (input.substr(peg$currPos, 2) === peg$c31) {
 // @ts-ignore
-                        s0 = peg$c32;
+                        s0 = peg$c31;
 // @ts-ignore
                         peg$currPos += 2;
 // @ts-ignore
@@ -3153,7 +3153,23 @@ peg$parsesafe_operator() {
 // @ts-ignore
                         s0 = peg$FAILED;
 // @ts-ignore
-                        if (peg$silentFails === 0) { peg$fail(peg$e39); }
+                        if (peg$silentFails === 0) { peg$fail(peg$e38); }
+                      }
+// @ts-ignore
+                      if (s0 === peg$FAILED) {
+// @ts-ignore
+                        if (input.substr(peg$currPos, 2) === peg$c32) {
+// @ts-ignore
+                          s0 = peg$c32;
+// @ts-ignore
+                          peg$currPos += 2;
+// @ts-ignore
+                        } else {
+// @ts-ignore
+                          s0 = peg$FAILED;
+// @ts-ignore
+                          if (peg$silentFails === 0) { peg$fail(peg$e39); }
+                        }
                       }
                     }
                   }
@@ -4422,6 +4438,7 @@ export type Args = ["(", Arg | null, [Comma, Arg][], ")"];
 export type Arg = [_, Expression, _];
 export type SafeOperator =
   | "<"
+  | "="
   | "=="
   | "<="
   | "!="

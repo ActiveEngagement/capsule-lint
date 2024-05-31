@@ -77,7 +77,8 @@ arg "expression"
   = _ expression _
   
 safe_operator "operator"
-  = "<" 
+  = "<"
+  / "="
   / "==" 
   / "<="
   / "!=" 
