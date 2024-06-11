@@ -1,3 +1,10 @@
+## [0.4.11](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.10...v0.4.11) (2024-06-11)
+
+
+### Bug Fixes
+
+* update freemarker grammar ([cfb6ee1](https://github.com/ActiveEngagement/capsule-lint/commit/cfb6ee1a48e23b50d188e67707117778abd77006))
+
 ## [0.4.10](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.9...v0.4.10) (2024-05-31)
 
 
