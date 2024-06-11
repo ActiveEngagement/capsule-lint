@@ -1,3 +1,11 @@
+## [0.4.10](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.9...v0.4.10) (2024-05-31)
+
+
+### Bug Fixes
+
+* fixed issue with missing operator for freemarker conditionals ([7280984](https://github.com/ActiveEngagement/capsule-lint/commit/728098469d0bf3e34d0f2e2f1e80c2d892e01f90))
+* issue with frozen lockfile in pipleline ([7309bf6](https://github.com/ActiveEngagement/capsule-lint/commit/7309bf650f2a1d7bdb7e41efb07abf24d01997fd))
+
 ## [0.4.9](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.8...v0.4.9) (2024-05-17)
 
 
