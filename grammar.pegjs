@@ -55,7 +55,7 @@ safe_expression "equation"
 
 variable
   = value: (
-  	(encapsulated_string / varname / html_entity) variable_notation
+  	("." / encapsulated_string / varname / html_entity) variable_notation
   )* {
     return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }

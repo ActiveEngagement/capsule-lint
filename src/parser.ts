@@ -2475,15 +2475,31 @@ peg$parsevariable() {
 // @ts-ignore
     s2 = peg$currPos;
 // @ts-ignore
-    s3 = peg$parseencapsulated_string();
+    if (input.charCodeAt(peg$currPos) === 46) {
+// @ts-ignore
+      s3 = peg$c19;
+// @ts-ignore
+      peg$currPos++;
+// @ts-ignore
+    } else {
+// @ts-ignore
+      s3 = peg$FAILED;
+// @ts-ignore
+      if (peg$silentFails === 0) { peg$fail(peg$e24); }
+    }
 // @ts-ignore
     if (s3 === peg$FAILED) {
 // @ts-ignore
-      s3 = peg$parsevarname();
+      s3 = peg$parseencapsulated_string();
 // @ts-ignore
       if (s3 === peg$FAILED) {
 // @ts-ignore
-        s3 = peg$parsehtml_entity();
+        s3 = peg$parsevarname();
+// @ts-ignore
+        if (s3 === peg$FAILED) {
+// @ts-ignore
+          s3 = peg$parsehtml_entity();
+        }
       }
     }
 // @ts-ignore
@@ -2508,15 +2524,31 @@ peg$parsevariable() {
 // @ts-ignore
       s2 = peg$currPos;
 // @ts-ignore
-      s3 = peg$parseencapsulated_string();
+      if (input.charCodeAt(peg$currPos) === 46) {
+// @ts-ignore
+        s3 = peg$c19;
+// @ts-ignore
+        peg$currPos++;
+// @ts-ignore
+      } else {
+// @ts-ignore
+        s3 = peg$FAILED;
+// @ts-ignore
+        if (peg$silentFails === 0) { peg$fail(peg$e24); }
+      }
 // @ts-ignore
       if (s3 === peg$FAILED) {
 // @ts-ignore
-        s3 = peg$parsevarname();
+        s3 = peg$parseencapsulated_string();
 // @ts-ignore
         if (s3 === peg$FAILED) {
 // @ts-ignore
-          s3 = peg$parsehtml_entity();
+          s3 = peg$parsevarname();
+// @ts-ignore
+          if (s3 === peg$FAILED) {
+// @ts-ignore
+            s3 = peg$parsehtml_entity();
+          }
         }
       }
 // @ts-ignore
