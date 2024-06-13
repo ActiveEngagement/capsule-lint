@@ -11,16 +11,21 @@ Object.keys(rules).forEach((key) => {
 
 export * from './parser';
 
+export {
+    defaultConfig
+};
+
+type CapsuleRuleset = Ruleset & {
+    'html-valid-children'?: HeadValidChildrenOptions,
+    'valid-path-format'?: ValidPathFormatOptions
+}
+
 export type {
+    CapsuleRuleset,
     Hint,
     Rule,
     Ruleset
 };
-
-export type CapsuleRuleset = Ruleset & {
-    'html-valid-children'?: HeadValidChildrenOptions,
-    'valid-path-format'?: ValidPathFormatOptions
-}
 
 export function lint(html: string, ruleset?: CapsuleRuleset): Hint[] {
     return HTMLHint.verify(html, ruleset ?? defaultConfig).map(error => {
