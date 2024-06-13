@@ -1,3 +1,11 @@
+## [0.4.13](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.12...v0.4.13) (2024-06-13)
+
+
+### Bug Fixes
+
+* merged default rules with the ruleset arg ([4dc5d90](https://github.com/ActiveEngagement/capsule-lint/commit/4dc5d907561b922e0d95347908e28bef54a9cabf))
+* revert last change due to failing tests ([5c0ac85](https://github.com/ActiveEngagement/capsule-lint/commit/5c0ac8501e193c09a68b90d32315b560e6f71b39))
+
 ## [0.4.12](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.11...v0.4.12) (2024-06-13)
 
 
