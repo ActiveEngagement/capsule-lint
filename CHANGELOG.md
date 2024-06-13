@@ -1,3 +1,10 @@
+## [0.4.12](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.11...v0.4.12) (2024-06-13)
+
+
+### Bug Fixes
+
+* add argument to lint() to pass a capsule ruleset ([82d133c](https://github.com/ActiveEngagement/capsule-lint/commit/82d133c7037288d2606a9a1428b66c991e9b1e15))
+
 ## [0.4.11](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.10...v0.4.11) (2024-06-11)
 
 
