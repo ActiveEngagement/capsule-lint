@@ -8,7 +8,9 @@ const document = ref<string>('<#list a as b>${a.name}');
 const errors = ref<any[]>();
 
 watchEffect(() => {
-    errors.value = document.value ? lint(document.value) : [];
+    errors.value = document.value ? lint(document.value, {
+        "spec-char-escape": false
+    }) : [];
 });
 </script>
 
