@@ -1,3 +1,10 @@
+## [0.4.14](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.13...v0.4.14) (2024-06-13)
+
+
+### Bug Fixes
+
+* added default config to export ([149404d](https://github.com/ActiveEngagement/capsule-lint/commit/149404d47bcc7616ea91e245c9328a7d4354c7e7))
+
 ## [0.4.13](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.12...v0.4.13) (2024-06-13)
 
 
