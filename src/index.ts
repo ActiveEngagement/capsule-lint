@@ -18,12 +18,12 @@ export type {
 };
 
 export type CapsuleRuleset = Ruleset & {
-    'html-valid-children': HeadValidChildrenOptions,
-    'valid-path-format': ValidPathFormatOptions
+    'html-valid-children'?: HeadValidChildrenOptions,
+    'valid-path-format'?: ValidPathFormatOptions
 }
 
-export function lint(html: string, config?: Ruleset): Hint[] {
-    return HTMLHint.verify(html, config ?? defaultConfig).map(error => {
+export function lint(html: string, ruleset?: CapsuleRuleset): Hint[] {
+    return HTMLHint.verify(html, ruleset ?? defaultConfig).map(error => {
         error.rule.link = error.rule.link.replace(
             'https://htmlhint.com/docs/user-guide/rules/',
             'https://thecapsule.email/docs/codes/'
