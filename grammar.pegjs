@@ -11,7 +11,7 @@ tag
   = &"${" value: ("${" _ tag_expression _ "}") { return value.flat(Infinity).join('') }
 
 if
-  = value: (openif / elseif / else / endif)
+  = (openif / elseif / else / endif)
   
 openif
   = &"<#if" value:("<#if" required_whitespace expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
@@ -26,13 +26,13 @@ endif
   = &"</#if" value: "</#if>" { return value }
 
 list
-  = value: (openlist / endlist)
+  = openlist / endlist
   
 openlist
   = &"<#list" value:("<#list" required_whitespace variable required_whitespace "as" required_whitespace variable">") { return value.flat(Infinity).filter(Boolean).join('') }
 
 endlist
-  = "</#list>"
+  = &"</#list" value: "</#list>" { return value }
 
 assign
   = &"<#assign" value:("<#assign" required_whitespace variable _ "=" _ expression ">") { return value.flat(Infinity).filter(Boolean).join('') }

@@ -3,14 +3,12 @@ import { TextareaField } from '@vue-interface/textarea-field';
 import { ref, watchEffect } from 'vue';
 import { lint } from '../src/index';
 
-const document = ref<string>('<#list a as b>${a.name}');
+const document = ref<string>('<#if>‡<table></table><#/if>');
 
 const errors = ref<any[]>();
 
 watchEffect(() => {
-    errors.value = document.value ? lint(document.value, {
-        "spec-char-escape": false
-    }) : [];
+    errors.value = document.value ? lint(document.value) : [];
 });
 </script>
 
