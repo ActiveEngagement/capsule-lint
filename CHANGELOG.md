@@ -1,3 +1,10 @@
+## [0.4.15](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.14...v0.4.15) (2024-06-17)
+
+
+### Bug Fixes
+
+* fixed issue with <#/list> being thrown ([cd9ca8b](https://github.com/ActiveEngagement/capsule-lint/commit/cd9ca8be7b11c8b119397520eb9d16eb14febc81))
+
 ## [0.4.14](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.13...v0.4.14) (2024-06-13)
 
 
