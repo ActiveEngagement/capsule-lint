@@ -100,10 +100,9 @@ number "number"
 )? { return `${negative ?? ''}${number.join('')}${decimal ?? ''}` }
 
 encapsulated_string
-  = &('"'/"'") value: (
-    ("'" ("\\'" / (!"'" char))* "'") /
-    ('"' ('\\"' / (!'"' char))* '"')
-  ) { return value.flat(Infinity).filter(Boolean).join('') }
+  =  &('"'/"'") value: (
+      ('"' (!'"' .)* '"') / ("'" ((!"'" .)*) "'")
+  ) { return value.flat(2).join('') }
 
 varname
   = value: [a-zA-Z0-9_]+ { return value.join('') }

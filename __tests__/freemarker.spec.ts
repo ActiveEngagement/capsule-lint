@@ -76,4 +76,8 @@ test('that the following freemarker syntax will parse', () => {
     expect(parse('${.now?foo?bar}')).toEqual([
         '${.now?foo?bar}'
     ]);
+
+    expect(parse("${Gears.track('${test[0].foo.bar?test}')}")).toEqual([
+        "${Gears.track('${test[0].foo.bar?test}')}"
+    ]);
 })
