@@ -1,3 +1,10 @@
+## [0.4.16](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.15...v0.4.16) (2024-06-18)
+
+
+### Bug Fixes
+
+* improved freemarker tag parsing ([b0ada99](https://github.com/ActiveEngagement/capsule-lint/commit/b0ada998e73746085a429026156e8bc93cfb1fe2))
+
 ## [0.4.15](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.14...v0.4.15) (2024-06-17)
 
 
