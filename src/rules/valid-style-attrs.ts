@@ -73,7 +73,7 @@ const rule: Rule = {
                         event.line,
                         event.col + event.raw.indexOf(attr.raw.trim()),
                         this,
-                        attr.raw
+                        attr.raw.trim()
                     );
                 };
             }
