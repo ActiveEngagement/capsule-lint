@@ -71,9 +71,9 @@ const rule: Rule = {
                     reporter.error(
                         error.message,
                         event.line,
-                        event.line + 1,
+                        event.raw.indexOf(attr.raw) + 1,
                         this,
-                        event.raw
+                        attr.raw
                     );
                 };
             }
