@@ -71,7 +71,7 @@ const rule: Rule = {
                         reporter.error(
                             error.message,
                             event.line,
-                            event.col + event.raw.indexOf(error.declaration),
+                            event.raw.indexOf(attr.raw) + 1,
                             this,
                             attr.raw
                         );
