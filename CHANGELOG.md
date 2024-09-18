@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.17...v0.5.0) (2024-09-18)
+
+
+### Features
+
+* added validation rule to validate CSS in style attributes ([0e25254](https://github.com/ActiveEngagement/capsule-lint/commit/0e25254eb0cbc7c4de6b92d1c255e1dbcef78ad1))
+
 ## [0.4.17](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.16...v0.4.17) (2024-06-24)
 
 
