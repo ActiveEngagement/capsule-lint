@@ -64,20 +64,20 @@ const rule: Rule = {
     init(parser, reporter) {
 
         parser.addListener('tagstart', event => {
-            event.attrs
-                .filter(({ name }) => name === 'style')
-                .forEach(attr => {
-                    validateInlineCSS(attr.value).errors.forEach(error => {
-                        reporter.error(
-                            error.message,
-                            event.line,
-                            event.raw.indexOf(attr.raw) + 1,
-                            this,
-                            attr.raw
-                        );
-                    });
-                });
-        });
+            const matches = event.attrs.filter(({ name }) => name === 'style');
+
+            for(const attr of matches) {
+                for(const error of validateInlineCSS(attr.value).errors) {
+                    reporter.error(
+                        error.message,
+                        event.line,
+                        event.line + 1,
+                        this,
+                        event.raw
+                    );
+                };
+            }
+        })
     }
 }
 
