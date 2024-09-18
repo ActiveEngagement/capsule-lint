@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.0...v0.5.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* cleanup code ([9f716df](https://github.com/ActiveEngagement/capsule-lint/commit/9f716dfd7553f2ec7bd3fbd3cc15ab1649d94c06))
+* fix col reporting issues ([0d39c91](https://github.com/ActiveEngagement/capsule-lint/commit/0d39c916bb47c8b9e8c6c32a7fe1295160f0aa79))
+* fixed broken tests ([2fd96f6](https://github.com/ActiveEngagement/capsule-lint/commit/2fd96f6d4757b0f8e2bd15a02fc6a0d7108b5cd8))
+
 # [0.5.0](https://github.com/ActiveEngagement/capsule-lint/compare/v0.4.17...v0.5.0) (2024-09-18)
 
 
