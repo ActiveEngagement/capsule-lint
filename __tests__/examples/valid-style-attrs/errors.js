@@ -1,6 +1,6 @@
 module.exports = [
     {
-        "col": 5,
+        "col": 6,
         "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
         "line": 1,
         "message": "The value \"eb-garamond, serif\" does not contain a declaration.",
@@ -13,7 +13,7 @@ module.exports = [
         "type": "error"
     },
     {
-        "col": 5,
+        "col": 6,
         "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
         "line": 1,
         "message": "Property \"background-color\" has an empty value",
@@ -26,7 +26,7 @@ module.exports = [
         "type": "error"
     },
     {
-        "col": 5,
+        "col": 6,
         "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
         "line": 1,
         "message": "The value \"red\" does not have a declaration.",
@@ -39,7 +39,7 @@ module.exports = [
         "type": "error"
     },
     {
-        "col": 5,
+        "col": 6,
         "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
         "line": 1,
         "message": "Declaration \"color=red\" uses '=' instead of ':'",
