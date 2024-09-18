@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.1...v0.5.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* fix another issue with the col of the error ([53c1349](https://github.com/ActiveEngagement/capsule-lint/commit/53c1349a153edaed0bc74a087dd7d43f1c5ace8f))
+
 ## [0.5.1](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.0...v0.5.1) (2024-09-18)
 
 
