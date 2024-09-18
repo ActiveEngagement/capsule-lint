@@ -1,4 +1,5 @@
 export default {
+	"attr-whitespace": false,
 	"attr-no-duplication": true,
 	"body-no-duplicates": true,
 	"freemarker-tags": true,
@@ -35,5 +36,6 @@ export default {
 		"formats": [
 			"absolute"
 		]
-	}]
+	}],
+	'valid-style-attrs': true
 }

@@ -14,6 +14,7 @@ import noEntiesInAttributes from './no-entities-in-attributes';
 import specialCharEscape from './special-char-escape';
 import tagPair from './tag-pair';
 import validPathFormat from './valid-path-format';
+import validStyleAttrs from './valid-style-attrs';
 
 export default {
     'body-no-duplicates': bodyNoDuplicates,
@@ -32,4 +33,5 @@ export default {
     'special-char-escape': specialCharEscape,
     'tag-pair': tagPair,
     'valid-path-format': validPathFormat,
+    'valid-style-attrs': validStyleAttrs,
 };

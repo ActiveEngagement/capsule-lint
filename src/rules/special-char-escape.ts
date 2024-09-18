@@ -8,7 +8,7 @@ const rule: Rule = {
         parser.addListener('text', (event) => {
             const raw = event.raw;
             const reSpecChar = /[<>]| \& /g;
-            
+
             let tags = [];
 
             try {

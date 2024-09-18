@@ -18,6 +18,7 @@ export {
 type CapsuleRuleset = Ruleset & {
     'html-valid-children'?: HeadValidChildrenOptions,
     'valid-path-format'?: ValidPathFormatOptions
+    'valid-style-attrs'?: boolean
 }
 
 export type {

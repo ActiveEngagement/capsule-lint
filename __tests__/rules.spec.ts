@@ -124,3 +124,9 @@ describe('Rule: "tag-pair"', () => {
         rule('tag-pair/missing-opening-tag');
     });
 });
+
+describe('Rule: "valid-style-attrs"', () => {
+    it('Throws errors with an invalid style attribute.', () => {
+        rule('valid-style-attrs');
+    });
+});
