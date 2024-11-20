@@ -1,3 +1,10 @@
+## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
+
+
+### Bug Fixes
+
+* added lt, lte, gt and gte syntax support ([0e2a7aa](https://github.com/ActiveEngagement/capsule-lint/commit/0e2a7aace6689d0efb6fd06380b8208e6fd1ea73))
+
 ## [0.5.3](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.2...v0.5.3) (2024-09-18)
 
 
