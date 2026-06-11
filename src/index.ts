@@ -46,7 +46,7 @@ export function lint(html: string, ruleset?: CapsuleRuleset, options?: LintOptio
 
     return HTMLHint.verify(html, effectiveRuleset).map(error => {
         error.rule.link = error.rule.link.replace(
-            'https://htmlhint.com/docs/user-guide/rules/',
+            /https:\/\/htmlhint\.com\/(?:docs\/user-guide\/)?rules\//,
             'https://thecapsule.email/docs/codes/'
         );
 
