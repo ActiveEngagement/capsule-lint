@@ -65,6 +65,41 @@ describe('htmlLinting: true (default)', () => {
     });
 });
 
+describe('FreeMarker error position accuracy when HTML splits text chunks', () => {
+    // When HTML tags like <<gift array>> are present, HTMLHint splits the document
+    // into text chunks. PEG error positions must be offset by the chunk's document
+    // position so errors are reported at the correct document line/col.
+    const content = [
+        'Eddie Gallagher',
+        'Director of Operations',
+        'Pipe Hitter Foundation',
+        '',
+        'REPLACE <<gift array>> with:',
+        '',
+        '${(hpcAmount?number*0.5?round}',  // missing closing ) — FreeMarker syntax error on line 7
+    ].join('\n');
+
+    it('reports FreeMarker syntax error at the correct document line when HTML precedes it', () => {
+        const errors = lint(content, undefined, { htmlLinting: false });
+        expect(errors).toHaveLength(1);
+        expect(errors[0].rule.id).toBe('freemarker-tags');
+        expect(errors[0].line).toBe(7);
+    });
+
+    it('reports FreeMarker syntax error at correct line even when HTML linting is on', () => {
+        const errors = lint(content);
+        const fmError = errors.find(e => e.rule.id === 'freemarker-tags');
+        expect(fmError).toBeDefined();
+        expect(fmError!.line).toBe(7);
+    });
+
+    it('does not report the FreeMarker error at the chunk-relative line 3', () => {
+        const errors = lint(content, undefined, { htmlLinting: false });
+        const wrongLine = errors.find(e => e.rule.id === 'freemarker-tags' && e.line === 3);
+        expect(wrongLine).toBeUndefined();
+    });
+})
+
 describe('htmlLinting: false with custom ruleset', () => {
     it('respects a custom ruleset but still disables non-FreeMarker rules', () => {
         const customRuleset = {
