@@ -106,10 +106,15 @@ const rule: Rule =  {
             }
             catch(error) {
                 if(error instanceof PeggySyntaxError) {
+                    const pegLine = error.location.start.line;
+                    const pegCol = error.location.start.column;
+                    const absoluteLine = event.line + pegLine - 1;
+                    const absoluteCol = pegLine === 1 ? event.col + pegCol - 1 : pegCol;
+
                     reporter.error(
                         error.message,
-                        error.location.start.line,                    
-                        error.location.start.column,
+                        absoluteLine,
+                        absoluteCol,
                         this,
                         event.raw
                     );

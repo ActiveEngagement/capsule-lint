@@ -1,6 +1,9 @@
 start
-  = (if / list / assign / tag / text)*
+  = (comment / if / list / assign / tag / text)*
   
+comment
+  = &"<#--" value:("<#--" (!"-->" .)* "-->") { return value.flat(Infinity).join('') }
+
 text "text"
   = value: char+ { return value.join('') }
 
@@ -29,21 +32,23 @@ list
   = openlist / endlist
   
 openlist
-  = &"<#list" value:("<#list" required_whitespace variable required_whitespace "as" required_whitespace variable">") { return value.flat(Infinity).filter(Boolean).join('') }
+  = &"<#list" value:("<#list" required_whitespace variable required_whitespace "as" required_whitespace variable _ ">") { return value.flat(Infinity).filter(Boolean).join('') }
 
 endlist
   = &"</#list" value: "</#list>" { return value }
 
 assign
   = &"<#assign" value:("<#assign" required_whitespace variable _ "=" _ expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
+  / &"<#local" value:("<#local" required_whitespace variable _ "=" _ expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
+  / &"<#global" value:("<#global" required_whitespace variable _ "=" _ expression ">") { return value.flat(Infinity).filter(Boolean).join('') }
 
 tag_expression "expression"
-  = value: ("!"? "(" _ unsafe_expression _ ")" / unsafe_expression) _ {
+  = value: ("!"? "(" _ unsafe_expression _ ")" variable_notation (_ unsafe_operator _ expression)* / unsafe_expression) _ {
   return value.flat(Infinity).join('')
 }
 
 expression "expression"
-  = value: (("!"? "(" _ unsafe_expression _ ")" / safe_expression) _ (safe_operator _ expression)?) _ {
+  = value: (("!"? "(" _ unsafe_expression _ ")" variable_notation / safe_expression) _ (safe_operator _ expression)?) _ {
   return value.flat(Infinity).join('')
 }
 
@@ -55,7 +60,7 @@ safe_expression "equation"
 
 variable
   = value: (
-  	("." / encapsulated_string / varname / html_entity) variable_notation
+  	("." / number / encapsulated_string / varname / html_entity) variable_notation
   )* {
     return Array.isArray(value) ? value.flat(Infinity).join('') : value;
   }
@@ -77,7 +82,10 @@ arg "expression"
   = _ expression _
   
 safe_operator "operator"
-  = "<"
+  = "=="
+  / "!="
+  / "<="
+  / "<"
   / "gt"
   / "&gt;"
   / "gte"
@@ -86,21 +94,19 @@ safe_operator "operator"
   / "&lt;"
   / "lte"
   / "&lte;"
-  / "="
-  / "==" 
-  / "<="
-  / "!=" 
-  / "+" 
-  / "-" 
-  / "/"
-  / "*"
   / "&&"
   / "||"
+  / "+"
+  / "-"
+  / "*"
+  / "/"
+  / "%"
+  / "="
 
 unsafe_operator "operator"
   = safe_operator
-  / ">"
   / ">="
+  / ">"
 
 number "number"
   = negative: "-"? number:[0-9]+ decimal: (
