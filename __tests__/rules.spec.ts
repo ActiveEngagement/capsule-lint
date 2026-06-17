@@ -7,16 +7,17 @@ function doc(rule) {
     return readFileSync(resolve(__dirname, `examples/${rule}/document.html`), 'utf8');
 }
 
-function errors(rule) {
-    return require(resolve(__dirname, `examples/${rule}/errors.js`));
+async function errors(rule) {
+    const mod = await import(resolve(__dirname, `examples/${rule}/errors.cjs`));
+    return mod.default;
 }
 
-function rule(rule) {
+async function rule(rule) {
     const key = rule.split('/')[0];
 
     return expect(lint(doc(rule), {
-        [key]: rules[key] 
-    })).toMatchObject(errors(rule));
+        [key]: rules[key]
+    })).toMatchObject(await errors(rule));
 }
 
 describe('Rule: "attr-no-duplication"', () => {

@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 // vite.config.js
 export default defineConfig(config => ({
@@ -34,5 +34,9 @@ export default defineConfig(config => ({
     plugins: [vue()],
     define: {
         'process.env': process.env
-    }
+    },
+    test: {
+        globals: true,
+        environment: 'node',
+    },
 }));
