@@ -54,6 +54,7 @@
     "eslint": "^8.57.1",
     "husky": "^8.0.3",
     "peggy": "^3.0.2",
+    "ts-pegjs": "^4.2.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12",
     "tslib": "^2.7.0",
@@ -64,8 +65,7 @@
     "vue": "^3.5.6"
   },
   "dependencies": {
-    "htmlhint": "^1.1.4",
-    "ts-pegjs": "^4.2.1"
+    "htmlhint": "^1.1.4"
   },
   "pnpm": {
     "overrides": {
