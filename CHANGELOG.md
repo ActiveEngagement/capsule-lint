@@ -1,5 +1,11 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.6.1
+
+### Patch Changes
+
+- 45dff9f: Migrate from Jest to Vitest, upgrade vite 4→8, and fix security vulnerabilities. Reduces audit vulnerabilities from 17 to 1.
+
 ## 0.6.0
 
 ### Minor Changes
