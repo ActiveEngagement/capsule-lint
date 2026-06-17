@@ -1,5 +1,11 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.6.2
+
+### Patch Changes
+
+- ef11139: Move ts-pegjs to devDependencies. It is only used at build time to compile grammar.pegjs into the pre-built parser — consumers no longer see a transitive peggy peer dependency warning.
+
 ## 0.6.1
 
 ### Patch Changes
