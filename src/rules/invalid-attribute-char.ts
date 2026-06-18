@@ -12,7 +12,7 @@ const rule: Rule ={
                 
                 let pos = 0;
 
-                const matches = name.match(/[^a-zA-Z:\-1-9]/g);
+                const matches = name.match(/[^a-zA-Z:\-0-9]/g);
                     
                 if(matches) {
                     while(matches.length) {
