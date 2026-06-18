@@ -1,5 +1,11 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.6.3
+
+### Patch Changes
+
+- b513f63: Fix `invalid-attribute-char` falsely rejecting the digit `0` in attribute names. The allowed-character pattern used the range `1-9` instead of `0-9`, so valid names such as `data-0` or `col0` were reported as errors.
+
 ## 0.6.2
 
 ### Patch Changes
