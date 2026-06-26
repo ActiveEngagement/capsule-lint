@@ -1,5 +1,11 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.6.4
+
+### Patch Changes
+
+- 79d7141: Add `no-closing-void-tags` rule to flag void elements used as closing tags (e.g. `</br>`).
+
 ## 0.6.3
 
 ### Patch Changes
