@@ -32,9 +32,6 @@ export default defineConfig(config => ({
         },
     },
     plugins: [vue()],
-    define: {
-        'process.env': process.env
-    },
     test: {
         globals: true,
         environment: 'node',

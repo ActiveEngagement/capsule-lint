@@ -3,11 +3,7 @@ import { TextareaField } from '@vue-interface/textarea-field';
 import { ref, watchEffect } from 'vue';
 import { lint } from '../src/index';
 
-const document = ref<string>(`<div>
-    <div style="background:">
-
-    </div>
-</div>`);
+const document = ref<string>(`</br>`);
 
 const errors = ref<any[]>();
 
