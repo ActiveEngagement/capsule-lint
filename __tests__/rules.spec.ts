@@ -94,6 +94,12 @@ describe('Rule: "valid-path-format"', () => {
     });
 });
 
+describe('Rule: "no-closing-void-tags"', () => {
+    it('Throws errors when a void element is used as a closing tag.', () => {
+        rule('no-closing-void-tags');
+    });
+});
+
 describe('Rule: "no-entities-in-attributes"', () => {
     it('Throws errors when HTML entities are inside of tag attributes.', () => {
         rule('no-entities-in-attributes');

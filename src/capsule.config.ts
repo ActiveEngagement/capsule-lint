@@ -13,6 +13,7 @@ export default {
 	"img-src-required": true,
 	"invalid-attribute-char": true,
 	"nested-paragraphs": true,
+	"no-closing-void-tags": true,
 	"no-enties-in-attributes": ['style', 'class', 'id'],
 	"spec-char-escape": true,
 	"src-not-empty": true,
