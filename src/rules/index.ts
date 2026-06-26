@@ -10,6 +10,7 @@ import htmlValidChildrenOrder from './html-valid-children-order';
 import imgSrcRequired from './img-src-required';
 import invalidAttributeChar from './invalid-attribute-char';
 import nestedParagraphs from './nested-paragraphs';
+import noClosingVoidTags from './no-closing-void-tags';
 import noEntiesInAttributes from './no-entities-in-attributes';
 import specialCharEscape from './special-char-escape';
 import tagPair from './tag-pair';
@@ -29,6 +30,7 @@ export default {
     'img-src-required': imgSrcRequired,
     'invalid-attribute-char': invalidAttributeChar,
     'nested-paragraphs': nestedParagraphs,
+    'no-closing-void-tags': noClosingVoidTags,
     'no-entities-in-attributes': noEntiesInAttributes,
     'special-char-escape': specialCharEscape,
     'tag-pair': tagPair,
