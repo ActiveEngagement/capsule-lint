@@ -118,6 +118,12 @@ describe('Rule: "freemarker-list-tags"', () => {
     });
 });
 
+describe('Rule: "freemarker-unknown-directive"', () => {
+    it('Reports a focused error for an unrecognized directive without cascading to unrelated tags.', () => {
+        rule('freemarker-tags/unknown-directive');
+    });
+});
+
 describe('Rule: "tag-pair"', () => {
     it('Throws errors when missing closing tag.', () => {
         rule('tag-pair/missing-closing-tag');

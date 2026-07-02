@@ -3,6 +3,18 @@ import { Block } from 'htmlhint/htmlparser';
 import { Rule } from 'htmlhint/types';
 import { PeggySyntaxError, parse } from '../parser';
 
+// Known FreeMarker directive names, used only to tailor the parse-error message
+// (a recognized name that fails to parse is malformed; an unrecognized one is a
+// typo or unsupported directive).
+const KNOWN_DIRECTIVES = new Set([
+    'if', 'elseif', 'else', 'list', 'sep', 'items', 'switch', 'case', 'default',
+    'break', 'macro', 'function', 'nested', 'return', 'attempt', 'recover',
+    'escape', 'noescape', 'autoesc', 'noautoesc', 'compress', 'noparse',
+    'outputformat', 'assign', 'local', 'global', 'include', 'import', 'setting',
+    'stop', 'flush', 'continue', 'visit', 'recurse', 't', 'lt', 'rt', 'nt',
+    'fallback'
+]);
+
 function isMatchingTag(tagName: string, tag: string) {
     return !!tag.match(new RegExp(`^<${tagName}`));
 }
@@ -111,13 +123,46 @@ const rule: Rule =  {
                     const absoluteLine = event.line + pegLine - 1;
                     const absoluteCol = pegLine === 1 ? event.col + pegCol - 1 : pegCol;
 
+                    const rest = event.raw.slice(error.location.start.offset);
+                    const lineEnd = rest.indexOf('\n');
+
+                    // Confine the highlighted range to the line where parsing
+                    // failed rather than the entire (possibly multi-line) chunk,
+                    // which the editor would otherwise underline in full.
+                    const raw = lineEnd === -1 ? rest : rest.slice(0, lineEnd);
+
+                    // Replace Peggy's "expected <every directive> but ... found"
+                    // dump with a focused message when the failure is a directive.
+                    const directive = rest.match(/^<\/?#([a-zA-Z_]\w*)/);
+                    const message = directive
+                        ? (KNOWN_DIRECTIVES.has(directive[1])
+                            ? `Malformed FreeMarker directive "<#${directive[1]}>". Check its syntax.`
+                            : `Unrecognized FreeMarker directive "<#${directive[1]}>". Check for a typo or an unsupported directive.`)
+                        : error.message;
+
                     reporter.error(
-                        error.message,
+                        message,
                         absoluteLine,
                         absoluteCol,
                         this,
-                        event.raw
+                        raw
                     );
+
+                    // A failed parse discards every token in the chunk, including
+                    // valid <#if>/<#list> opens. Salvage those opens so their
+                    // closing tags elsewhere aren't reported as unpaired.
+                    const salvage = new RegExp(`<(${blockTags.join('|')})\\b`, 'g');
+
+                    let open: RegExpExecArray | null;
+
+                    while((open = salvage.exec(event.raw))) {
+                        stack.push({
+                            event,
+                            raw: open[0],
+                            tagName: open[1],
+                            open: true
+                        });
+                    }
                 }
             }
         });
