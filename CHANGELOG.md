@@ -1,5 +1,13 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.7.2
+
+### Patch Changes
+
+- a2ff0ab: Skip the FreeMarker tokenizer for text with no FreeMarker markers.
+
+  The `freemarker-tags` and `spec-char-escape` rules ran every text chunk through the Peggy parser, which dominated whole-document lint time (~60% on a 1MB email). Every construct the grammar recognizes opens with `<#`, `</#`, `<@`, `</@` or `${`, so chunks without any marker now bypass the parse — a ~3x speedup on documents whose text is mostly plain, with identical diagnostics.
+
 ## 0.7.1
 
 ### Patch Changes
