@@ -2,6 +2,7 @@ import { Reporter } from 'htmlhint';
 import { Block } from 'htmlhint/htmlparser';
 import { Rule } from 'htmlhint/types';
 import { PeggySyntaxError, parse } from '../parser';
+import { hasFreemarkerSyntax } from '../lib/freemarkerSyntax';
 
 // Known FreeMarker directive names, used only to tailor the parse-error message
 // (a recognized name that fails to parse is malformed; an unrecognized one is a
@@ -102,6 +103,12 @@ const rule: Rule =  {
         const pattern = new RegExp(`^<(${blockTags.join('|')})`)
         
         parser.addListener('text', (event) => {
+            // No FreeMarker markers → the parse would yield only plain text;
+            // skip it (it's by far the hottest path on large documents).
+            if(!hasFreemarkerSyntax(event.raw)) {
+                return;
+            }
+
             try {
                 for(const tag of parse(event.raw)) {
                     const match = tag.match(pattern);
