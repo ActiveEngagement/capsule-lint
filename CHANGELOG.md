@@ -1,5 +1,33 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.7.0
+
+### Minor Changes
+
+- 8547a21: Expand FreeMarker grammar coverage so valid FTL is no longer flagged as invalid:
+
+  - Default (`!`) and exists (`??`) operators, e.g. `${user.name!"Friend"}`, `<#if x??>`
+  - Sequence and hash literals, e.g. `<#assign items = ["a", "b"]>`, `<#list ["x"] as y>`
+  - Multiple assignments on one directive, e.g. `<#assign x = 1 y = 2>`
+  - Optional `as` clause on `<#list>` to support the `<#list xs><#items as x>...</#items></#list>` form
+  - Directives previously unsupported: `#switch`/`#case`/`#default`/`#break`, `#macro`/`#function`/`#nested`/`#return`, `#include`/`#import`/`#setting`, `#items`/`#sep`, `#attempt`/`#recover`, `#escape`/`#noescape`, `#autoesc`/`#noautoesc`, `#compress`, `#noparse`, `#outputformat`, `#stop`/`#flush`/`#continue`/`#visit`/`#recurse`, and the `#t`/`#lt`/`#rt`/`#nt` whitespace directives
+  - User-directive (macro call) invocations, e.g. `<@button label="x" />` and `<@my.macro>...</@my.macro>`
+
+  Also fixes two rules that mis-flagged valid FreeMarker:
+
+  - `spec-char-escape` no longer reports `<`/`>`/`&` inside multi-line FreeMarker constructs or `<@...>` macro calls.
+  - `valid-path-format` now accepts a `${...}` interpolation as a valid `href` value.
+
+### Patch Changes
+
+- 18aa952: Fix the release workflow failing with `yaml.safeLoad is removed in js-yaml 4`.
+
+  The blanket `js-yaml: ">=4.2.0"` override forced `read-yaml-file` (a transitive
+  dependency of `@changesets/cli`) onto js-yaml 4, which removed the `safeLoad` API
+  it still calls. Scope the override so `read-yaml-file` stays on js-yaml 3.x while
+  keeping a `js-yaml@<3.13.1` guard to preserve the original security fix. `pnpm
+audit` reports no known vulnerabilities.
+
 ## 0.6.4
 
 ### Patch Changes
