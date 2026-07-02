@@ -1,5 +1,6 @@
 import { Rule } from "htmlhint/types";
 import { parse } from "../parser";
+import { hasFreemarkerSyntax } from "../lib/freemarkerSyntax";
 
 const rule: Rule = {
     id: 'spec-char-escape',
@@ -11,26 +12,36 @@ const rule: Rule = {
 
             let tags = [];
 
-            try {
-                let index = 0;
-
-                tags = parse(raw).map(tag => {
-                    const sliced = raw.slice(index);
-
-                    const start = index;
-                    const end = index + tag.length;
-
-                    index += tag.length + sliced.indexOf(tag);
-                    
-                    return {
-                        start,
-                        end,
-                        tag
-                    }
-                }).filter(Boolean)
+            // The parse only matters when the chunk holds FreeMarker syntax
+            // whose `<`/`>`/`&` must be exempted below — plain text is a
+            // single segment, no need for the (expensive) tokenization. A
+            // chunk that fails to parse still yields no segments, matching
+            // the old behavior of skipping it.
+            if(!hasFreemarkerSyntax(raw)) {
+                tags = [{ start: 0, end: raw.length, tag: raw }];
             }
-            catch(e) {
-                // Do nothing
+            else {
+                try {
+                    let index = 0;
+
+                    tags = parse(raw).map(tag => {
+                        const sliced = raw.slice(index);
+
+                        const start = index;
+                        const end = index + tag.length;
+
+                        index += tag.length + sliced.indexOf(tag);
+
+                        return {
+                            start,
+                            end,
+                            tag
+                        }
+                    }).filter(Boolean)
+                }
+                catch(e) {
+                    // Do nothing
+                }
             }
 
             let match;
@@ -48,9 +59,9 @@ const rule: Rule = {
                     if(!(match.index >= start && match.index <= end)) {
                         continue;
                     }
-                        
+
                     const { line, col } = parser.fixPos(event, match.index);
-                
+
                     reporter.error(`Special characters must be escaped : [ ${match[0]} ].`, line, col, this, event.raw);
                 }
             }
