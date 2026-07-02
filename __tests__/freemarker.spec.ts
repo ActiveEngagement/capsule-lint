@@ -213,3 +213,271 @@ test('that modulo operator parses correctly', () => {
         '</#if>'
     ]);
 })
+
+test('that the default (!) and exists (??) operators parse correctly', () => {
+    expect(parse('${user.name!"Friend"}')).toEqual([
+        '${user.name!"Friend"}'
+    ]);
+
+    expect(parse('${user.name!}')).toEqual([
+        '${user.name!}'
+    ]);
+
+    expect(parse('${(cart.total)!0}')).toEqual([
+        '${(cart.total)!0}'
+    ]);
+
+    expect(parse('<#if user.name??>content</#if>')).toEqual([
+        '<#if user.name??>',
+        'content',
+        '</#if>'
+    ]);
+
+    // The default operator must not swallow the != comparison operator.
+    expect(parse('<#if a != b>x</#if>')).toEqual([
+        '<#if a != b>',
+        'x',
+        '</#if>'
+    ]);
+
+    expect(parse('<#if a!=b>x</#if>')).toEqual([
+        '<#if a!=b>',
+        'x',
+        '</#if>'
+    ]);
+})
+
+test('that sequence and hash literals parse correctly', () => {
+    expect(parse('<#assign items = ["one", "two", "three"]>')).toEqual([
+        '<#assign items = ["one", "two", "three"]>'
+    ]);
+
+    expect(parse('<#assign config = {"color": "red", "size": 10}>')).toEqual([
+        '<#assign config = {"color": "red", "size": 10}>'
+    ]);
+
+    expect(parse('<#list ["red", "green", "blue"] as color>${color}</#list>')).toEqual([
+        '<#list ["red", "green", "blue"] as color>',
+        '${color}',
+        '</#list>'
+    ]);
+
+    expect(parse('${[1, 2, 3]?size}')).toEqual([
+        '${[1, 2, 3]?size}'
+    ]);
+})
+
+test('that multiple assignments on one directive parse correctly', () => {
+    expect(parse('<#assign x = 1 y = 2>')).toEqual([
+        '<#assign x = 1 y = 2>'
+    ]);
+})
+
+test('that switch/case/default/break directives parse correctly', () => {
+    expect(parse('<#switch plan><#case "pro">Pro<#break><#default>Free</#switch>')).toEqual([
+        '<#switch plan>',
+        '<#case "pro">',
+        'Pro',
+        '<#break>',
+        '<#default>',
+        'Free',
+        '</#switch>'
+    ]);
+})
+
+test('that macro, function, nested and return directives parse correctly', () => {
+    expect(parse('<#macro button label href color="blue">${label}</#macro>')).toEqual([
+        '<#macro button label href color="blue">',
+        '${label}',
+        '</#macro>'
+    ]);
+
+    expect(parse('<#function square x><#return x * x></#function>')).toEqual([
+        '<#function square x>',
+        '<#return x * x>',
+        '</#function>'
+    ]);
+
+    expect(parse('<#macro wrapper><#nested></#macro>')).toEqual([
+        '<#macro wrapper>',
+        '<#nested>',
+        '</#macro>'
+    ]);
+})
+
+test('that include, import and setting directives parse correctly', () => {
+    expect(parse('<#include "header.ftl">')).toEqual([
+        '<#include "header.ftl">'
+    ]);
+
+    expect(parse('<#import "/lib/utils.ftl" as utils>${utils.foo()}')).toEqual([
+        '<#import "/lib/utils.ftl" as utils>',
+        '${utils.foo()}'
+    ]);
+
+    expect(parse('<#setting number_format = "0.##">')).toEqual([
+        '<#setting number_format = "0.##">'
+    ]);
+})
+
+test('that user-directive (macro call) invocations parse correctly', () => {
+    expect(parse('<@button label="Donate" href="${donateUrl}" color="green" />')).toEqual([
+        '<@button label="Donate" href="${donateUrl}" color="green" />'
+    ]);
+
+    expect(parse('<@my.macro>body</@my.macro>')).toEqual([
+        '<@my.macro>',
+        'body',
+        '</@my.macro>'
+    ]);
+
+    expect(parse('<@greet name="World" />')).toEqual([
+        '<@greet name="World" />'
+    ]);
+})
+
+test('that #items and #sep directives parse correctly', () => {
+    expect(parse('<#list users><#items as user>${user}</#items></#list>')).toEqual([
+        '<#list users>',
+        '<#items as user>',
+        '${user}',
+        '</#items>',
+        '</#list>'
+    ]);
+
+    expect(parse('<#list items as i>${i}<#sep>, </#list>')).toEqual([
+        '<#list items as i>',
+        '${i}',
+        '<#sep>',
+        ', ',
+        '</#list>'
+    ]);
+
+    expect(parse('<#list map as k, v>${k}=${v}</#list>')).toEqual([
+        '<#list map as k, v>',
+        '${k}',
+        '=',
+        '${v}',
+        '</#list>'
+    ]);
+})
+
+test('that #attempt / #recover directives parse correctly', () => {
+    expect(parse('<#attempt>${risky}<#recover>fallback</#attempt>')).toEqual([
+        '<#attempt>',
+        '${risky}',
+        '<#recover>',
+        'fallback',
+        '</#attempt>'
+    ]);
+})
+
+test('that #escape / #noescape / #autoesc directives parse correctly', () => {
+    expect(parse('<#escape x as x?html>${name}</#escape>')).toEqual([
+        '<#escape x as x?html>',
+        '${name}',
+        '</#escape>'
+    ]);
+
+    expect(parse('<#noescape>${raw}</#noescape>')).toEqual([
+        '<#noescape>',
+        '${raw}',
+        '</#noescape>'
+    ]);
+
+    expect(parse('<#autoesc>${x}</#autoesc>')).toEqual([
+        '<#autoesc>',
+        '${x}',
+        '</#autoesc>'
+    ]);
+
+    expect(parse('<#noautoesc>${x}</#noautoesc>')).toEqual([
+        '<#noautoesc>',
+        '${x}',
+        '</#noautoesc>'
+    ]);
+})
+
+test('that #compress, #noparse and #outputformat directives parse correctly', () => {
+    expect(parse('<#compress>${x}</#compress>')).toEqual([
+        '<#compress>',
+        '${x}',
+        '</#compress>'
+    ]);
+
+    expect(parse('<#noparse>${x}</#noparse>')).toEqual([
+        '<#noparse>',
+        '${x}',
+        '</#noparse>'
+    ]);
+
+    expect(parse('<#outputformat "HTML">${x}</#outputformat>')).toEqual([
+        '<#outputformat "HTML">',
+        '${x}',
+        '</#outputformat>'
+    ]);
+})
+
+test('that #stop, #flush, #continue, #visit and #recurse directives parse correctly', () => {
+    expect(parse('<#stop "fatal error">')).toEqual([
+        '<#stop "fatal error">'
+    ]);
+
+    expect(parse('<#stop>')).toEqual([
+        '<#stop>'
+    ]);
+
+    expect(parse('<#flush>')).toEqual([
+        '<#flush>'
+    ]);
+
+    expect(parse('<#list items as i><#if i.skip><#continue></#if>${i}</#list>')).toEqual([
+        '<#list items as i>',
+        '<#if i.skip>',
+        '<#continue>',
+        '</#if>',
+        '${i}',
+        '</#list>'
+    ]);
+
+    expect(parse('<#visit node>')).toEqual([
+        '<#visit node>'
+    ]);
+
+    expect(parse('<#recurse node>')).toEqual([
+        '<#recurse node>'
+    ]);
+
+    expect(parse('<#recurse>')).toEqual([
+        '<#recurse>'
+    ]);
+})
+
+test('that whitespace-control directives parse correctly', () => {
+    expect(parse('${a}<#t>${b}<#lt>${c}<#rt>${d}<#nt>')).toEqual([
+        '${a}',
+        '<#t>',
+        '${b}',
+        '<#lt>',
+        '${c}',
+        '<#rt>',
+        '${d}',
+        '<#nt>'
+    ]);
+
+    expect(parse('<#macro m><#fallback></#macro>')).toEqual([
+        '<#macro m>',
+        '<#fallback>',
+        '</#macro>'
+    ]);
+})
+
+test('that self-closing directive syntax parses correctly', () => {
+    expect(parse('<#break/>')).toEqual([
+        '<#break/>'
+    ]);
+
+    expect(parse('<#include "x.ftl" />')).toEqual([
+        '<#include "x.ftl" />'
+    ]);
+})

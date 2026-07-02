@@ -1,7 +1,7 @@
 module.exports = [
     {
         type: 'error',
-        message: 'The [ href ] attribute "./styles.css" must be one of the following formats: "absolute", "MessageGears unsubscribe", "Mailto link".',
+        message: 'The [ href ] attribute "./styles.css" must be one of the following formats: "absolute", "MessageGears unsubscribe", "Mailto link", "FreeMarker expression".',
         raw: ' href="./styles.css"',
         evidence: '<link rel="stylesheet" href="./styles.css">',
         line: 1,
@@ -14,7 +14,7 @@ module.exports = [
     },
     {
         type: 'error',
-        message: 'The [ href ] attribute "./some-path-here" must be one of the following formats: "absolute", "MessageGears unsubscribe", "Mailto link".',
+        message: 'The [ href ] attribute "./some-path-here" must be one of the following formats: "absolute", "MessageGears unsubscribe", "Mailto link", "FreeMarker expression".',
         raw: ' href="./some-path-here"',
         evidence: '<a href="./some-path-here">Test</a>',
         line: 2,

@@ -36,7 +36,11 @@ const rule: Rule = {
             let match;
 
             for(const {start, end, tag} of tags) {
-                if(tag.match(/^<#.+>$/)) {
+                // Skip FreeMarker constructs (directives, closing tags and
+                // ${...} interpolations) — the `<`, `>` and `&` inside them are
+                // template syntax, not HTML text that needs escaping. `[\s\S]`
+                // (rather than `.`) so multi-line comments/tags are covered too.
+                if(/^(?:<\/?[#@]|\$\{)[\s\S]*$/.test(tag)) {
                     continue;
                 }
 
