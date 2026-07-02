@@ -29,6 +29,10 @@ export default {
 			{
 				"pattern": "mailto:.+",
 				"name": "Mailto link"
+			},
+			{
+				"pattern": "\\$\\{[\\s\\S]+?}",
+				"name": "FreeMarker expression"
 			}
 		]
 	}, {
