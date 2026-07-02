@@ -3,6 +3,9 @@ packages:
 
 overrides:
   ajv@<6.14.0: ">=6.14.0"
-  js-yaml: ">=4.2.0"
+  js-yaml@<3.13.1: ">=3.13.1"
   lodash: ">=4.18.0"
   minimatch@<3.1.4: ">=3.1.4"
+  # read-yaml-file (transitive dep of @changesets/cli) calls the removed
+  # yaml.safeLoad, so it must stay on js-yaml 3.x rather than being pulled to 4.x.
+  read-yaml-file>js-yaml: "^3.14.1"
