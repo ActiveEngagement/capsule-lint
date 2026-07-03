@@ -1,6 +1,7 @@
 export default {
 	"attr-whitespace": false,
 	"attr-no-duplication": true,
+	"attr-value-no-duplication": true,
 	"body-no-duplicates": true,
 	"freemarker-tags": true,
 	"head-body-descendents-html": true,
