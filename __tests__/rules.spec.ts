@@ -26,6 +26,12 @@ describe('Rule: "attr-no-duplication"', () => {
     });
 });
 
+describe('Rule: "attr-value-no-duplication"', () => {
+    it('Throws errors for duplicate values within an attribute.', () => {
+        rule('attr-value-no-duplication');
+    });
+});
+
 describe('Rule: "body-no-duplicates"', () => {
     it('Throws errors for duplicate <body> tags.', () => {
         rule('body-no-duplicates');
