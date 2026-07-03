@@ -1,5 +1,15 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.8.0
+
+### Minor Changes
+
+- 6a396d3: Enable the `attr-value-no-duplication` rule in the default config.
+
+  HTMLHint 1.9.x (already in range via `^1.1.4`) added this rule, which flags
+  duplicate values within an attribute (e.g. `class="btn btn"`). It checks
+  `class` by default and is configurable to other attributes.
+
 ## 0.7.2
 
 ### Patch Changes
