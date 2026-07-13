@@ -1,10 +1,10 @@
 module.exports = [
     {
-        "col": 6,
-        "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
-        "line": 1,
-        "message": "Unknown word eb-garamond,",
-        "raw": "style=\"eb-garamond, serif; background-color:; :red;color=red;\"",
+        "col": 32,
+        "evidence": ".b{font-family:Arial sans-serif background:blue}",
+        "line": 3,
+        "message": "Missed semicolon",
+        "raw": ".a{color:red}\n.b{font-family:Arial sans-serif background:blue}",
         "rule": {
             "description": "Style attributes and <style> blocks must contain valid CSS.",
             "id": "valid-style-attrs",
