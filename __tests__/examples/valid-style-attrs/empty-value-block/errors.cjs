@@ -1,10 +1,10 @@
 module.exports = [
     {
-        "col": 6,
-        "evidence": "<div style=\"eb-garamond, serif; background-color:; :red;color=red;\"></div>",
-        "line": 1,
-        "message": "Unknown word eb-garamond,",
-        "raw": "style=\"eb-garamond, serif; background-color:; :red;color=red;\"",
+        "col": 4,
+        "evidence": ".b{background:}",
+        "line": 3,
+        "message": "Property \"background\" has an empty value.",
+        "raw": ".a{color:red}\n.b{background:}",
         "rule": {
             "description": "Style attributes and <style> blocks must contain valid CSS.",
             "id": "valid-style-attrs",

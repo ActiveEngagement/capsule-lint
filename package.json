@@ -65,6 +65,7 @@
     "vue": "^3.5.6"
   },
   "dependencies": {
-    "htmlhint": "^1.1.4"
+    "htmlhint": "^1.1.4",
+    "postcss": "^8.5.15"
   }
 }

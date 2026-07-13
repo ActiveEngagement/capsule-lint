@@ -148,4 +148,29 @@ describe('Rule: "valid-style-attrs"', () => {
     it('Throws errors with an invalid style attribute.', () => {
         rule('valid-style-attrs');
     });
+
+    it('Catches a missing semicolon that merges two declarations.', () => {
+        return rule('valid-style-attrs/missing-semicolon');
+    });
+
+    it('Validates CSS inside <style> blocks, not just style attributes.', () => {
+        return rule('valid-style-attrs/style-block');
+    });
+
+    it('Flags an empty value in a style attribute.', () => {
+        return rule('valid-style-attrs/empty-value-attr');
+    });
+
+    it('Flags an empty value inside a <style> block.', () => {
+        return rule('valid-style-attrs/empty-value-block');
+    });
+
+    it('Passes valid CSS (including url() values) in attributes and <style> blocks.', () => {
+        // The shared helper matches against `toMatchObject([])`, which passes even
+        // for a non-empty result, so assert emptiness directly here to guard
+        // against false positives (notably `url(https://…)` values).
+        const html = readFileSync(resolve(__dirname, 'examples/valid-style-attrs/valid/document.html'), 'utf8');
+
+        expect(lint(html, { 'valid-style-attrs': rules['valid-style-attrs'] })).toHaveLength(0);
+    });
 });
