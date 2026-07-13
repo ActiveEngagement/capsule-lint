@@ -1,5 +1,23 @@
 ## [0.5.4](https://github.com/ActiveEngagement/capsule-lint/compare/v0.5.3...v0.5.4) (2024-11-20)
 
+## 0.9.0
+
+### Minor Changes
+
+- d589304: Validate CSS with a real parser instead of string-splitting, and extend
+  coverage to `<style>` blocks.
+
+  `valid-style-attrs` previously validated inline `style` attributes with a
+  hand-rolled split-on-`;` heuristic that missed structural errors — most notably
+  a missing semicolon that silently merges two declarations
+  (e.g. `font-family:...sans-serif background-color:transparent`), which then made
+  `capsule-capsulate` throw downstream. It now parses each chunk with PostCSS (the
+  same engine capsulate uses to inline styles via juice) and inspects the parsed
+  AST for empty properties/values, so anything that lints clean is safe downstream
+  and no regex is involved. The rule also now validates the CSS inside `<style>`
+  blocks, reporting errors at their true document line/column, not just inline
+  `style` attributes.
+
 ## 0.8.0
 
 ### Minor Changes
